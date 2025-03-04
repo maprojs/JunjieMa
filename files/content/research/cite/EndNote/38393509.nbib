@@ -1,0 +1,92 @@
+PMID- 38393509
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240731
+LR  - 20240731
+IS  - 1559-0100 (Electronic)
+IS  - 1355-008X (Linking)
+VI  - 85
+IP  - 2
+DP  - 2024 Aug
+TI  - Integrated machine learning and deep learning for predicting diabetic nephropathy 
+      model construction, validation, and interpretability.
+PG  - 615-625
+LID - 10.1007/s12020-024-03735-1 [doi]
+AB  - OBJECTIVE: To construct a risk prediction model for assisted diagnosis of 
+      Diabetic Nephropathy (DN) using machine learning algorithms, and to validate it 
+      internally and externally. METHODS: Firstly, the data was cleaned and enhanced, 
+      and was divided into training and test sets according to the 7:3 ratio. Then, the 
+      metrics related to DN were filtered by difference analysis, Least Absolute 
+      Shrinkage and Selection Operator (LASSO), Recursive Feature Elimination (RFE), 
+      and Max-relevance and Min-redundancy (MRMR) algorithms. Ten machine learning 
+      models were constructed based on the key variables. The best model was filtered 
+      by Receiver Operating Characteristic (ROC), Precision-Recall (PR), Accuracy, 
+      Matthews Correlation Coefficient (MCC), and Kappa, and was internally and 
+      externally validated. Based on the best model, an online platform had been 
+      constructed. RESULTS: 15 key variables were selected, and among the 10 machine 
+      learning models, the Random Forest model achieved the best predictive 
+      performance. In the test set, the area under the ROC curve was 0.912, and in two 
+      external validation cohorts, the area under the ROC curve was 0.828 and 0.863, 
+      indicating excellent predictive and generalization abilities. CONCLUSION: The 
+      model has a good predictive value and is expected to help in the early diagnosis 
+      and screening of clinical DN.
+CI  - © 2024. The Author(s), under exclusive licence to Springer Science+Business 
+      Media, LLC, part of Springer Nature.
+FAU - Ma, Junjie
+AU  - Ma J
+AUID- ORCID: 0000-0002-8847-3093
+AD  - Department of Clinical Medicine, Bengbu Medical University, Bengbu, China.
+FAU - An, Shaoguang
+AU  - An S
+AD  - Department of Clinical Medicine, Bengbu Medical University, Bengbu, China.
+FAU - Cao, Mohan
+AU  - Cao M
+AD  - Department of Clinical Medicine, Bengbu Medical University, Bengbu, China.
+FAU - Zhang, Lei
+AU  - Zhang L
+AD  - Department of Oncology Surgery, the Second Affiliated Hospital of Bengbu Medical 
+      University, Bengbu, China.
+FAU - Lu, Jin
+AU  - Lu J
+AD  - Anhui Key Laboratory of Computational Medicine and Intelligent Health, Bengbu 
+      Medical University, Bengbu, China. 0100197@bbmc.edu.cn.
+AD  - School of Basic Medicine, Bengbu Medical University, Bengbu, China. 
+      0100197@bbmc.edu.cn.
+LA  - eng
+GR  - 202310367071/College Students' Innovative Entrepreneurial Training Plan Program/
+PT  - Journal Article
+PT  - Validation Study
+DEP - 20240223
+PL  - United States
+TA  - Endocrine
+JT  - Endocrine
+JID - 9434444
+SB  - IM
+MH  - Humans
+MH  - *Diabetic Nephropathies/diagnosis
+MH  - *Machine Learning
+MH  - *Deep Learning
+MH  - Male
+MH  - Female
+MH  - Middle Aged
+MH  - Aged
+MH  - Reproducibility of Results
+MH  - ROC Curve
+OTO - NOTNLM
+OT  - Clinical prediction model
+OT  - Diabetic nephropathy
+OT  - Interpretability
+OT  - Machine learning
+EDAT- 2024/02/23 12:43
+MHDA- 2024/07/31 12:41
+CRDT- 2024/02/23 11:15
+PHST- 2023/11/13 00:00 [received]
+PHST- 2024/02/06 00:00 [accepted]
+PHST- 2024/07/31 12:41 [medline]
+PHST- 2024/02/23 12:43 [pubmed]
+PHST- 2024/02/23 11:15 [entrez]
+AID - 10.1007/s12020-024-03735-1 [pii]
+AID - 10.1007/s12020-024-03735-1 [doi]
+PST - ppublish
+SO  - Endocrine. 2024 Aug;85(2):615-625. doi: 10.1007/s12020-024-03735-1. Epub 2024 Feb 
+      23.

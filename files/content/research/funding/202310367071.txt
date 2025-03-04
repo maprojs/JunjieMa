@@ -1,0 +1,20 @@
+<h2 style="text-align: center;margin-bottom:15px;">Achievements</h2>
+
+<ul style="font-size:20px; margin-bottom:5px;">
+<li>Papers</li>
+</ul>
+
+<p style="margin-left:22px;margin-bottom:15px;">
+Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <bi>Endocrine</bi>, 2024, 85 (2): 615-625.
+</p>
+
+
+<ul style="font-size:20px; margin-bottom:5px;">
+<li>Software Copyright</li>
+</ul>
+
+<p style="margin-left:22px; margin-bottom:20px;">
+Diabetes complicated with nephropathy risk prediction platform (2024SR0725076)
+</p>
+
+

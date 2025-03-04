@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>目的</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+基于大数据筛选糖尿病(Diabetes Mellitus, DM)并发冠心病(Coronary Heart Disease, CHD)的关键因素，构建风险预测模型，为DM并发CHD患者的早期诊断和干预提供依据。
+</p>
+
+<ul style="font-size:18px;">
+<li>方法</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+首先，采用“mice”软件包对原始数据进行数据清洗，构建新数据集并对其进行差异分析；其次，对新数据集按7∶3随机分为建模组和验证组两组；再次，对建模组依次进行Lasso、单因素与多因素Logistic分析，筛选DM并发CHD的独立影响因素，并构建风险预测模型；最后，利用受试者工作特征曲线(Receiver Operating Characteristic, ROC)、决策曲线分析法(Decision Curve Analysis, DCA)、校准曲线(Calibration Curve, CC)对建模组和验证组进行内部评价和内部验证。
+</p>
+
+<ul style="font-size:18px;">
+<li>结果</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+共纳入2980例DM患者的临床数据(建模组2086例；验证组894例);建模组数据采用机器学习算法筛选出的影响因素有患病种类、高血压、高脂血、动脉粥样硬化、颈动脉狭窄、脂肪肝、其他慢性肝病、心肌梗死、心功能不全及心力衰竭、心律失常、其他内分泌疾病、年龄、高密度脂蛋白胆固醇(1～1.6 mmol/L)、低密度脂蛋白胆固醇(0～3.4 mmol/L)、总蛋白、磷脂以及部分活化凝血酶原时间等，并利用其成功构建风险预测模型；该模型的内部评价与内部验证的ROC曲线下的面积(Area Under Curve, AUC)分别是0.948和0.946,DCA净获益率分别为(1%～99%)和(1%～100%),且两组的校准曲线高度一致。
+</p>
+
+<ul style="font-size:18px;">
+<li>结论</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+DM并发CHD风险预测模型具有准确性、一致性、区分性与实用性等价值，可为患者的预防、诊断与治疗提供重要依据。
+</p>

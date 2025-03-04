@@ -1,0 +1,11 @@
+<ul style="font-size:18px;">
+<li>Abstract</li>
+</ul>
+
+<p style="margin-left:22px;margin-right:22px;text-indent:1em;">
+This application pertains to a rehabilitation device for limb flap transplantation, falling within the domain of medical device technology. It comprises a support structure that features a heating chamber on its inner side, through which the patient's limb is passed. The support structure is equipped with positioning components on both sides of the heating chamber to secure the patient's limb. Additionally, the support structure incorporates a heating element that warms the circumference of the heating chamber. This invention does not restrict the patient's overall mobility and ensures uniform heat application to the affected area, allowing the patient to rest comfortably even during prolonged exposure.
+</p>
+
+<div style="text-align:center;margin-top:30px;margin-right:30px">
+    <img src="files/images/research/ZL202420105433.2_abstract.webp" style="width:600px;height:300px;">
+</div>

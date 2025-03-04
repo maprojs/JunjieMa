@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>Objective</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+To investigate the significance of nucleoporin 85 (NUP85) ex-pression in hepatocellular carcinoma (HCC) and analyze its relevance to immune response.
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+A comprehensive analysis was conducted using various online databases to assess the mRNA and protein expression of NUP85 in HCC, as well as its mutation status and prognostic diagnostic value. The immune relevance of NUP85 was evaluated using single-cell sequencing data and resources from the Tumor Immune Estimation Resource (TIMER) and the Gene Expression Profiling Interactive Analysis 2021 (GEPIA2021) databases. The drug sensitivity of NUP85 was analyzed through the Genomic Landscape of Cancer (GSCA) and the Clinical Bioinformatics Home. Co-expressed genes of NUP85 in HCC were filtered using the Hepatocellular Carcinoma Comprehensive Molecular Database (HCCDB), and the correlation between NUP85 and its related genes was analyzed using the R language "limma" package. The gene ontology (GO) functions, Kyoto Encyclopedia of Genes and Genomes (KEGG), and Gene Set Enrichment Analysis (GSEA) of NUP85 and its related genes were performed using the R language "clusterProfiler" package. The Clinical Bioinformatics Home was utilized to construct heatmaps and prognostic risk scoring models for NUP85 and its related genes.
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+NUP85 mRNA and protein expression were upregulated in HCC, showing high levels across dif-ferent stages and grades, which indicates a poor prognosis for patients. The mutation rate of NUP85 in HCC samples was 19%, significantly affecting the overall survival (OS), disease-specific survival (DSS), and progression-free survival (PFS) of patients. NUP85 was highly expressed in various immune cells, including macrophages, B cells, and T cells, and was positively correlated with the infiltration levels of multiple immune cells. The expression of NUP85 was significantly correlated with multiple drugs, such as Milademetan (PD0325901), a structural analog of Vemurafenib (PLX4720), and Regorafenib (PD0325901). The GO functions of NUP85 and its co-expressed genes were mainly enriched in organelle fission, nuclear division, and chromosome segregation, while the KEGG pathways were primarily enriched in the cell cycle and kinesin proteins. These factors significantly and unfavorably affected the OS of HCC patients, and the areas under the ROC curve (AUC) for the 1-year, 3-year, and 5-year OS prognostic diagnosis of HCC patients were all greater than 0.7.
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+The high expression of NUP85 in HCC is correlated with a poor prognosis and is related to various immune cells and drugs, making it a potential biomarker for di-agnosis, treatment, and prognosis in HCC.
+</p>

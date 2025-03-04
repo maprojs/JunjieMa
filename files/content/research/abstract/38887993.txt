@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>Objective</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+To identify nivolumab resistance-related genes in patients with head and neck squamous cell carcinoma (HNSCC) using single-cell and bulk RNA-sequencing data. 
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+The single-cell and bulk RNA-sequencing data downloaded from the Gene Expression Omnibus database were analyzed to screen out differentially expressed genes (DEGs) between nivolumab resistant and nivolumab sensitive patients using R software. The Least Absolute Shrinkage Selection Operator (LASSO) regression and Recursive Feature Elimination (RFE) algorithm were performed to identify key genes associated with nivolumab resistance. Functional enrichment of DEGs was analyzed with Gene Ontology and Kyoto Encyclopedia of Genes and Genomes analyses. The relationships of key genes with immune cell infiltration, differentation trajectory, dynamic gene expression profiles, and ligand-receptor interaction were explored. 
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+We found 83 DEGs. They were mainly enriched in T-cell differentiation, PD-1 and PD-L1 checkpoint, and T-cell receptor pathways. Among six key genes identified using machine learning algorithms, only PPP1R14A gene was differentially expressed between the nivolumab resistant and nivolumab sensitive groups both before and after immunotherapy (P < 0.05). The high PPP1R14A gene expression group had lower immune score (P < 0.01), higher expression of immunosuppressive factors (such as PDCD1, CTLA4, and PDCD1LG2) (r > 0, P < 0.05), lower differentiation of infiltrated immune cells (P < 0.05), and a higher degree of interaction between HLA and CD4 (P < 0.05). 
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+PPP1R14A gene is closely associated with resistance to nivolumab in HNSCC patients. Therefore, PPP1R14A may be a target to ameliorate nivolumab resistance of HNSCC patients.
+</p>

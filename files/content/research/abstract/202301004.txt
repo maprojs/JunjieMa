@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>目的</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+基于生物信息学方法分析头颈鳞状细胞癌（Head and neck squamous cell carcinoma,HNSCC）关键基因PLAU与MMP1及其临床预后意义。
+</p>
+
+<ul style="font-size:18px;">
+<li>方法</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+首先，通过基因表达总库（Gene Expression Omnibus,GEO）的GEO2R筛选4组HNSCC基因芯片数据的差异表达基因（Differentially expressed genes,DEGs），并利用Metascape数据库对DEGs进行基因本体论（Gene Ontology,GO）功能注释和京都基因与基因组百科全书（Kyoto Encyclopedia of Gene and Genome,KEGG）通路富集分析；其次，采用String数据库和Cytoscape软件CytoHubba插件的MCC算法进行蛋白互作网络（Protein-protein interaction,PPI）分析和HUB基因筛选；再次，利用GEPIA数据库分析前10个HUB基因表达量与HNSCC患者预后和临床分期关系；最后，利用TIMER、GEPIA和TISIDB数据库分析关键基因与免疫细胞浸润水平的关系以及临床生信之家分析关键基因与通路关系。
+</p>
+
+<ul style="font-size:18px;">
+<li>结果</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+筛选出24个DEGs，其GO功能主要富集在细胞间黏附和血管发育等过程，KEGG主要富集在松弛素信号通路和蛋白质消化吸收等通路；前10个HUB基因仅PLAU和MMP1与HNSCC患者预后显著相关，且在HNSCC中高表达，并与B细胞和CD8+T细胞浸润水平呈负相关，但仅B细胞浸润水平与HNSCC患者生存预后显著相关；B细胞的浸润水平分别与PLAU和MMP1基因的高倍扩增和臂水平缺失的拷贝数改变有关；PLAU和MMP1主要与EMT标记基因和ECM相关基因等通路相关。
+</p>
+
+<ul style="font-size:18px;">
+<li>结论</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+PLAU和MMP1可作为HNSCC关键基因，有望成为HNSCC靶向治疗位点。
+</p>

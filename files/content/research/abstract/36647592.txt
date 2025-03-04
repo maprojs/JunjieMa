@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>Objective</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+To investigate the expression of topoisomeraseⅡα (TOP2α) in hepatocellular carcinoma (HCC) and its role in predicting prognosis of HCC patients.
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+We used HCC-related datasets in UALCAN, HCCDB, and cBioPortal databases to analyze the expression and mutation of TOP2α and its co-expressed genes in HCC tissues. GO function and KEGG pathway enrichment of TOP2α and its co-expressed genes were identified. The TIMER database was used to analyze infiltration levels of immune cells in HCC. The impacts of TOP2α and its co-expression genes and the infiltrated immune cells on the survival of HCC patients were assayed by Kaplan-Meier plotter analysis.
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+TOP2α and its co-expression genes were highly expressed in HCC (P < 0.001) and detrimental to overall survival of HCC patients (P < 0.001). TOP2α and its co-expression genes were mainly involved in cell mitosis and proliferation, and cell cycle pathway (ID: hsa04110, P = 0.001945). TOP2α and its co-expression genes were mutated in HCC and the mutations were significantly detrimental to overall survival (P = 0.0247) and disease-free survival (P = 0.0265) of HCC patients. High TOP2α expression was positively correlated with the infiltration of B cell (r = 0.459, P < 0.01), CD8+ T cell (r = 0.312, P < 0.01), CD4+T cell (r = 0.370, P < 0.01), macrophage (r = 0.459, P < 0.01), neutrophil (r = 0.405, P < 0.01), and dendritic cell (r = 0.473, P < 0.01) in HCC. The CD8+T cell infiltration significantly prolonged the 3- and 5-year survival of HCC patients (all P < 0.05), and CD4+T cell infiltration significantly shortened the 3-, 5-, and 10-year survival of HCC patients (all P < 0.05)
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+TOP2α may be an oncogene, which was associated with poor prognosis of HCC patients and could be used as a biomarker for the prognostic prediction of HCC.
+</p>

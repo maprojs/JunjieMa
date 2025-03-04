@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>Objective</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+Machine learning was used to screen the key characteristic genes of nasopharyngeal carcinoma (NPC) and analyze their correlation with immune cells.
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+Download the NPC training datasets (GSE12452 and GSE13597) and the validation dataset (GSE53819) from the Gene Expression Omnibus (GEO). Firstly, the training data sets were merged and screened for differentially expressed genes (DEGs); Secondly, the DEGs were analyzed by gene ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG), gene set enrichment analysis (GSEA), and immune cell infiltration analysis. Next, the least absolute shrinkage and selection operator (LASSO) and support vector machine (SVM) algorithms were used to identify NPC-related genes in the training datasets and examined in the validation dataset, to further identify key genes using the area under curve (AUC) of receiver operating characteristic curve (ROC); Finally, the correlation between the key genes and immune cells was analyzed. 
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+A total of 55 DEGs were obtained, including 43 down-regulated genes and 12 up-regulated genes. The GO functions were enriched in humoral immune response, cell differentiation, neutrophil activation and chemokine receptor binding. The KEGG were mainly enriched in the IL-17 signaling pathway. The GSEA was enriched in cell cycle, extracellular matrix receptor interactions, cancer pathways and DNA replication. Immune infiltration analysis showed that the expression of naive B cells, memory B cells, and resting memory CD4+ T cells was significantly lower in NPC, while CD8+ T cells, naive CD4+ T cells, activated memory CD4+ T cells, follicular helper T cells, M0 macrophages and M1 macrophages were highly expressed in NPC. Among the feature genes screened by LASSO and SVM, only CCDC19, LAMB1, SPAG6 and RAD51AP1 genes' AUC were greater than 0.9 in both the training and validation datasets and were closely associated with immune cell infiltration.
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+The key genes CCDC19, LAMB1, SPAG6 and RAD51AP1 in NPC development are screened by machine learning algorithms, and are closely associated with immune cell infiltration.
+</p>

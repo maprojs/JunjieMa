@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>Objective</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+To construct a risk prediction model for assisted diagnosis of Diabetic Nephropathy (DN) using machine learning algorithms, and to validate it internally and externally.
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+Firstly, the data was cleaned and enhanced, and was divided into training and test sets according to the 7:3 ratio. Then, the metrics related to DN were filtered by difference analysis, Least Absolute Shrinkage and Selection Operator (LASSO), Recursive Feature Elimination (RFE), and Max-relevance and Min-redundancy (MRMR) algorithms. Ten machine learning models were constructed based on the key variables. The best model was filtered by Receiver Operating Characteristic (ROC), Precision-Recall (PR), Accuracy, Matthews Correlation Coefficient (MCC), and Kappa, and was internally and externally validated. Based on the best model, an online platform had been constructed.
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+15 key variables were selected, and among the 10 machine learning models, the Random Forest model achieved the best predictive performance. In the test set, the area under the ROC curve was 0.912, and in two external validation cohorts, the area under the ROC curve was 0.828 and 0.863, indicating excellent predictive and generalization abilities.
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+The model has a good predictive value and is expected to help in the early diagnosis and screening of clinical DN.
+</p>

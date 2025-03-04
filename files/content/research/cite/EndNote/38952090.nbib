@@ -1,0 +1,94 @@
+PMID- 38952090
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240702
+LR  - 20240723
+IS  - 1007-8738 (Print)
+IS  - 1007-8738 (Linking)
+VI  - 40
+IP  - 6
+DP  - 2024 Jun
+TI  - Analysis of correlation between high expression of nucleoporin 85 (NUP85) and 
+      immune cell infiltration in hepatocellular carcinoma.
+PG  - 508-519
+LID - 10.13423/j.cnki.cjcmi.009797 [doi]
+AB  - Objective To investigate the significance of nucleoporin 85 (NUP85) ex-pression 
+      in hepatocellular carcinoma (HCC) and analyze its relevance to immune response. 
+      Methods A comprehensive analysis was conducted using various online databases to 
+      assess the mRNA and protein expression of NUP85 in HCC, as well as its mutation 
+      status and prognostic diagnostic value. The immune relevance of NUP85 was 
+      evaluated using single-cell sequencing data and resources from the Tumor Immune 
+      Estimation Resource (TIMER) and the Gene Expression Profiling Interactive 
+      Analysis 2021 (GEPIA2021) databases. The drug sensitivity of NUP85 was analyzed 
+      through the Genomic Landscape of Cancer (GSCA) and the Clinical Bioinformatics 
+      Home. Co-expressed genes of NUP85 in HCC were filtered using the Hepatocellular 
+      Carcinoma Comprehensive Molecular Database (HCCDB), and the correlation between 
+      NUP85 and its related genes was analyzed using the R language "limma" package. 
+      The gene ontology (GO) functions, Kyoto Encyclopedia of Genes and Genomes (KEGG), 
+      and Gene Set Enrichment Analysis (GSEA) of NUP85 and its related genes were 
+      performed using the R language "clusterProfiler" package. The Clinical 
+      Bioinformatics Home was utilized to construct heatmaps and prognostic risk 
+      scoring models for NUP85 and its related genes. Results NUP85 mRNA and protein 
+      expression were upregulated in HCC, showing high levels across dif-ferent stages 
+      and grades, which indicates a poor prognosis for patients. The mutation rate of 
+      NUP85 in HCC samples was 19%, significantly affecting the overall survival (OS), 
+      disease-specific survival (DSS), and progression-free survival (PFS) of patients. 
+      NUP85 was highly expressed in various immune cells, including macrophages, B 
+      cells, and T cells, and was positively correlated with the infiltration levels of 
+      multiple immune cells. The expression of NUP85 was significantly correlated with 
+      multiple drugs, such as Milademetan (PD0325901), a structural analog of 
+      Vemurafenib (PLX4720), and Regorafenib (PD0325901). The GO functions of NUP85 and 
+      its co-expressed genes were mainly enriched in organelle fission, nuclear 
+      division, and chromosome segregation, while the KEGG pathways were primarily 
+      enriched in the cell cycle and kinesin proteins. These factors significantly and 
+      unfavorably affected the OS of HCC patients, and the areas under the ROC curve 
+      (AUC) for the 1-year, 3-year, and 5-year OS prognostic diagnosis of HCC patients 
+      were all greater than 0.7. Conclusion The high expression of NUP85 in HCC is 
+      correlated with a poor prognosis and is related to various immune cells and 
+      drugs, making it a potential biomarker for di-agnosis, treatment, and prognosis 
+      in HCC.
+FAU - Liu, Xinyu
+AU  - Liu X
+AD  - Class 2021, Clinical Medical College, Bengbu Medical University, Bengbu 233030, 
+      China.
+FAU - Ding, Zebang
+AU  - Ding Z
+AD  - Class 2021, Clinical Medical College, Bengbu Medical University, Bengbu 233030, 
+      China.
+FAU - Wu, Huan
+AU  - Wu H
+AD  - Class 2021, Mental Health College, Bengbu Medical University, Bengbu 233030, 
+      China.
+FAU - Ma, Junjie
+AU  - Ma J
+AD  - Class 2020, Clinical Medical College, Bengbu Medical University, Bengbu 233030, 
+      China.
+FAU - Lu, Jin
+AU  - Lu J
+AD  - Department of Anatomy, College of Basic Medicine, Bengbu Medical University, 
+      Bengbu 233030, China. *Corresponding author, E-mail: 0100197@bbmc.edu.cn.
+LA  - chi
+PT  - English Abstract
+PT  - Journal Article
+PL  - China
+TA  - Chinese journal of cellular and molecular  immunology
+JT  - Chinese journal of cellular and molecular immunology
+JID - 101139110
+RN  - 0 (Nuclear Pore Complex Proteins)
+RN  - 0 (NUP85 protein, human)
+SB  - IM
+MH  - Humans
+MH  - Male
+MH  - *Carcinoma, Hepatocellular/genetics/immunology/pathology
+MH  - Gene Expression Regulation, Neoplastic
+MH  - *Liver Neoplasms/genetics/immunology/pathology
+MH  - *Nuclear Pore Complex Proteins/genetics
+MH  - Prognosis
+EDAT- 2024/07/02 06:42
+MHDA- 2024/07/02 06:43
+CRDT- 2024/07/02 02:04
+PHST- 2024/07/02 06:43 [medline]
+PHST- 2024/07/02 06:42 [pubmed]
+PHST- 2024/07/02 02:04 [entrez]
+PST - ppublish
+SO  - Xi Bao Yu Fen Zi Mian Yi Xue Za Zhi. 2024 Jun;40(6):508-519.

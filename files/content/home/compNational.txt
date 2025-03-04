@@ -1,0 +1,33 @@
+<p style="font-size:24px; margin-bottom:20px; margin-top:0px;text-align:center;">
+     National Competitions 
+</p>
+
+<ul style="font-size:18px; line-height:30px; text-align: left;margin-bottom:20px;">
+     <p style="font-size:20px;margin-bottom:5px;">Undergraduate Period</p>
+     <div style="margin-left:12px;">
+          <li> 
+              2024-08 &nbsp;|&nbsp; Chinese Collegiate Computing Competition &nbsp;|&nbsp; Third Prize &nbsp;  
+              <a href="https://jsjds.blcu.edu.cn/index.htm" target="_blank">
+                  <img src="files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+          </li>
+          <li>
+              2024-03 &nbsp;|&nbsp;  Population Health "Sharing Cup" Competition &nbsp;|&nbsp; Third Prize &nbsp;  
+              <a href="http://www.ncmishare.com/web" target="_blank">
+                  <img src="files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+          </li>
+          <li>
+              2023-08 &nbsp;|&nbsp; Chinese Collegiate Computing Competition &nbsp;|&nbsp; Second Prize  &nbsp;  
+              <a href="https://jsjds.blcu.edu.cn/index.htm" target="_blank">
+                  <img src="files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+          </li>
+          <li> 
+              2023-08 &nbsp;|&nbsp; Chinese Collegiate 5-Minute Research Presentation &nbsp;|&nbsp; First Prize &nbsp;  
+              <a href="http://sentbase.com/cn5mrp" target="_blank">
+                  <img src="files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+           </li>
+    </div>
+</ul>

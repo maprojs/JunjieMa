@@ -1,0 +1,92 @@
+PMID- 38887993
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240715
+LR  - 20240804
+IS  - 1001-9294 (Print)
+IS  - 1001-9294 (Linking)
+VI  - 39
+IP  - 2
+DP  - 2024 Jun 30
+TI  - PPP1R14A is Associated with Immunotherapy Resistance in Head and Neck Squamous 
+      Cell Carcinoma Identified by Single-Cell and Bulk RNA-Sequencing.
+PG  - 111-121
+LID - 10.24920/004354 [doi]
+AB  - Objective To identify nivolumab resistance-related genes in patients with head 
+      and neck squamous cell carcinoma (HNSCC) using single-cell and bulk 
+      RNA-sequencing data. Methods The single-cell and bulk RNA-sequencing data 
+      downloaded from the Gene Expression Omnibus database were analyzed to screen out 
+      differentially expressed genes (DEGs) between nivolumab resistant and nivolumab 
+      sensitive patients using R software. The Least Absolute Shrinkage Selection 
+      Operator (LASSO) regression and Recursive Feature Elimination (RFE) algorithm 
+      were performed to identify key genes associated with nivolumab resistance. 
+      Functional enrichment of DEGs was analyzed with Gene Ontology and Kyoto 
+      Encyclopedia of Genes and Genomes analyses. The relationships of key genes with 
+      immune cell infiltration, differentation trajectory, dynamic gene expression 
+      profiles, and ligand-receptor interaction were explored. Results We found 83 
+      DEGs. They were mainly enriched in T-cell differentiation, PD-1 and PD-L1 
+      checkpoint, and T-cell receptor pathways. Among six key genes identified using 
+      machine learning algorithms, only PPP1R14A gene was differentially expressed 
+      between the nivolumab resistant and nivolumab sensitive groups both before and 
+      after immunotherapy (P < 0.05). The high PPP1R14A gene expression group had lower 
+      immune score (P < 0.01), higher expression of immunosuppressive factors (such as 
+      PDCD1, CTLA4, and PDCD1LG2) (r > 0, P < 0.05), lower differentiation of 
+      infiltrated immune cells (P < 0.05), and a higher degree of interaction between 
+      HLA and CD4 (P < 0.05). Conclusions PPP1R14A gene is closely associated with 
+      resistance to nivolumab in HNSCC patients. Therefore, PPP1R14A may be a target to 
+      ameliorate nivolumab resistance of HNSCC patients.
+FAU - Ma, Jun-Jie
+AU  - Ma JJ
+AD  - Department of Clinical Medicine, Bengbu Medical University, Bengbu 233030, Anhui, 
+      China.
+FAU - Zhang, Lei
+AU  - Zhang L
+AD  - Department of General Surgery, The Second Affiliated Hospital of Bengbu Medical 
+      University, Bengbu 233030, Anhui, China.
+FAU - Lu, Jin
+AU  - Lu J
+AD  - Department of Human Anatomy, Bengbu Medical University, Bengbu 233030, Anhui, 
+      China.
+AD  - Anhui Key Laboratory of Computational Medicine and Intelligent Health, Bengbu 
+      Medical University, Bengbu 233030, Anhui, China.
+FAU - Zhang, Hao-Xuan
+AU  - Zhang HX
+AD  - Department of Human Anatomy, Bengbu Medical University, Bengbu 233030, Anhui, 
+      China.
+AD  - Anhui Key Laboratory of Computational Medicine and Intelligent Health, Bengbu 
+      Medical University, Bengbu 233030, Anhui, China.
+LA  - eng
+GR  - 202210367002/National Innovation and Enterpreneurship Training Program for 
+      College Students/
+GR  - AHCM2022Z004/Key Laboratory Open Project of Anhui Province/
+PT  - Journal Article
+PL  - China
+TA  - Chin Med Sci J
+JT  - Chinese medical sciences journal = Chung-kuo i hsueh k'o hsueh tsa chih
+JID - 9112559
+RN  - 31YO63LBSN (Nivolumab)
+SB  - IM
+MH  - Humans
+MH  - *Squamous Cell Carcinoma of Head and Neck/genetics/immunology/drug therapy
+MH  - *Drug Resistance, Neoplasm/genetics
+MH  - *Immunotherapy
+MH  - *Head and Neck Neoplasms/genetics/immunology/drug therapy/therapy
+MH  - *Sequence Analysis, RNA
+MH  - *Nivolumab/therapeutic use
+MH  - Single-Cell Analysis
+MH  - Gene Expression Regulation, Neoplastic
+OTO - NOTNLM
+OT  - PPP1R14A
+OT  - drug resistance
+OT  - head and neck squamous cell carcinoma
+OT  - immunotherapy
+EDAT- 2024/06/18 06:41
+MHDA- 2024/07/15 12:42
+CRDT- 2024/06/18 05:23
+PHST- 2024/07/15 12:42 [medline]
+PHST- 2024/06/18 06:41 [pubmed]
+PHST- 2024/06/18 05:23 [entrez]
+AID - 1718672564161-1167857532 [pii]
+AID - 10.24920/004354 [doi]
+PST - ppublish
+SO  - Chin Med Sci J. 2024 Jun 30;39(2):111-121. doi: 10.24920/004354.

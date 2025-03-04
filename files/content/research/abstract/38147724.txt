@@ -1,0 +1,30 @@
+<ul style="font-size:18px;">
+<li>Backgrounds</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+It was highlighted by recent studies on the biological significance of vasculogenic mimicry (VM) in tumorigenicity and progression. However, it is unclear whether VM also plays a potential role in immune regulation and tumor microenvironment (TME) formation.
+</p>
+
+<ul style="font-size:18px;">
+<li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+To identify patterns of VM alterations and VM-associated genetic features in non-small cell lung adenocarcinoma, we have screened 309 VM regulators and performed consensus molecular typing by the NMF algorithm. The ssGSEA and CIBORSORT algorithms were employed to measure the relative infiltration of distinct immune cell subpopulations. Individual tumors with immune responses were evaluated for alteration patterns of VM with typing-based differential genes.
+</p>
+
+<ul style="font-size:18px;">
+<li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+In 490 LUAD samples, two distinctive VM alteration patterns connected to different clinical outcomes and biochemical pathways were established. TME characterization showed that the observed VM patterns were primarily saturated with cell proliferation and metabolic pathways and higher in immune cell infiltration of the C1 type. Vasculogenic mimicry-related genes (VMRG) risk scores were constructed to divide patients with lung adenocarcinoma into subgroups with high and low scores. Patients with lower scores had better immunological scores and longer survival times. Upon further investigation, higher scores were positively correlated with higher tumor mutation burden (TMB), M1-type macrophages and immune checkpoint molecules. Nevertheless, in two other immunotherapy cohorts, individuals with lower scores had enhanced immune responses and long-lasting therapeutic benefits. Finally, we monitored the ANLN gene from the VMRG model, which was highly expressed in lung adenocarcinoma tissues and negatively correlated with prognosis; it was also highly expressed in lung adenocarcinoma cell lines, and knockdown of ANLN elicited low expression of VEGFA, MMP2 and MMP9.
+</p>
+
+<ul style="font-size:18px;">
+<li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+This study highlights that VM modifications are significantly associated with the diversity and complexity of TME, revealing new features of the immune microenvironment in lung adenocarcinoma and providing a new strategy for immunotherapy. Screening ANLN as a critical target for vasculogenic mimicry in lung adenocarcinoma provides a novel perspective for the targeted treatment of lung adenocarcinoma.</p>

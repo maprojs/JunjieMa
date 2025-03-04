@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+<li>目的</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+利用生物信息学方法，分析hsa-miR-106b-5p调控ESR1在肝细胞癌(hepatocellular carcinoma, HCC)中的表达及其生存预后意义。
+</p>
+
+<ul style="font-size:18px;">
+<li>方法</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+利用BART和StarBase数据库筛选GSE108724芯片的差异miRNAs及其与HCC患者生存预后的关系；利用TargetScan和MetaScape数据库分析miRNAs的靶基因及其GO和KEGG富集分析，并利用String数据库和Cytoscape软件筛选靶基因中的HUB基因；对HUB基因进行生存预后分析及其与miRNAs的结合位点分析；通过临床数据构建HUB基因在HCC中的风险预测模型，并利用C-index、校准曲线(CC)、决策曲线分析(DCA)以及ROC曲线对预测模型进行评价。
+</p>
+
+<ul style="font-size:18px;">
+<li>结果</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+共得到5个差异miRNAs,仅hsa-miR-106b-5p对HCC患者生存预后有显著意义；hsa-miR-106b-5p的靶基因有644个，其KEGG主要富集在Rap1信号通路、MAPK信号通路和癌症信号通路上；GO功能主要富集在跨膜受体蛋白酪氨酸激酶、Ras GTPase结合和分解代谢调控等上；HUB基因中仅ESR1在HCC中低表达，并对HCC患者的生存预后有显著意义，且ESR1 mRNA 3’UTR直接与hsa-miR-106b-5p结合；Logistic回归分析发现低表达的ESR1是HCC患者生存预后的独立危险因素；且所构建的风险预测模型具有较好的准确性和有效性。
+</p>
+
+<ul style="font-size:18px;">
+<li>结论</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+hsa-miR-106b-5p调控ESR1使其在HCC中低表达，且不利于HCC患者的生存预后，可作为HCC的潜在治疗靶点。 
+</p>

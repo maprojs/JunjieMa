@@ -1,0 +1,7 @@
+<p style="font-size: 20px; margin-bottom: 5px; color: #86accd;">
+     Scan the QR code via QQ
+</p>
+<p style="font-size: 20px; margin-bottom: 15px; color: #86accd;">
+     QQ number: 2939542961
+</p>
+<img src="./files/images/logo/qq-qrcode.webp">

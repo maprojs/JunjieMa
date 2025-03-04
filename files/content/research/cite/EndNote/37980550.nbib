@@ -1,0 +1,87 @@
+PMID- 37980550
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20231120
+LR  - 20231120
+IS  - 1007-8738 (Print)
+IS  - 1007-8738 (Linking)
+VI  - 39
+IP  - 11
+DP  - 2023 Number
+TI  - Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on 
+      machine learning and analysis of their correlation with immune cells.
+PG  - 988-995
+LID - 10.13423/j.cnki.cjcmi.009669 [doi]
+AB  - Objective Machine learning was used to screen the key characteristic genes of 
+      nasopharyngeal carcinoma (NPC) and analyze their correlation with immune cells. 
+      Methods Download the NPC training datasets (GSE12452 and GSE13597) and the 
+      validation dataset (GSE53819) from the Gene Expression Omnibus (GEO). Firstly, 
+      the training data sets were merged and screened for differentially expressed 
+      genes (DEGs); Secondly, the DEGs were analyzed by gene ontology (GO), Kyoto 
+      Encyclopedia of Genes and Genomes (KEGG), gene set enrichment analysis (GSEA), 
+      and immune cell infiltration analysis. Next, the least absolute shrinkage and 
+      selection operator (LASSO) and support vector machine (SVM) algorithms were used 
+      to identify NPC-related genes in the training datasets and examined in the 
+      validation dataset, to further identify key genes using the area under curve 
+      (AUC) of receiver operating characteristic curve (ROC); Finally, the correlation 
+      between the key genes and immune cells was analyzed. Results A total of 55 DEGs 
+      were obtained, including 43 down-regulated genes and 12 up-regulated genes. The 
+      GO functions were enriched in humoral immune response, cell differentiation, 
+      neutrophil activation and chemokine receptor binding. The KEGG were mainly 
+      enriched in the IL-17 signaling pathway. The GSEA was enriched in cell cycle, 
+      extracellular matrix receptor interactions, cancer pathways and DNA replication. 
+      Immune infiltration analysis showed that the expression of naive B cells, memory 
+      B cells, and resting memory CD4(+) T cells was significantly lower in NPC, while 
+      CD8(+) T cells, naive CD4(+) T cells, activated memory CD4(+) T cells, follicular 
+      helper T cells, M0 macrophages and M1 macrophages were highly expressed in NPC. 
+      Among the feature genes screened by LASSO and SVM, only CCDC19, LAMB1, SPAG6 and 
+      RAD51AP1 genes' AUC were greater than 0.9 in both the training and validation 
+      datasets and were closely associated with immune cell infiltration. Conclusion 
+      The key genes CCDC19, LAMB1, SPAG6 and RAD51AP1 in NPC development are screened 
+      by machine learning algorithms, and are closely associated with immune cell 
+      infiltration.
+FAU - Zhang, Haoxuan
+AU  - Zhang H
+AD  - Department of Human Anatomy, Anhui Key Laboratory of Computational Medicine and 
+      Intelligent Health, Bengbu Medical College, Bengbu 233030, China.
+FAU - Ma, Junjie
+AU  - Ma J
+AD  - Grade 2020 of Clinical Medical College, Bengbu Medical College, Bengbu 233030, 
+      China.
+FAU - An, Shaoguang
+AU  - An S
+AD  - Grade 2020 of Clinical Medical College, Bengbu Medical College, Bengbu 233030, 
+      China.
+FAU - Xu, Lixue
+AU  - Xu L
+AD  - Department of Human Anatomy, Bengbu Medical College, Bengbu 233030, China.
+FAU - Lu, Jin
+AU  - Lu J
+AD  - Department of Human Anatomy, Anhui Key Laboratory of Computational Medicine and 
+      Intelligent Health, Bengbu Medical College, Bengbu 233030, China.
+FAU - Jiang, Chengyi
+AU  - Jiang C
+AD  - Otolaryngology department of First affiliated hospital, Bengbu Medical College, 
+      Bengbu 233030, China. *Corresponding author, E-mail: jiangchengyi1975@163.com.
+LA  - chi
+PT  - English Abstract
+PT  - Journal Article
+PL  - China
+TA  - Chinese journal of cellular and molecular immunology 
+JT  - Chinese journal of cellular and molecular immunology 
+JID - 101139110
+SB  - IM
+MH  - Humans
+MH  - *CD8-Positive T-Lymphocytes
+MH  - Nasopharyngeal Carcinoma/genetics
+MH  - Signal Transduction
+MH  - Machine Learning
+MH  - *Nasopharyngeal Neoplasms/genetics
+EDAT- 2023/11/19 09:42
+MHDA- 2023/11/20 06:55
+CRDT- 2023/11/19 04:12
+PHST- 2023/11/20 06:55 [medline]
+PHST- 2023/11/19 09:42 [pubmed]
+PHST- 2023/11/19 04:12 [entrez]
+PST - ppublish
+SO  - Xi Bao Yu Fen Zi Mian Yi Xue Za Zhi. 2023 Number;39(11):988-995.

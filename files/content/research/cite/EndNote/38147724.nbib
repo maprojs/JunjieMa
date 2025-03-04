@@ -1,0 +1,120 @@
+PMID- 38147724
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240124
+LR  - 20240202
+IS  - 1618-0631 (Electronic)
+IS  - 0344-0338 (Linking)
+VI  - 253
+DP  - 2024 Jan
+TI  - Vasculogenic mimicry-associated novel gene signature predicted prognosis and 
+      response to immunotherapy in lung adenocarcinoma.
+PG  - 155048
+LID - S0344-0338(23)00749-5 [pii]
+LID - 10.1016/j.prp.2023.155048 [doi]
+AB  - BACKGROUNDS: It was highlighted by recent studies on the biological significance 
+      of vasculogenic mimicry (VM) in tumorigenicity and progression. However, it is 
+      unclear whether VM also plays a potential role in immune regulation and tumor 
+      microenvironment (TME) formation. METHODS: To identify patterns of VM alterations 
+      and VM-associated genetic features in non-small cell lung adenocarcinoma, we have 
+      screened 309 VM regulators and performed consensus molecular typing by the NMF 
+      algorithm. The ssGSEA and CIBORSORT algorithms were employed to measure the 
+      relative infiltration of distinct immune cell subpopulations. Individual tumors 
+      with immune responses were evaluated for alteration patterns of VM with 
+      typing-based differential genes. RESULTS: In 490 LUAD samples, two distinctive VM 
+      alteration patterns connected to different clinical outcomes and biochemical 
+      pathways were established. TME characterization showed that the observed VM 
+      patterns were primarily saturated with cell proliferation and metabolic pathways 
+      and higher in immune cell infiltration of the C1 type. Vasculogenic 
+      mimicry-related genes (VMRG) risk scores were constructed to divide patients with 
+      lung adenocarcinoma into subgroups with high and low scores. Patients with lower 
+      scores had better immunological scores and longer survival times. Upon further 
+      investigation, higher scores were positively correlated with higher tumor 
+      mutation burden (TMB), M1-type macrophages and immune checkpoint molecules. 
+      Nevertheless, in two other immunotherapy cohorts, individuals with lower scores 
+      had enhanced immune responses and long-lasting therapeutic benefits. Finally, we 
+      monitored the ANLN gene from the VMRG model, which was highly expressed in lung 
+      adenocarcinoma tissues and negatively correlated with prognosis; it was also 
+      highly expressed in lung adenocarcinoma cell lines, and knockdown of ANLN 
+      elicited low expression of VEGFA, MMP2 and MMP9. CONCLUSION: This study 
+      highlights that VM modifications are significantly associated with the diversity 
+      and complexity of TME, revealing new features of the immune microenvironment in 
+      lung adenocarcinoma and providing a new strategy for immunotherapy. Screening 
+      ANLN as a critical target for vasculogenic mimicry in lung adenocarcinoma 
+      provides a novel perspective for the targeted treatment of lung adenocarcinoma.
+CI  - Copyright © 2023 Elsevier GmbH. All rights reserved.
+FAU - Zhang, Lei
+AU  - Zhang L
+AD  - Department of General Surgery, the Second Affiliated Hospital of Bengbu Medical 
+      University, Anhui Province 233080, China.
+FAU - Wu, Jiatao
+AU  - Wu J
+AD  - Anhui Province Key Laboratory of Clinical and Preclinical Research in Respiratory 
+      Disease，Molecular Diagnosis Center，First Affiliated Hospital，Bengbu Medical 
+      University, 287 Changhuai Road, Anhui, Bengbu 233004, China.
+FAU - Yin, Wei Wei
+AU  - Yin WW
+AD  - Department of Thoracic Surgery, the Second Affiliated Hospital of Bengbu Medical 
+      University, Anhui Province 233080, China.
+FAU - Hu, Junjie
+AU  - Hu J
+AD  - Department of Radiotherapy, the Second Affiliated Hospital of Bengbu Medical 
+      University, Anhui Province 233080, China.
+FAU - Liao, Lingli
+AU  - Liao L
+AD  - Department of Clinical Nutrition, the First People's Hospital of Yibin, Sichuan 
+      Province 644000, China.
+FAU - Ma, Junjie
+AU  - Ma J
+AD  - Bengbu Medical University, Anhui Province 233030, China.
+FAU - Xu, Ziwei
+AU  - Xu Z
+AD  - Bengbu Medical University, Anhui Province 233030, China.
+FAU - Wu, Shiwu
+AU  - Wu S
+AD  - Anhui Province Key Laboratory of Clinical and Preclinical Research in Respiratory 
+      Disease，Molecular Diagnosis Center，First Affiliated Hospital，Bengbu Medical 
+      University, 287 Changhuai Road, Anhui, Bengbu 233004, China; Anhui No. 2 
+      Provincial People's Hospital, Hefei 230041, China. Electronic address: 
+      13705523357@163.com.
+LA  - eng
+PT  - Journal Article
+DEP - 20231221
+PL  - Germany
+TA  - Pathol Res Pract
+JT  - Pathology, research and practice
+JID - 7806109
+SB  - IM
+MH  - Humans
+MH  - *Adenocarcinoma of Lung/genetics/therapy
+MH  - Prognosis
+MH  - Immunotherapy
+MH  - *Adenocarcinoma/genetics/therapy
+MH  - Genetic Risk Score
+MH  - *Lung Neoplasms/genetics/therapy
+MH  - Tumor Microenvironment/genetics
+OTO - NOTNLM
+OT  - ANLN
+OT  - Immunotherapy
+OT  - Lung Adenocarcinoma
+OT  - Prognosis
+OT  - Vasculogenic Mimicry
+COIS- Declaration of Competing Interest The authors declare no competing interests. LZ 
+      and JTW contributed equally to this work. The study was designed by WWY and SWW. 
+      Bioinformatics analysis was conducted by LZ and ZWX. JTW and JJM provided useful 
+      advice to the analyses of the data. The manuscript was drafted by LZ and SWW, and 
+      was revised by all authors before the final version was approved to be published.
+EDAT- 2023/12/27 00:41
+MHDA- 2024/01/24 06:43
+CRDT- 2023/12/26 18:01
+PHST- 2023/05/12 00:00 [received]
+PHST- 2023/08/18 00:00 [revised]
+PHST- 2023/08/24 00:00 [accepted]
+PHST- 2024/01/24 06:43 [medline]
+PHST- 2023/12/27 00:41 [pubmed]
+PHST- 2023/12/26 18:01 [entrez]
+AID - S0344-0338(23)00749-5 [pii]
+AID - 10.1016/j.prp.2023.155048 [doi]
+PST - ppublish
+SO  - Pathol Res Pract. 2024 Jan;253:155048. doi: 10.1016/j.prp.2023.155048. Epub 2023 
+      Dec 21.

@@ -1,0 +1,29 @@
+<p style="font-size:24px; margin-bottom:20px; margin-top:5px;text-align:center;">
+     Bioinformatics analysis skills 
+</p>
+<p class="index-text-indent" style="margin-bottom:10px; margin-left:2px;">
+     I am able to independently utilize a variety of methods and processes for bioinformatics analysis, including: multi-omics, single-cell and spatial transcriptomics analysis.
+</p>
+<ul>
+     <p class="index-text-indent">
+          In addition, I have systematically collected and analyzed the following data sets:
+     </p>
+     <p class="index-text-indent" style="text-indent:1.5em;">
+          1. Multi-omics data
+     </p>
+     <ul style="padding-left:30px; font-size:16px;">
+           <li style="padding-left:17px;"> Single-cell data for 26 tumors (800,000+ cells) </li>
+           <li style="padding-left:17px;"> Proteomics data for 13 tumors (3,000+ samples) </li>
+           <li style="padding-left:17px;"> Transcriptome, methylation, CNV, and SNV data for 33 tumors (each with 11,000+ samples) </li>
+      </ul>
+      <p class="index-text-indent" style="margin-top:10px; text-indent:1.5em;">
+           2. Immunotherapy data
+      </p>
+      <ul style="padding-left:30px; font-size:16px;">
+           <li style="padding-left:17px;"> 17 CRISPR/Cas9 datasets </li>
+           <li style="padding-left:17px;"> 7 Single-cell immunotherapy cohorts </li>
+           <li style="padding-left:17px;"> 27 Bulk immunotherapy datasets (1,661 samples) </li>
+           <li style="padding-left:17px;"> 2 Spatial transcriptome immunotherapy datasets </li>
+       </ul>
+</ul>
+<img src="files/images/home/bioinformatics.webp" style="margin-top:30px;">
