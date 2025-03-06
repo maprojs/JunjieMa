@@ -4,4 +4,4 @@
 <p style="font-size: 20px; margin-bottom: 15px; color: #86accd;">
      QQ号: 2939542961
 </p>
-<img src="./files/images/logo/qq-qrcode.webp">
+<img src="../files/images/logo/qq-qrcode.webp">

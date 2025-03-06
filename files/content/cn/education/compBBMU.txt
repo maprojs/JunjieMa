@@ -1,5 +1,5 @@
 <p style="font-size:24px; margin-bottom:5px; margin-top:0px; text-align:justify;">
-     国家级
+     国家级竞赛
 </p>
 <ul style="font-size:18px; line-height:30px; text-align:left; margin-left:2px;">
       <li> 
@@ -29,7 +29,7 @@
 </ul>
 
 <p style="font-size:24px; margin-bottom:5px; margin-top:30px;text-align:justify;">
-     Provincial Competitions 
+     省级竞赛
 </p>
 <ul style="font-size:18px; line-height:30px; text-align: justify;margin-bottom:20px; margin-left:2px;">
       <li>

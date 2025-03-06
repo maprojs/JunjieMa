@@ -3,7 +3,7 @@
 </p>
 
 <ul style="font-size:18px; line-height:30px; text-align: left;margin-bottom:20px;">
-     <p style="font-size:20px;margin-bottom:5px;">Undergraduate Period</p>
+     <p style="font-size:20px;margin-bottom:5px;">本科阶段</p>
      <div style="margin-left:12px;">
           <li> 
               2024-08 &nbsp;|&nbsp; 中国大学生计算机设计大赛&nbsp;|&nbsp; 三等奖 &nbsp;  
