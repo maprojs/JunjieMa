@@ -1,0 +1,33 @@
+<p style="font-size:24px; margin-bottom:20px; margin-top:0px;text-align:center;">
+     省级竞赛
+</p>
+
+<ul style="font-size:18px; line-height:30px; text-align:left;margin-bottom:20px;">
+     <p style="font-size:20px;margin-bottom:5px;">Undergraduate Period</p>
+     <div style="margin-left:12px;">
+          <li>
+             2023-08 &nbsp;|&nbsp; 安徽省大学生质量文化大赛 &nbsp;|&nbsp; 一等奖 &nbsp; 
+              <a href="http://www.ah-qbcc.cn" target="_blank">
+                  <img src="../files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+          </li>
+          <li> 
+               2023-08 &nbsp;|&nbsp; 中国大学生统计建模大赛 &nbsp;|&nbsp; 三等奖 &nbsp; 
+              <a href="http://tjjmds.ai-learning.net" target="_blank">
+                  <img src="../files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a>
+          </li>
+          <li> 
+              2022-10 &nbsp;|&nbsp; 中国大学生"互联网+"竞赛 &nbsp;|&nbsp; 三等奖 &nbsp; 
+              <a href="https://cy.ncss.cn" target="_blank">
+                  <img src="../files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a> 
+          </li>
+          <li>
+              2022-07 &nbsp;|&nbsp; 中国大学生"挑战杯"竞赛 &nbsp;|&nbsp; 三等奖&nbsp; 
+              <a href="https://www.tiaozhanbei.net" target="_blank">
+                  <img src="../files/images/logo/link.webp" width="18" height="16" style="vertical-align:-4px;">
+              </a> 
+          </li>
+    </div>
+</ul>

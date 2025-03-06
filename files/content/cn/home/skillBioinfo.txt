@@ -1,0 +1,29 @@
+<p style="font-size:24px; margin-bottom:20px; margin-top:5px;text-align:center;">
+     生物信息学分析能力 
+</p>
+<p class="index-text-indent" style="margin-bottom:10px; margin-left:2px;">
+     我能够独立运用多种方法和流程进行生物信息学分析，包括：多组学、单细胞和空间转录组学分析。
+</p>
+<ul>
+     <p class="index-text-indent">
+          此外，我还系统地收集并分析了以下数据集：
+     </p>
+     <p class="index-text-indent" style="text-indent:1.5em;">
+          1. 多组学数据
+     </p>
+     <ul style="padding-left:30px; font-size:16px;">
+           <li style="padding-left:17px;">26种肿瘤的单细胞数据（800,000+细胞）</li>
+           <li style="padding-left:17px;">13种肿瘤的蛋白质组学数据（3,000+样本）</li>
+           <li style="padding-left:17px;">33种肿瘤的转录组、甲基化、拷贝数变异和单核苷酸变异数据（每种11,000+样本）</li>
+      </ul>
+      <p class="index-text-indent" style="margin-top:10px; text-indent:1.5em;">
+            2. 免疫治疗数据
+      </p>
+      <ul style="padding-left:30px; font-size:16px;">
+           <li style="padding-left:17px;">17个CRISPR/Cas9数据集</li>
+           <li style="padding-left:17px;">7个单细胞免疫治疗队列 </li>
+           <li style="padding-left:17px;">27个批量免疫治疗数据集（1,661个样本）</li>
+           <li style="padding-left:17px;">2个空间转录组免疫治疗数据集 </li>
+       </ul>
+</ul>
+<img src="../files/images/home/bioinformatics.webp" style="margin-top:30px;">

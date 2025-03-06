@@ -1,0 +1,37 @@
+<h2 style="text-align:center;margin-bottom:15px;">
+合著者论文 (&#x1F449;<a href="https://junjiema.cn/cn/research">Research</a> page&#x1F448;)
+</h2>
+
+<ul style="font-size:20px; margin-bottom:5px;">
+<li>本科阶段</li>
+</ul>
+
+<div style="font-size:16px;margin-left:21px;margin-bottom:5px;padding-left:1.55em;text-indent: -1.55em; ">
+<p style="margin-bottom:5px;">
+[1] Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma, <i>Pathology Research and Practice</i>, 2024, 253: 155048.
+</p>
+
+<p style="margin-bottom:5px;">
+[2] Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma, <i>Chinese journal of cellular and molecular immunology</i>, 2024, 340 (6): 508-519.
+</p>
+
+<p style="margin-bottom:5px; ">
+[3] Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells, <i>Chinese journal of cellular and molecular immunology</i>, 2023, 39 (11): 988-995.
+</p>
+
+<p style="margin-bottom:5px;">
+[4] Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis, <i>Chinese medical sciences journal</i>, 2022, 37 (4): 331-339.
+</p>
+
+<p style="margin-bottom:5px;">
+[5] 爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义, <i>解剖学报</i>, 2023, 54 (4): 434-444.
+</p>
+
+<p style="margin-bottom:5px;">
+[6] 糖尿病并发冠心病风险预测模型的构建、评价与验证, <i>牡丹江医学院学报</i>, 2024, 45 (3): 47-54.
+</p>
+
+<p style="margin-bottom:20px;">
+[7] hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义, <i>牡丹江医学院学报</i>, 2022, 43 (5): 27-34.
+</p>
+</div>

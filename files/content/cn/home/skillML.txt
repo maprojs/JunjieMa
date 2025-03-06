@@ -1,0 +1,5 @@
+<p style="font-size:24px; margin-bottom:20px; margin-top:5px;">机器学习分析技能</p>
+<p class="index-text-indent" style="margin-bottom:30px;text-align:justify;">
+     我能够独立进行机器学习分析，包括数据清洗、特征筛选、模型构建与评估、模型可解释性分析，以及基于机器学习模型构建在线预测Shiny网页。
+</p>
+<img src="../files/images/home/ml.webp">
