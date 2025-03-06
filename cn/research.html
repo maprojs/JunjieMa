@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Junjie Ma | Research</title>
+    <link rel="icon" href="files/images/logo/logo.webp" type="image/x-icon">
+    <link rel="stylesheet" href="stylesheets/styles.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <script defer src="javascripts/scripts.min.js"></script>
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q0MHXCJKE"></script>
+    <script>
+      window.dataLayer=window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-2Q0MHXCJKE');
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="circular-image" style="margin-bottom:15px;margin-top:10px;">
+          <img src="files/images/logo/ma.webp">
+        </div>
+        <h2 style="margin-bottom:5px;margin-left:50px;">Junjie Ma</h2>
+        <p style="display:flex;align-items:center;margin-bottom:2px;">
+          <img src="files/images/logo/degree.webp" width="17" height="14" style="margin-right:4.5px;margin-left:2px;">
+          Undergraduate Student
+        </p>
+        <p style="display:flex;align-items:center;margin-bottom:2px;">
+          <img src="./files/images/logo/school.webp" width="15" height="15" style="margin-right:6px;margin-left:2.5px;">
+          Bengbu Medical University
+        </p>
+        <p id="local-time" style="display:flex;align-items:center;margin-bottom:2px;">
+          <img src="files/images/logo/clock.webp" width="14" height="14" style="margin-right:6px;margin-left:3.5px;">
+          <span id="time"> </span>
+        </p>
+        
+        <h3 style="margin-top:25px;margin-bottom:5px;font-size:16px;">
+          <bi>Pages</bi>
+        </h3>
+        
+        <h3>
+          <img src="files/images/logo/home.webp" width="18" height="18" class="h3-img">
+          <a href="https://junjiema.cn" class="underline-link">
+            Home 
+          </a>
+        </h3>
+        
+        <h3>
+          <img src="files/images/logo/education.webp" width="18" height="18" class="h3-img">
+          <a href="https://junjiema.cn/education" class="underline-link">
+            Education
+          </a>
+        </h3>
+        
+        <h3>
+          <img src="files/images/logo/research.webp" width="18" height="18" class="h3-img" style="margin-left:4.5px;vertical-align:-3px;">
+          <a href="https://junjiema.cn/research" class="underline-link">
+            Research
+          </a>
+        </h3>
+        
+        <h3 style="margin-top:30px;margin-bottom:1px;font-size:16px;">
+          <bi>Social</bi>
+        </h3>
+        
+        <div style="display:flex;align-items:center;margin:0;margin-bottom:4px;">
+          <div style="width:140px;display:flex;align-items:center;">
+            <a href="https://github.com/maprojs" target="_blank" class="image-centered" style="margin-left:5.5px;">
+              <img src="files/images/logo/GitHub.webp" width="15" height="14">
+              GitHub
+            </a>
+          </div>
+          <div>
+            <a href="https://orcid.org/0000-0002-8847-3093" target="_blank" class="image-centered">
+              <img src="files/images/logo/ORCID.webp" width="16.5" height="16.5">
+              ORCID 
+            </a>
+          </div>
+        </div>
+        
+        <div style="display:flex;align-items:center;margin:0;margin-bottom:4px;">
+          <div style="width:139px;display:flex;align-items:center;">
+            <a href="https://www.webofscience.com/wos/author/record/KCL-3647-2024" class="image-centered" style="margin-left:5px;" target="_blank">
+              <img src="files/images/logo/web-of-science.webp" width="16.5" height="16.5"> 
+              WOS
+            </a>
+          </div>
+          <div>
+            <a href="https://scholar.google.com/citations?user=Hxfw-UQAAAAJ&hl=en" target="_blank" class="image-centered">
+              <img src="files/images/logo/google-scholar.webp" width="19" height="17">
+              Scholar 
+            </a>
+          </div>
+        </div>
+        
+        <div style="display:flex;align-items:center;margin:0;margin-bottom:4px;">
+          <div style="width:141px;display:flex;align-items:center;">
+            <a href="javascript:void(0)" onclick="showModalWithFile('qqModal','outText-qq','files/content/home/infoQQ.txt')" class="image-centered" style="margin-left:5px;">
+              <img src="./files/images/logo/qq.webp" width="17" height="16">
+              QQ 
+            </a>
+            <div id="qqModal" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('qqModal')">&times;</span>
+                <div id="loading-qq" class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id="outText-qq"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a href="javascript:void(0)" onclick="showModalWithFile('wxModal','outText-wx','files/content/home/infoWX.txt')" class="image-centered">
+              <img src="./files/images/logo/wechat.webp" width="16" height="16" style="margin-right:7.5px">
+              WeChat  
+            </a>
+            <div id="wxModal" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('wxModal')"> &times;</span>
+                <div id="loading-wx" class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id="outText-wx"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 style="margin-top:30px;margin-bottom:1px;font-size:16px;">
+          <bi>Contact</bi> 
+        </h3>
+        <p style="display:flex;align-items:center;margin-bottom:2px;">
+          <a href="mailto:ma@junjiema.cn" class="black-link" target="_blank">
+            <img src="files/images/logo/email.webp" width="15" height="12" class="h3-img" style="vertical-align:middle;margin:0 1px 0 6px;">
+            ma@junjiema.cn
+          </a>
+        </p>
+        
+        <p style="display:flex;align-items:center;margin-bottom:2px;">
+          <a href="https://www.bbmu.edu.cn" target="_blank" class="black-link">
+            <img src="files/images/logo/school.webp" width="15" height="15" style="margin:0 1px 0 6px;vertical-align:-2px;">
+            Bengbu Medical University
+          </a>
+        </p>
+        
+        <p style="display:flex;align-items:flex-start;margin:0 0 20px 8.5px;">
+          <img src="files/images/logo/location.webp" width="15" height="15" style="margin:4px 7.5px 0 0;">
+          No.2600 Donghai Avenue, Longzihu District, Bengbu, China
+        </p>
+        
+        <p style="line-height:1;margin-left:5px">
+          <small>
+            <span id="viewsResearch"> </span> <br>
+            <span id="lastUpdatedDate"> </span> <br>
+            Hosted on GitHub Pages &mdash; Theme by 
+            <a href="https://github.com/orderedlist" target="_blank"> orderedlist </a>  
+          </small>
+        </p>
+      </header>
+      
+      <section>
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Papers--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+        <h2 id="papers" style="margin-top:80px;text-shadow:0.6px 0.6px 0 #000;">
+          Published &amp; Forthcoming Papers 
+        </h2>
+        <div style="margin:0;margin-bottom:20px;">
+          <p>
+            <bi>Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability</bi> <br> 
+            <bi>Junjie Ma</bi>, Shaoguang An, Mohan Cao, Lei Zhang, Jin Lu* <br> 
+            <bi>Endocrine</bi>, 2024, 85 (2): 615-625. <br> 
+            <a href="https://doi.org/10.1007/s12020-024-03735-1" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38393509" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-38393509','outText-38393509', 'files/content/research/abstract/38393509.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/38393509" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/38393509.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/38393509.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-38393509" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-38393509')">&times;</span>
+                <div id='loading-38393509' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-38393509'></div>
+              </div>
+            </div>
+          </p>
+    
+          <p>
+            <bi>PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing</bi> <br> 
+            <bi>Junjie Ma</bi><sup>#</sup>, Lei Zhang<sup>#</sup>, Jin Lu, Haoxuan Zhang* <br> 
+            <bi>Chinese Medical Sciences Journal</bi>, 2024, 39 (2): 111-121. <br> 
+            <a href="https://doi.org/10.24920/004354" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38887993" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-38887993','outText-38887993', 'files/content/research/abstract/38887993.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/38887993" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/38887993.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/38887993.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-38887993" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-38887993')">&times;</span>
+                <div id='loading-38887993' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-38887993'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi>Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma</bi> <br> 
+            Lei Zhang<sup>#</sup>, Jiatao Wu<sup>#</sup>, Weiwei Yin<sup>#</sup>, Junjie Hu, Lingli Liao, <bi>Junjie Ma</bi>, Ziwei Xu, Shiwu Wu* <br> 
+            <bi>Pathology Research and Practice</bi>, 2024, 253: 155048. <br> 
+            <a href="https://doi.org/10.1016/j.prp.2023.155048" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38147724" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-38147724','outText-38147724', 'files/content/research/abstract/38147724.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/38147724" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/38147724.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/38147724.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-38147724" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-38147724')">&times;</span>
+                <div id='loading-38147724' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+               <div id='outText-38147724'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi>Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma</bi> <br> 
+            Xinyu Liu<sup>#</sup>, Zebang Ding<sup>#</sup>, Huan Wu, <bi>Junjie Ma</bi>, Jin Lu* <br> 
+            <bi>Chinese journal of cellular and molecular immunology</bi>, 2024, 340 (6): 508-519. <br> 
+            <a href="https://doi.org/10.13423/j.cnki.cjcmi.009797" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38952090" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-38952090','outText-38952090', 'files/content/research/abstract/38952090.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/38952090" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/38952090.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/38952090.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-38952090" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-38952090')">&times;</span>
+                <div id='loading-38952090' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-38952090'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi>Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells</bi> <br> 
+            Haoxuan Zhang, <bi>Junjie Ma</bi>, Shaoguang An, Lixue Xu, Jin Lu, Chengyi Jiang* <br> 
+            <bi>Chinese journal of cellular and molecular immunology</bi>, 2023, 39 (11): 988-995. <br> 
+            <a href="https://doi.org/10.13423/j.cnki.cjcmi.009669" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37980550" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-37980550','outText-37980550', 'files/content/research/abstract/37980550.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/37980550" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/37980550.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/37980550.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-37980550" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-37980550')">&times;</span>
+                <div id='loading-37980550' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-37980550'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi>Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis</bi> <br> 
+            Jin Lu, Shaoguang An, <bi>Junjie Ma</bi>, Yue Yang, Lei Zhang, Peng Yu, Heng Tao, Yunfan Chen, Haoxuan Zhang* <br> 
+            <bi>Chinese medical sciences journal</bi>, 2022, 37 (4): 331-339. <br> 
+            <a href="https://doi.org/10.24920/004006" class="research-link" target="_blank">DOI</a> 
+            <a href="https://pubmed.ncbi.nlm.nih.gov/36647592" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-36647592','outText-36647592', 'files/content/research/abstract/36647592.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/36647592" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/36647592.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/36647592.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-36647592" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-36647592')">&times;</span>
+                <div id='loading-36647592' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-36647592'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi style="letter-spacing:1.8px;">肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析</bi> <br> 
+            <bi>马俊杰</bi>, 安韶光, 梅静宇, 张磊, 张浩轩, 陆进<sup>*</sup> <br> 
+            <bi style="letter-spacing:1.8px;">中国医科大学学报</bi>, 2023, 52 (10): 871-878. <br> 
+            <a href="https://doi.org/10.12007/j.issn.0258-4646.2023.10.002" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=IXLqNOIxNnvLtSDZ3XodKG2OuM1YArnemIYFx1qNkeG1ROJILuFVXgVSSd-e-Nlipvj9ICQfEdZkWxzGkVj00Hmjm2M9BDTnKEu-Xz1wrDXHd-iN5cSDEjxqEDzOOZnDBO2sGi2KHPVSt0Kg15Dnbe8xRLmiohyvdEulpbQ8WaVhKkZVCQOGXqnB5rtYqnr-&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-202310002','outText-202310002', 'files/content/research/abstract/202310002.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/202310002" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/202310002.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/202310002.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-202310002" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-202310002')">&times;</span>
+                <div id='loading-202310002' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202310002'></div>
+              </div>
+            </div>
+          </p>
+     
+          <p>
+            <bi style="letter-spacing:1.8px;">爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义</bi> <br> 
+            安韶光, <bi>马俊杰</bi>, 张浩轩, 陆进<sup>*</sup> <br> 
+            <bi style="letter-spacing:1.8px;">解剖学报</bi>, 2023, 54 (4): 434-444. <br> 
+            <a href="https://doi.org/10.16098/j.issn.0529-1356.2023.04.009" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXOd-So44jyGE0vXjkUZ6uH1hTaZ9OLie7VhxtEAQdFnVqTk2BboCEdD0NHAzOjwr1kuykOvGI5GEej_L37UwhdYIN1gPqVtXd-WJHBuGneqyWbCbluvvf0MXOHT-pNbYcpUmn3R1WDIo1H03E0yF10H4VB6TbJWzATu8djSHhCVEx_gqP3zeHgd&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-202304009*','outText-202304009*', 'files/content/research/abstract/202304009.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/202304009" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/202304009.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/202304009.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-202304009*" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-202304009*')">&times;</span>
+                <div id='loading-202304009*' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202304009*'></div>
+              </div>
+            </div>
+          </p>
+      
+          <p>
+            <bi style="letter-spacing:1.8px;">PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义</bi> <br> 
+            <bi>马俊杰</bi>, 安韶光, 陆进, 张浩轩<sup>*</sup> <br> 
+            <bi style="letter-spacing:1.8px;">赣南医学院学报</bi>, 2023, 43 (1): 17-26. <br> 
+            <a href="https://doi.org/10.3969/j.issn.1001-5779.2023.01.004" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXPt68yAlHL99q6gZN3bpR2OuelYxoZa_wzljQ6wqDsiV17PE4osj_E_PblyTtiJeVNTmAZ2Qb4dZPvqSCbQ48tML_5AIxN32v2p47I15yWwBWIcsXxXEZVdQDP4_h4zSdOO5gzV01ZKMZJ5D0NC7vrqGe32ZErVl6ePkG_c8cKSWr9SgEJ1XYVu&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-202301004','outText-202301004', 'files/content/research/abstract/202301004.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/202301004" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/202301004.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/202301004.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-202301004" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-202301004')">&times;</span>
+                <div id='loading-202301004' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202301004'></div>
+              </div>
+            </div>
+          </p>
+        
+          <p>
+            <bi style="letter-spacing:1.8px;">糖尿病并发冠心病风险预测模型的构建、评价与验证</bi> <br> 
+            夏桂溪, <bi>马俊杰</bi>, 赵子涵, 王子婕, 陆进<sup>*</sup> <br> 
+            <bi style="letter-spacing:1.8px;">牡丹江医学院学报</bi>, 2024, 45 (3): 47-54. <br> 
+            <a href="https://doi.org/10.13799/j.cnki.mdjyxyxb.2024.03.015" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXOaMQQ55CxTwDhUY649TrzaL5DgOQ0pAxcKtqvdZAuF0HD8RMrS051wNI2znPwFOwLffkatMDXw3cByk-lGadQB8ZZPjRE8PnBRuw-jCHj86ngHHlfRik1nwFwGehuLzXuvyWLJJF8nXI_z0yLCNmohLnYKUqO8us3rajfMvRD0Bmr-4TPCCKKv&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-202403015','outText-202403015','files/content/research/abstract/202403015.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/202403015" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/202403015.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/202403015.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-202403015" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-202403015')">&times;</span>
+                <div id='loading-202403015' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202403015'></div>
+              </div>
+            </div>
+          </p>
+      
+          <p>
+            <bi style="letter-spacing:1.8px;">hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义</bi> <br> 
+            陆进, 安韶光, <bi>马俊杰</bi>, 俞鹏, 陶恒, 陈云帆, 张浩轩<sup>*</sup> <br> 
+            <bi style="letter-spacing:1.8px;">牡丹江医学院学报</bi>, 2022, 43 (5): 27-34. <br> 
+            <a href="https://doi.org/10.13799/j.cnki.mdjyxyxb.2022.05.042" class="research-link" target="_blank">DOI</a> 
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXNGj_fSWwRsqbp8J2SdLfyZOvQLMshkKFP0pPxWAQGIarVWcsjoVmpbpUXwvMKQR8BFz6xNkshY2W-28Y08wJyTh8y4CFO6ILtPPeOuGVN4sEh0KPgnndj9pHkvMiYbtK-YjGDjZNKGuruwj6kPvXvP81nCCCFbkKYVN7_VH9W8ukYdvwVUhhcT&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a> 
+            <a href="javascript:void(0)" onclick="showModalWithFile('researchPapers-202205042','outText-202205042','files/content/research/abstract/202205042.txt')" class="research-link">Abstract</a>
+            <a href="https://docs.junjiema.cn/papers/202205042" class="research-link" target="_blank">PDF</a>
+            <a href="files/content/research/cite/EndNote/202205042.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="files/content/research/cite/BibTeX/202205042.bib" class="research-link" target="_blank" download>BibTeX</a>
+            <div id="researchPapers-202205042" class="modal">
+              <div class="modal-content" style="max-width:800px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('researchPapers-202205042')">&times;</span>
+                <div id='loading-202205042' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202205042'></div>
+              </div>
+            </div>
+          </p>
+       </div>
+        
+        
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Patents--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+        <h2 id="patents" style="margin-top:50px;text-shadow:0.6px 0.6px 0 #000;">
+          Approved Patents &amp; Software Copyrights 
+        </h2>
+        
+        <div style="margin:0;margin-bottom:20px;">
+          <p>
+            <bi>A rehabilitation device for limb flap transplantation</bi> <br>
+            Shaoguang An, <bi>Junjie Ma</bi>, Jingjing Cai, Yu Deng, Jin Lu, Lei Zhang<br>
+            2024-12-10, Utility Model Patent (ZL202420105433.2)<br>
+            <span style="margin-top:15px">
+              <a href="http://epub.cnipa.gov.cn/cred/CN222130353U" class="research-link" target="_blank">URL</a>
+              <a href="javascript:void(0)" onclick="showModalWithFile('patents-ZL202420105433.2','outText-ZL202420105433.2', 'files/content/research/patents/ZL202420105433.2.txt')" class="research-link">Abstract</a>
+            </span>
+            <div id="patents-ZL202420105433.2" class="modal">
+              <div class="modal-content" style="max-width:700px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('patents-ZL202420105433.2')">&times;</span>
+                <div id='loading-ZL202420105433.2' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-ZL202420105433.2'></div>
+              </div>
+            </div>
+          </p>
+          
+          <p>
+            <bi>Diabetes complicated with nephropathy risk prediction platform</bi> <br>
+            <bi>Junjie Ma</bi>, Shaoguang An, Jingjing Cai, Zijun Lu, Jin Lu, Lei Zhang<br>
+            2024-05-28, Software Copyright<sup>©</sup> (2024SR0725076)<br>
+            <span style="margin-top:15px">
+              <a href="https://platform.junjiema.cn/DN" class="research-link" target="_blank">URL</a>
+              <a href="https://github.com/maprojs/DN-platform" class="research-link" target="_blank">Code</a>
+            </span>
+          </p>
+        </div>
+        
+        
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Funding--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+        <h2 id="funding" style="text-shadow:0.6px 0.6px 0 #000;margin-top:50px;">
+          Approved Funding
+        </h2>
+        
+        <div style="margin:0;margin-bottom:20px;">
+          <p>
+            <bi>Screening and verification of prognosis-related genes for head and neck squamous cell carcinoma based on bioinformatics</bi> <br> 
+            2022-9-14 to 2024-11-04, <bi>Host</bi>, CNY 10,000 <br>
+            <!-- <bi>Junjie Ma</bi>, Jingyu Mei, Lili Ren, Wang Li, Yifan Zhu, Haoxuan Zhang <br> -->
+            National Innovation and Entrepreneurship Training Program for College Students (202210367002) <br>
+            <a href="http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=895639&year=2022&type=student&IsLXItem=0" class="research-link" target="_blank">
+              URL
+            </a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('research-202210367002','outText-202210367002', 'files/content/research/funding/202210367002.txt')" class="research-link">
+              Achievements
+            </a>
+            <div id="research-202210367002" class="modal">
+              <div class="modal-content" style="max-width:700px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('research-202210367002')">&times;</span>
+                <div id='loading-202210367002' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202210367002'></div>
+              </div>
+            </div>
+          </p>
+      
+          <p>
+            <bi>Construction, evaluation, and validation of a diabetic nephropathy risk prediction model based on machine learning</bi> <br> 
+            2023-10-10 to Now, <bi>Participant</bi>, CNY 10,000 <br>
+            <!-- Mohan Cao, Qin Fan, Xudong Wang, Shaoguang An, <bi>Junjie Ma</bi>, Yuting Tang <br>  -->
+            National Innovation and Entrepreneurship Training Program for College Students (202310367071) <br>
+            <a href="http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=1094905&year=2023&type=student&IsLXItem=1" class="research-link" target="_blank">URL</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('research-202310367071','outText-202310367071', 'files/content/research/funding/202310367071.txt')" class="research-link">Achievements</a>
+            <div id="research-202310367071" class="modal">
+              <div class="modal-content" style="max-width:700px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('research-202310367071')">&times;</span>
+                <div id='loading-202310367071' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202310367071'></div>
+              </div>
+            </div>
+          </p>
+      
+          <p>
+            <bi>Construction and validation of key gene screening and risk prediction model for hepatocellular carcinoma based on bioinformatics and artificial intelligence techniques</bi> <br> 
+            2022-9-14 to 2024-11-04, <bi>Participant</bi>, CNY 10,000 <br>
+            <!-- Shaoguang An, <bi>Junjie Ma</bi>, Zhixuan Guo, Jiahui Zhang, Yi Zhao, Jin Lu <br>  -->
+            National Innovation and Entrepreneurship Training Program for College Students (202210367042) <br>
+            <a href="http://gjcxcy.bjtu.edu.cn/NewLXItemListForStudentDetail.aspx?ItemNo=895638&year=2022&type=student&IsLXItem=1" class="research-link" target="_blank">URL</a>
+            <a href="javascript:void(0)" onclick="showModalWithFile('research-202210367042','outText-202210367042', 'files/content/research/funding/202210367042.txt')" class="research-link">Achievements</a>
+            <div id="research-202210367042" class="modal">
+              <div class="modal-content" style="max-width:700px;text-align:justify;font-size:16px;line-height:1.5;">
+                <span class="close" onclick="closeModal('research-202210367042')">&times;</span>
+                <div id='loading-202210367042' class="loading"><div class="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+                <div id='outText-202210367042'></div>
+              </div>
+            </div>
+          </p>
+        </div>
+        
+        <hr>
+        <p style="font-size:14px;margin-left:2px;">
+          <bi>Note: <sup>#</sup>Co-first author, <sup>*</sup>Corresponding author.</bi> 
+        </p>
+      </section>
+      
+      <div id="scrollToSection" class="scrollToSection">
+        <button onclick="scrollToSection('papers')">
+          <img src="files/images/logo/papers.webp" style="width:20px;height:20px;vertical-align:-4px;">
+          <span class="button-text">Papers</span>
+        </button>
+        <button onclick="scrollToSection('patents')">
+          <img src="files/images/logo/patents.webp" style="width:20px;height:20px;vertical-align:-4px;">
+          <span class="button-text">Patents</span>
+        </button>
+        <button onclick="scrollToSection('funding')">
+          <img src="files/images/logo/projects.webp" style="width:20px;height:20px;vertical-align:top;">
+          <span class="button-text">Funding</span>
+        </button>
+      </div>
+        
+      <button onclick="scrollToTop()" id="scrollToTop">
+        <img src="files/images/logo/arrow-up.webp" style="width:25px;height:25px;vertical-align:-4px;">
+        <span class="button-text">Top</span>
+      </button>
+      <!--<canvas></canvas>-->
+    </div>
+    <!--<script src="javascripts/modal.js"></script>
+    <script src="javascripts/get.time.js"></script>
+    <script src="javascripts/pageviews.js"></script>
+    <script src="javascripts/scroll.button.js"></script>-->
+  </body>
+</html>
