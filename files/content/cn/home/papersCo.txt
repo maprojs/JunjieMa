@@ -1,5 +1,5 @@
 <h2 style="text-align:center;margin-bottom:15px;">
-合著者论文 (&#x1F449;<a href="https://junjiema.cn/cn/research">Research</a> page&#x1F448;)
+合著者论文 (&#x1F449;<a href="https://junjiema.cn/zh/research">Research</a> page&#x1F448;)
 </h2>
 
 <ul style="font-size:20px; margin-bottom:5px;">

@@ -1,5 +1,5 @@
 <h2 style="text-align:center;margin-bottom:15px;">
-第一作者论文(&#x1F449;<a href="https://junjiema.cn/cn/research">研究</a>页面&#x1F448;)
+第一作者论文(&#x1F449;<a href="https://junjiema.cn/zh/research">研究</a>页面&#x1F448;)
 </h2>
 
 <ul style="font-size:20px; margin-bottom:5px;">
