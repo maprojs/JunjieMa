@@ -1,3 +1,0 @@
-<p style="font-size:24px; margin-bottom:5px; margin-top:1px;text-align:center;">
-     暂无
-</p>

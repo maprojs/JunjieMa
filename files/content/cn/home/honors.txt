@@ -1,0 +1,13 @@
+<p style="font-size:22px; margin-bottom:15px; margin-top:0px; text-align:center;">
+     荣誉 (&#x1F449;<a href="https://junjiema.cn/education">教育</a>页面&#x1F448;)
+</p>
+
+<ul style="font-size:20px; line-height:30px; text-align:left;margin-bottom:10px;">
+     <p style="margin-bottom:5px;">本科阶段</p>
+     <div style="margin-left:12px;">
+          <li> 2025-06 &nbsp;|&nbsp; 安徽省优秀毕业生</li>
+          <li> 2023-09 &nbsp;|&nbsp; 校三好学生</li>
+          <li> 2022-09 &nbsp;|&nbsp; 校三好学生</li>
+          <li> 2023-08 &nbsp;|&nbsp; 蚌埠市优秀青年志愿者</li>
+    </div>
+</ul>
