@@ -91,6 +91,13 @@ bi {
   font-style:italic;
 }
 
+gt {
+  padding: 2px; 
+  border-radius:7px;
+  text-align: center;
+  background: linear-gradient(to right,#b3d9ff,#f0f0f0);
+}
+
 code, pre {
   color:#333;
   font-size:12px;
@@ -357,5 +364,10 @@ canvas {
   }
   a[mytitle]:hover::after {
     background-color:#424242;
+  }
+  gt {
+    color:white;
+    background:none;
+    font-weight:bold;
   }
 }

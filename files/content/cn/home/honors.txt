@@ -1,5 +1,5 @@
 <p style="font-size:22px; margin-bottom:15px; margin-top:0px; text-align:center;">
-     荣誉 (&#x1F449;<a href="https://junjiema.cn/education">教育</a>页面&#x1F448;)
+     荣誉 (&#x1F449;<a href="https://junjiema.cn/zh/education">教育</a>页面&#x1F448;)
 </p>
 
 <ul style="font-size:20px; line-height:30px; text-align:left;margin-bottom:10px;">
