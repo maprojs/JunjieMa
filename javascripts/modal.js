@@ -7,23 +7,33 @@ function closeModal(modalId) {
 }
 
 function showModalWithFile(modalId, outTextId, fileName) {
-  const uniqueId = outTextId.split('-')[1];
-  const loadingId = 'loading-' + uniqueId;
-  const loading = document.getElementById(loadingId);
+  const uniqueId   = outTextId.split('-')[1];
+  const loadingId  = 'loading-' + uniqueId;
+  const loading    = document.getElementById(loadingId);
+  const modal      = document.getElementById(modalId);
+  const outBox     = document.getElementById(outTextId);
   showModal(modalId);
   loading.style.display = 'flex';
   setTimeout(() => {
-  fetch(fileName)
-    .then(response => response.text())
-    .then(data => {
-      loading.style.display = 'none'; 
-      document.getElementById(outTextId).innerHTML = data;
-    })
-    .catch(error => {
-      console.error('Error fetching file:', error);
-      loading.style.display = 'none';
-      document.getElementById(outTextId).innerText = 'Error loading file.';
-    });
+    fetch(fileName)
+      .then(r => r.text())
+      .then(html => {
+        loading.style.display = 'none';
+        outBox.innerHTML = html;
+        const content = modal.querySelector('.modal-content'); 
+        const contentHeight = content.scrollHeight; 
+        const viewHeight    = window.innerHeight;
+        if (contentHeight > viewHeight) {
+          content.style.maxHeight = (viewHeight * 0.6) + 'px';
+        } else {
+          content.style.maxHeight = '90vh';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        loading.style.display = 'none';
+        outBox.innerText = 'Error loading file.';
+      });
   }, 500);
 }
 
