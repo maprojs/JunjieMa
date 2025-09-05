@@ -24,7 +24,7 @@ function showModalWithFile(modalId, outTextId, fileName) {
         const contentHeight = content.scrollHeight; 
         const viewHeight    = window.innerHeight;
         if (contentHeight > viewHeight) {
-          content.style.maxHeight = (viewHeight * 0.75) + 'px';
+          content.style.maxHeight = (viewHeight * 0.9) + 'px';
         } else {
           content.style.maxHeight = '90vh';
         }
