@@ -1,5 +1,5 @@
 <p style="font-size:22px; margin-bottom:15px; margin-top:0px; text-align:center;">
-     Honors (&#x1F449;<a href="https://junjiema.cn/education">Education</a> page&#x1F448;)
+     Honors (&#x1F449;<a href="https://junjiema.org/education">Education</a> page&#x1F448;)
 </p>
 
 <ul style="font-size:20px; line-height:30px; text-align:left;margin-bottom:10px;">
