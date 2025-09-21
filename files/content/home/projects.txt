@@ -1,5 +1,5 @@
 <h2 style="text-align:center;margin-bottom:15px;">
-Projects (&#x1F449;<a href="https://junjiema.cn/research">Research</a> page&#x1F448;)
+Projects (&#x1F449;<a href="https://junjiema.org/research">Research</a> page&#x1F448;)
 </h2>
 
 <p style="font-size:20px; margin-bottom:5px;">Approved Funding</p>
