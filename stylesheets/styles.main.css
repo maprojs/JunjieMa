@@ -113,18 +113,6 @@ blockquote {
   border-left:1px solid #e5e5e5;
 }
 
-bi {
-  font-weight:bold;
-  font-style:italic;
-}
-
-gt {
-  padding: 2px; 
-  border-radius:7px;
-  text-align: center;
-  background: linear-gradient(to right,#b3d9ff,#f0f0f0);
-}
-
 code, pre {
   color:#333;
   font-size:12px;
@@ -157,6 +145,31 @@ dt {
 
 th {
   color:#444;
+}
+
+bi {
+  font-weight:bold;
+  font-style:italic;
+}
+
+gt {
+  padding: 2px; 
+  border-radius:7px;
+  text-align: center;
+  background: linear-gradient(to right,#b3d9ff,#f0f0f0);
+}
+
+jt {
+  color:#444;
+  font-weight:500;
+  font-style:italic;
+}
+
+cjt {
+  color:#444;
+  font-weight:500;
+  font-style:italic;
+  letter-spacing:1.8px;
 }
 
 img {
@@ -396,5 +409,16 @@ canvas {
   gt {
     color:white;
     background:none;
+  }
+  jt {
+    color:white;
+    font-weight:500;
+    font-style:italic;
+  }
+  cjt {
+    color:white;
+    font-weight:500;
+    font-style:italic;
+    letter-spacing:1.8px;
   }
 }
