@@ -67,16 +67,16 @@ function sectionButtonPosition() {
 }
 
 window.addEventListener("scroll", buttonVisibility);
-scrollToTopButton.addEventListener("click", scrollToTop);
+/*scrollToTopButton.addEventListener("click", scrollToTop);*/
 
 window.addEventListener('resize', () => {
-  topButtonPosition();
+  /*topButtonPosition();*/
   sectionButtonPosition();
   buttonVisibility();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  topButtonPosition();
+  /*topButtonPosition();*/
   sectionButtonPosition();
   buttonVisibility(); 
 });
