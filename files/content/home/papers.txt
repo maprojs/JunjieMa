@@ -3,7 +3,7 @@ Papers (&#x1F449;<a href="https://junjiema.org/research">Research</a> page&#x1F4
 </h2>
 
 <p style="font-size:20px; margin-bottom:5px;">First author papers</p>
-<div style="font-size:16px;margin-left:21px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.5em; ">
+<div style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.5em; ">
 <p style="margin-bottom:10px;">
 [1] Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <i>Endocrine</i>, 2024, 85 (2): 615-625.
 </p>
@@ -20,7 +20,7 @@ Papers (&#x1F449;<a href="https://junjiema.org/research">Research</a> page&#x1F4
 
 
 <p style="font-size:20px; margin-bottom:5px;">Co-author papers</p>
-<div style="font-size:16px;margin-left:21px;margin-bottom:5px;padding-left:1.5em;text-indent: -1.5em; ">
+<div style="font-size:16px;margin-left:5px;margin-bottom:5px;padding-left:1.5em;text-indent: -1.5em; ">
 <p style="margin-bottom:5px;">
 [1] Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma, <i>Pathology Research and Practice</i>, 2024, 253: 155048.
 </p>
