@@ -5,7 +5,7 @@
 </ul>
 
 <p style="margin-left:22px;margin-bottom:15px;">
-Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <bi>Endocrine</bi>, 2024, 85 (2): 615-625.
+Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
 </p>
 
 
