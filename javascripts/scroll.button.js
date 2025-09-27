@@ -12,7 +12,7 @@ function isOutOfViewport(element) {
     );
 }
 
-function buttonVisibility() {
+/*function buttonVisibility() {
     if (isOutOfViewport(firstHeading)) {
         scrollToTopButton.style.display = "block";
     } else {
@@ -23,7 +23,7 @@ function buttonVisibility() {
     } else {
         scrollToSelector.style.display = "block";
     }
-}
+}*/
 
 function scrollToTop() {
     window.scrollTo({
@@ -66,19 +66,19 @@ function sectionButtonPosition() {
   }
 }
 
-window.addEventListener("scroll", buttonVisibility);
+/*window.addEventListener("scroll", buttonVisibility);*/
 /*scrollToTopButton.addEventListener("click", scrollToTop);*/
 
 window.addEventListener('resize', () => {
   /*topButtonPosition();*/
   sectionButtonPosition();
-  buttonVisibility();
+  /*buttonVisibility(); */
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   /*topButtonPosition();*/
   sectionButtonPosition();
-  buttonVisibility(); 
+  /*buttonVisibility(); */
 });
 
-buttonVisibility();
+/*buttonVisibility();*/
