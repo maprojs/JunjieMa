@@ -46,7 +46,7 @@ function scrollToSection(sectionId) {
   }
 }
 
-function topButtonPosition() {
+/*function topButtonPosition() {
   const section = document.querySelector('section');
   if (section) {
     const sectionRect = section.getBoundingClientRect();
@@ -54,7 +54,7 @@ function topButtonPosition() {
     buttonRight = Math.max(buttonRight, 0);
     scrollToTopButton.style.right = `${buttonRight}px`;
   }
-}
+}*/
 
 function sectionButtonPosition() {
   const section = document.querySelector('section');
