@@ -16,12 +16,14 @@ function displayLastUpdatedData() {
   if (dateElement) {
     dateElement.innerHTML=`${iconUpdate}${' '}Time of last update:${' '}${lastUpdated}`;
   }
-  HomeElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsHome}</a> (by ${analyticsLink})`;
+  if (HomeElement) {
+    HomeElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsHome}</a> (by ${analyticsLink})`;
+  }
   if (ResearchElement) {
-    ResearchElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsResearch}${' '}(by ${analyticsLink})`;
+    ResearchElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsResearch}</a> (by ${analyticsLink})`;
   }
   if (EducationElement) {
-    EducationElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsEducation}${' '}(by ${analyticsLink})`;
+    EducationElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsEducation}</a> (by ${analyticsLink})`;
   }
 }
 
