@@ -18,10 +18,10 @@ function displayLastUpdatedData() {
   }
   HomeElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsHome}</a> (by ${analyticsLink})`;
   if (ResearchElement) {
-    ResearchElement.innerHTML=`${iconViews}${' '}<a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsResearch}${' '}(by ${analyticsLink})`;
+    ResearchElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsResearch}${' '}(by ${analyticsLink})`;
   }
   if (EducationElement) {
-    EducationElement.innerHTML=`${iconViews}${' '}<a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsEducation}${' '}(by ${analyticsLink})`;
+    EducationElement.innerHTML=`${iconViews} <a href="${analyticsFile}" target="_blank" class="black-link">Pageviews: ${viewsEducation}${' '}(by ${analyticsLink})`;
   }
 }
 
