@@ -1,5 +1,7 @@
-<p style="font-size:24px; margin-bottom:20px; margin-top:5px;"> Machine learning analysis skills </p>
+<p style="font-size:24px; margin-bottom:20px; margin-top:5px;"> 
+  Machine learning analysis skills 
+</p>
 <p class="index-text-indent" style="margin-bottom:30px;text-align:justify;">
-     I am able to independently perform machine learning analysis, including data cleaning, feature screening, model construction and evaluation, model interpretability, and constructing online predictive shiny web pages based on machine learning model.
+  I am able to independently perform machine learning analysis, including data cleaning, feature screening, model construction and evaluation, model interpretability, and constructing online predictive shiny web pages based on machine learning model.
 </p>
 <img src="files/images/home/ml.webp">

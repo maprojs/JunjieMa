@@ -1,21 +1,24 @@
 <h2 style="text-align:center;margin-bottom:15px;">
-Papers (&#x1F449;<a href="https://junjiema.org/research">Research</a> page&#x1F448;)
+  Papers (&#x1F449;<a href="https://junjiema.org/research">Research</a> page&#x1F448;)
 </h2>
 
-<p style="font-size:20px; margin-bottom:5px;">First author papers</p>
+<p style="font-size:20px; margin-bottom:5px;">
+  First author papers
+</p>
+
 <div style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.5em; ">
-<p style="margin-bottom:10px;">
-[1] Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
-</p>
-<p style="margin-bottom:10px;">
-[2] PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
-</p>
-<p style="margin-bottom:10px; ">
-[3] 肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析, <jt>中国医科大学学报</jt>, <b>2023</b>, 52 (10): 871-78.</span><br>
-</p>
-<p style="margin-bottom:20px;">
-[4] PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
-</p>
+  <p style="margin-bottom:10px;">
+    [1] Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
+  </p>
+  <p style="margin-bottom:10px;">
+    [2] PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
+  </p>
+  <p style="margin-bottom:10px; ">
+    [3] 肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析, <jt>中国医科大学学报</jt>, <b>2023</b>, 52 (10): 871-78.</span><br>
+  </p>
+  <p style="margin-bottom:20px;">
+    [4] PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
+  </p>
 </div>
 
 
