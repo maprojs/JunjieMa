@@ -200,7 +200,7 @@ li::before {
 header {
   float:left;
   width:270px;
-  height:95vh;
+  height:96vh;
   position:fixed;
   overflow:hidden;
   overflow-y:scroll;
