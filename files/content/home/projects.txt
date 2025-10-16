@@ -8,12 +8,12 @@
 
 <div style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.5em; ">
   <p style="margin-bottom:10px;">
-    [1] Screening and verification of prognosis-related genes for head and neck squamous cell carcinoma based on bioinformatics, 2022-9-14 to 2024-11-04, <bi>Host</bi>, National Innovation and Entrepreneurship Training Program for College Students (202210367002).
+    [3] Screening and verification of prognosis-related genes for head and neck squamous cell carcinoma based on bioinformatics, 2022-9-14 to 2024-11-04, <bi>Host</bi>, National Innovation and Entrepreneurship Training Program for College Students (202210367002).
   </p>
   <p style="margin-bottom:10px;">
     [2] Construction, evaluation, and validation of a diabetic nephropathy risk prediction model based on machine learning, 2023-10-10 to Now, <bi>Participant</bi>, National Innovation and Entrepreneurship Training Program for College Students (202310367071).
   </p>
   <p style="margin-bottom:10px; ">
-    [3] Construction and validation of key gene screening and risk prediction model for hepatocellular carcinoma based on bioinformatics and artificial intelligence techniques, 2022-9-14 to 2024-11-04, <bi>Participant</bi>, National Innovation and Entrepreneurship Training Program for College Students (202210367042).
+    [1] Construction and validation of key gene screening and risk prediction model for hepatocellular carcinoma based on bioinformatics and artificial intelligence techniques, 2022-9-14 to 2024-11-04, <bi>Participant</bi>, National Innovation and Entrepreneurship Training Program for College Students (202210367042).
   </p>
 </div>

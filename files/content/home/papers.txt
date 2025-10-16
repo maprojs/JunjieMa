@@ -8,41 +8,41 @@
 
 <div style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.5em; ">
   <p style="margin-bottom:10px;">
-    [1] Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
+    [4] Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
   </p>
   <p style="margin-bottom:10px;">
-    [2] PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
+    [3] PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
   </p>
   <p style="margin-bottom:10px; ">
-    [3] 肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析, <jt>中国医科大学学报</jt>, <b>2023</b>, 52 (10): 871-78.</span><br>
+    [2] 肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析, <jt>中国医科大学学报</jt>, <b>2023</b>, 52 (10): 871-78.</span><br>
   </p>
   <p style="margin-bottom:20px;">
-    [4] PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
+    [1] PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
   </p>
 </div>
 
 
 <p style="font-size:20px; margin-bottom:5px;">Co-author papers</p>
 <div style="font-size:16px;margin-left:5px;margin-bottom:5px;padding-left:1.5em;text-indent: -1.5em; ">
-<p style="margin-bottom:5px;">
-[1] Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma, <jt>Pathology Research and Practice</jt>, <b>2024</b>, 253: 155048.
-</p>
-<p style="margin-bottom:5px;">
-[2] Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma, <jt>Chinese journal of cellular and molecular immunology</jt>, <b>2024</b>, 340 (6): 508-519.
-</p>
-<p style="margin-bottom:5px; ">
-[3] Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells, <jt>Chinese journal of cellular and molecular immunology</jt>, <b>2023</b>, 39 (11): 988-995.
-</p>
-<p style="margin-bottom:5px;">
-[4] Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis, <jt>Chinese medical sciences journal</jt>, <b>2022</b>, 37 (4): 331-339.
-</p>
-<p style="margin-bottom:5px;">
-[5] 糖尿病并发冠心病风险预测模型的构建、评价与验证, <jt>牡丹江医学院学报</jt>, <b>2024</b>, 45 (3): 47-54.
-</p>
-<p style="margin-bottom:5px;">
-[6] 爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义, <jt>解剖学报</jt>, <b>2023</b>, 54 (4): 434-444.
-</p>
-<p style="margin-bottom:20px;">
-[7] hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义, <jt>牡丹江医学院学报</jt>, <b>2022</b>, 43 (5): 27-34.
-</p>
+  <p style="margin-bottom:5px;">
+    [7] Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma, <jt>Pathology Research and Practice</jt>, <b>2024</b>, 253: 155048.
+  </p>
+  <p style="margin-bottom:5px;">
+    [6] Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma, <jt>Chinese journal of cellular and molecular immunology</jt>, <b>2024</b>, 340 (6): 508-519.
+  </p>
+  <p style="margin-bottom:5px; ">
+    [5] Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells, <jt>Chinese journal of cellular and molecular immunology</jt>, <b>2023</b>, 39 (11): 988-995.
+  </p>
+  <p style="margin-bottom:5px;">
+    [4] Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis, <jt>Chinese medical sciences journal</jt>, <b>2022</b>, 37 (4): 331-339.
+  </p>
+  <p style="margin-bottom:5px;">
+    [3] 糖尿病并发冠心病风险预测模型的构建、评价与验证, <jt>牡丹江医学院学报</jt>, <b>2024</b>, 45 (3): 47-54.
+  </p>
+  <p style="margin-bottom:5px;">
+    [2] 爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义, <jt>解剖学报</jt>, <b>2023</b>, 54 (4): 434-444.
+  </p>
+  <p style="margin-bottom:20px;">
+    [1] hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义, <jt>牡丹江医学院学报</jt>, <b>2022</b>, 43 (5): 27-34.
+  </p>
 </div>
