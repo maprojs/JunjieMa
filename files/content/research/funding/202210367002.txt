@@ -1,15 +1,15 @@
 <h2 style="text-align: center;margin-bottom:15px;">Achievements</h2>
 
 <ul style="font-size:20px; margin-bottom:5px;">
-<li>Papers</li>
+  <li>Papers</li>
 </ul>
 
-<div style="font-size:16px;margin-left:22px;margin-bottom:10px;padding-left:1.55em;text-indent: -1.55em; ">
-<p style="margin-bottom:10px;">
-[1] PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
-</p>
+<div class="ref-box" style="font-size:16px;margin-left:22px;margin-bottom:10px;padding-left:1.55em;text-indent: -1.55em; ">
+  <p style="margin-bottom:10px;">
+    PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
+  </p>
 
-<p style="margin-bottom:20px;">
-[2] PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
-</p>
+  <p style="margin-bottom:20px;">
+    PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义, <jt>赣南医学院学报 </jt>, <b>2023</b>, 43 (1): 17-26.
+  </p>
 </div>

@@ -100,6 +100,17 @@
   height:auto;
 }
 
+.ref-box {
+  counter-reset:ref;
+}
+
+.ref-box p::before {
+  margin:0;
+  padding:0;
+  counter-increment:ref;
+  content:"[" counter(ref) "]";
+}
+
 .modal {
   top:0;
   left:0;

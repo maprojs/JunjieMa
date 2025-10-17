@@ -1,7 +1,7 @@
 <p style="font-size: 20px; margin-bottom: 5px; color: #86accd;">
-     Scan the QR code via <a href="https://weixin.qq.com" style="color: #86accd;font-size: 20px; ">WeChat</a>
+  Scan the QR code via <a href="https://weixin.qq.com" style="color: #86accd;font-size: 20px; ">WeChat</a>
 </p>
 <p style="font-size: 20px; margin-bottom: 15px; color: #86accd;">
-     WeChat ID: mjj1428
+  WeChat ID: mjj1428
 </p>
 <img src="./files/images/logo/wechat-qrcode.webp">
