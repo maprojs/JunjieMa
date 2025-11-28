@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+  <li>Background</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  Hepatocellular carcinoma (HCC) is a severe hazard to human health and has a high fatality rate. While deregulated gene expression has been widely linked to hepatocarcinogenesis, many details of how these alterations drive tumor initiation and progression remain to be elucidated. We therefore combined bioinformatics and machine-learning strategies to screen for and extensively validate candidate driver genes in HCC.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  Three datasets (GSE78737, GSE98383, and GSE121248) were obtained from the Gene Expression Omnibus (GEO) database. GSE78737 and GSE98383 were combined to form the training set, while GSE121248 was used as the validation set. Initially, differentially expressed genes (DEGs) between HCC and non-HCC (nHCC) in the training set were identified. Enrichment analysis of these DEGs was performed using Gene Ontology (GO), Kyoto Encyclopedia of Genes and Genomes (KEGG), and Gene Set Enrichment Analysis (GSEA). To identify diagnostic genes, machine learning algorithms, Support Vector Machine-Recursive Feature Elimination (SVM-RFE), and Least Absolute Shrinkage and Selection Operator (LASSO) were applied. The validation set was employed to confirm the DEGs. Furthermore, immune cell infiltration differences between nHCC and HCC were analyzed using CIBERSORT. GEPIA2.0 was subsequently used to analyze the prognostic significance of the diagnostic genes in HCC, identifying key genes. Finally, the key genes were validated using data from The Cancer Genome Atlas (TCGA) and the International Cancer Genome Consortium (ICGC), as well as through immunohistochemistry (IHC) experiments, single-cell, and spatial transcriptomics analysis.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  A total of 80 DEGs were identified, with 8 upregulated and 72 downregulated. The GO pathways associated with these DEGs were primarily related to responses to alcohol, humoral immune response, vacuolar lumen, chemokine activity, and mannose binding. KEGG pathway analysis revealed that the DEGs were primarily focused on viral protein interactions with cytokines and cytokine receptors. GSEA indicated that the most active processes in HCC included DNA replication, cell cycle, and mismatch repair. Immune cell analysis showed significant overexpression of naive B cells, CD8+ T cells, activated NK cells, M0 macrophages, and dendritic cells in HCC. In contrast, naive CD4+ T cells, gamma delta T cells, and monocytes were significantly lower in HCC compared to nHCC. Machine learning and risk prognosis analysis identified FAM83D as a key gene in HCC, serving as an independent variable affecting HCC prognosis. Increased FAM83D mRNA and protein expression correlated with poor OS and prognosis in HCC patients. Additionally, FAM83D expression was significantly related to various immune cells. Further single-cell analysis revealed that FAM83D is predominantly upregulated in malignant cells, and its high expression is strongly associated with poor response to immunotherapy in HCC patients.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Conclusion</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  FAM83D may be a key gene involved in the development and progression of HCC, contributing to early diagnosis and prognosis assessment. It has the potential to serve as a biomarker for HCC.
+</p>
