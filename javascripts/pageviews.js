@@ -1,7 +1,7 @@
-const viewsHome="170";
+const viewsHome="182";
 const viewsResearch="145";
 const viewsEducation="89";
-const lastUpdated="September 30, 2025";
+const lastUpdated="November 30, 2025";
 
 function displayLastUpdatedData() {
   const HomeElement=document.getElementById("viewsHome");
