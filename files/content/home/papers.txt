@@ -8,6 +8,9 @@
 
 <div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.8em; ">
   <p style="margin-bottom:10px;">
+    Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification, <jt>Translational Cancer Research</jt>, <b>2025</b>, 14 (11): 7995-8011.
+  </p>
+  <p style="margin-bottom:10px;">
     Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability, <jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625.
   </p>
   <p style="margin-bottom:10px;">
