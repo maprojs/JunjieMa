@@ -4,7 +4,7 @@
   <li>Papers</li>
 </ul>
 
-<div class="ref-box" style="font-size:16px;margin-left:22px;margin-bottom:10px;padding-left:1.55em;text-indent: -1.55em; ">
+<div class="ref-box" style="font-size:16px;margin-left:22px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.45em; ">
   <p style="margin-bottom:10px;">
     PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing, <jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-21.
   </p>

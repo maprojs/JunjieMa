@@ -34,7 +34,7 @@ function showModalWithFile(modalId, outTextId, fileName) {
       .catch(err => {
         console.error(err);
         loading.style.display = 'none';
-        outBox.innerText = 'Error loading file.';
+        outBox.innerText = 'The file cannot be loaded 🤨';
       });
   }, 500);
 }
