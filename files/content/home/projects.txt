@@ -6,7 +6,7 @@
   Approved Funding
 </p>
 
-<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.45em; ">
+<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.42em; ">
   <p style="margin-bottom:10px;">
     Screening and verification of prognosis-related genes for head and neck squamous cell carcinoma based on bioinformatics, 2022-9-14 to 2024-11-04, <bi>Host</bi>, National Innovation and Entrepreneurship Training Program for College Students (202210367002).
   </p>

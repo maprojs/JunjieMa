@@ -6,7 +6,7 @@
   First author papers
 </p>
 
-<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.45em; ">
+<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.42em; ">
   <p style="margin-bottom:10px;">
     Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification, <jt>Translational Cancer Research</jt>, <b>2025</b>, 14 (11): 7995-8011.
   </p>
@@ -26,7 +26,7 @@
 
 
 <p style="font-size:20px; margin-bottom:5px;">Co-author papers</p>
-<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:5px;padding-left:1.5em;text-indent: -1.45em; ">
+<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:5px;padding-left:1.5em;text-indent: -1.42em; ">
   <p style="margin-bottom:5px;">
     Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma, <jt>Pathology Research and Practice</jt>, <b>2024</b>, 253: 155048.
   </p>
