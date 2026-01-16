@@ -9,11 +9,11 @@ function closeModal(modalId) {
 }
 
 function showModalWithFile(modalId, outTextId, fileName) {
-  const uniqueId   = outTextId.split('-')[1];
-  const loadingId  = 'loading-' + uniqueId;
-  const loading    = document.getElementById(loadingId);
-  const modal      = document.getElementById(modalId);
-  const outBox     = document.getElementById(outTextId);
+  const uniqueId = outTextId.split('-')[1];
+  const loadingId = 'loading-' + uniqueId;
+  const loading = document.getElementById(loadingId);
+  const modal = document.getElementById(modalId);
+  const outBox = document.getElementById(outTextId);
   showModal(modalId);
   loading.style.display = 'flex';
   setTimeout(() => {
@@ -24,7 +24,7 @@ function showModalWithFile(modalId, outTextId, fileName) {
         outBox.innerHTML = html;
         const content = modal.querySelector('.modal-content'); 
         const contentHeight = content.scrollHeight; 
-        const viewHeight    = window.innerHeight;
+        const viewHeight = window.innerHeight;
         if (contentHeight > viewHeight) {
           content.style.maxHeight = (viewHeight * 0.8) + 'px';
         } else {
@@ -34,6 +34,8 @@ function showModalWithFile(modalId, outTextId, fileName) {
       .catch(err => {
         console.error(err);
         loading.style.display = 'none';
+        outBox.style.fontSize = '20px';
+        outBox.style.textAlign = 'center';
         outBox.innerText = 'The file cannot be loaded 🤨';
       });
   }, 500);
