@@ -6,7 +6,7 @@
   First author papers
 </p>
 
-<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.42em; ">
+<div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.42em; text-align: left;">
   <p style="margin-bottom:10px;">
     Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification, <jt>Translational Cancer Research</jt>, <b>2025</b>, 14 (11): 7995-8011.
   </p>

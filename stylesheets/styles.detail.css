@@ -74,6 +74,12 @@
   text-decoration:none;
 }
 
+.grey-bg {
+  background-color:grey;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 .image-centered {
   display:flex;
   align-items:center;

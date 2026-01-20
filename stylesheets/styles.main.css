@@ -165,6 +165,26 @@ jt {
   font-style:italic;
 }
 
+
+jtb {
+  color: white;
+  font-weight: 700;
+  font-style: italic;
+  padding: 0.5px 3px 0.5px 5px;
+  background-color: #5F5F5F;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+ift {
+  color: white;
+  font-weight: 700;
+  background-color: #1378B2;
+  padding: 0.5px 5px 0.5px 3px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
 cjt {
   color:#666;
   font-weight:700;
