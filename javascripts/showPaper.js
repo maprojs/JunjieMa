@@ -13,7 +13,7 @@ function toggleFirstAuthor() {
   } else {
     otherPapers.forEach(p => p.style.display = 'block');
     firstPapers.forEach(p => p.style.display = 'block');
-    filterBtn.innerText = '1stPapers';
+    filterBtn.innerText = '1stAuthor';
     showAllPapers = false;
   }
 }
