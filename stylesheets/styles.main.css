@@ -220,7 +220,7 @@ li::before {
 header {
   float:left;
   width:270px;
-  height:100vh;
+  height:90vh;
   position:fixed;
   overflow:hidden;
   overflow-y:scroll;
@@ -408,9 +408,9 @@ canvas {
   }
 }
 
-@media (max-width: 1099px) {
+@media (max-width: 720px) {
   header {
-    width: 820px;
+    height: 820px;
   }
 }
 
