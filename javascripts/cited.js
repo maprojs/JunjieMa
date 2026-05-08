@@ -1,5 +1,5 @@
 const MAX_REQUESTS = 5;
-const MAX_CONCURRENT = 1;
+const MAX_CONCURRENT = 2;
 
 function getCitationCount(doi) {
   const api = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
@@ -30,7 +30,7 @@ function processQueue() {
         resolve(count);
       })
       .catch(() => {
-        span.textContent = 0;
+        span.textContent = '-';
         reject();
       })
       .finally(() => {
