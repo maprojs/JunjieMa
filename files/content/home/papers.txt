@@ -3,10 +3,13 @@
 </h2>
 
 <p style="font-size:20px; margin-bottom:5px;">
-  First author papers
+  First/co-first author papers
 </p>
 
 <div class="ref-box" style="font-size:16px;margin-left:5px;margin-bottom:10px;padding-left:1.5em;text-indent: -1.42em; text-align: left;">
+  <p style="margin-bottom:10px;">
+    Integrated bioinformatic evaluation unveils a cellular senescence gene signature as a poor prognostic factor in hepatocellular carcinoma, <jt>Clinical and Experimental Medicine</jt>, <b>2026</b>, Accepted.
+  </p>
   <p style="margin-bottom:10px;">
     Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification, <jt>Translational Cancer Research</jt>, <b>2025</b>, 14 (11): 7995-8011.
   </p>
