@@ -778,7 +778,7 @@
 
   .research-page .paper-image {
     width: 100%;
-    height: clamp(1250px, 30vw, 170px);
+    height: clamp(125px, 30vw, 165px);
     aspect-ratio: auto;
     margin-bottom: 18px;
   }
