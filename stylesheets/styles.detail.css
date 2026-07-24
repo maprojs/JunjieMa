@@ -626,7 +626,7 @@
   }
 
   .research-page .paper-image {
-    height: 124px;
+    height: 140px;
   }
 }
 
@@ -778,7 +778,7 @@
 
   .research-page .paper-image {
     width: 100%;
-    height: clamp(110px, 30vw, 150px);
+    height: clamp(1250px, 30vw, 170px);
     aspect-ratio: auto;
     margin-bottom: 18px;
   }
