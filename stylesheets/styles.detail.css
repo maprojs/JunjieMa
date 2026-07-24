@@ -282,7 +282,7 @@
 .education-page section > ul > div::before {
   position: absolute;
   top: 34px;
-  left: -37px;
+  left: -36px;
   width: 14px;
   height: 14px;
   content: "";
@@ -626,7 +626,7 @@
   }
 
   .research-page .paper-image {
-    height: 140px;
+    height: 150px;
   }
 }
 
@@ -764,7 +764,7 @@
   }
 
   .education-page section > ul > div::before {
-    left: -29px;
+    left: -28px;
   }
 
   .research-page #pubmedPapers > .firstPaper,
@@ -778,7 +778,7 @@
 
   .research-page .paper-image {
     width: 100%;
-    height: clamp(125px, 30vw, 165px);
+    height: 140px;
     aspect-ratio: auto;
     margin-bottom: 18px;
   }
