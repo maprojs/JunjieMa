@@ -1,10 +1,10 @@
-const lastUpdated="2025-11-30";
+const lastUpdated="2026-07-24";
 
 function displayLastUpdatedData() {
   const dateElement=document.getElementById("lastUpdatedDate");
   const iconUpdate=`<img src="files/images/logo/update.webp" width="9.5" height="9.5" style="vertical-align:-1px;margin-right:1.2px;transform:rotate(-60deg);">`;
   if (dateElement) {
-    dateElement.innerHTML=`${iconUpdate}${' '}Time of last update:${' '}${lastUpdated}`;
+    dateElement.innerHTML=`${iconUpdate}${' '}Last updated:${' '}${lastUpdated}`;
   }
 }
 

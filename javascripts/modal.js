@@ -1,5 +1,12 @@
 function showModal(modalId) {
-  document.getElementById(modalId).style.display = 'flex';
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  if (modal.parentElement !== document.body) {
+    document.body.appendChild(modal);
+  }
+
+  modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 
