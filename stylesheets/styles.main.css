@@ -141,6 +141,18 @@ a:active {
   color: var(--accent);
 }
 
+blueBold {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+a:hover blueBold,
+a:active blueBold,
+button:hover blueBold,
+button:active blueBold {
+  color: inherit;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid rgba(232, 166, 2, 0.42);
@@ -169,6 +181,18 @@ li::before {
 bi {
   font-weight: 700;
   font-style: normal;
+}
+
+bhr {
+  padding-bottom: 0.5px;
+  display: inline-block;
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--control-border);
+}
+
+author {
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 jt,
@@ -421,8 +445,7 @@ td {
   object-fit: contain;
 }
 
-.footer-stat strong {
-  color: var(--primary);
+.footer-stat blueBold {
   font-size: inherit;
 }
 

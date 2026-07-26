@@ -72,9 +72,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
   font-size: 11px;
-  font-weight: 700;
   line-height: 1.15;
   text-align: center;
   white-space: nowrap;
@@ -92,9 +90,7 @@
 
 .page-hero .eyebrow {
   margin: 0 0 18px;
-  color: var(--primary);
   font-size: 11px;
-  font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -121,13 +117,13 @@
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  font-weight: 750;
   border: 1px solid transparent;
   border-radius: 8px;
 }
 
 .button-primary {
   color: #fff;
+  font-weight: 750;
   background: var(--primary-fill);
 }
 
@@ -138,7 +134,6 @@
 }
 
 .button-secondary {
-  color: var(--primary);
   border-color: var(--control-border);
   background: transparent;
 }
@@ -166,9 +161,8 @@
   background: var(--surface);
 }
 
-.hero-metrics strong {
+.hero-metrics blueBold {
   margin-right: 3px;
-  color: var(--primary);
   font-size: 14px;
 }
 
@@ -256,8 +250,30 @@
   margin: 0 !important;
 }
 
+.home-page .skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-page .skill-card > div:nth-child(2) {
+  padding-left: 1.35em;
+}
+
 .home-page section > ul > div a {
   font-weight: 650;
+}
+
+.ref-box {
+  counter-reset: reference;
+}
+
+.ref-box > p {
+  counter-increment: reference;
+}
+
+.ref-box > p::before {
+  content: "[" counter(reference) "] ";
 }
 
 .education-page section > ul {
@@ -292,9 +308,7 @@
 }
 
 .education-page section > ul > div > li {
-  color: var(--primary);
   font-size: 12px;
-  font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -451,14 +465,32 @@
   display: inline-block;
   color: var(--primary);
   font-size: 12px;
-  font-weight: 750;
-  border-bottom: 1px solid var(--control-border);
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--control-border);
+}
+
+.cited {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .research-link:hover,
 .research-link:active {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+.research-link:hover .cited,
+.research-link:active .cited {
+  color: inherit;
+}
+
+.research-note {
+  color: var(--muted);
+}
+
+.research-note-divider {
+  margin-bottom: 5px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -631,6 +663,11 @@
 }
 
 @media (max-width: 620px) {
+  .modal-content {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
   .page-hero {
     grid-template-columns: 134px minmax(0, 1fr);
     align-items: center;
@@ -722,7 +759,7 @@
     background: var(--primary-soft);
   }
 
-  .hero-metrics strong {
+  .hero-metrics blueBold {
     margin-right: 0;
     display: block;
     font-size: 15px;
