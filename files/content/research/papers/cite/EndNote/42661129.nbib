@@ -1,0 +1,102 @@
+PMID- 42661129
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20260828
+LR  - 20260827
+IS  - 1591-9528 (Electronic)
+IS  - 1591-8890 (Linking)
+VI  - 26
+IP  - 1
+DP  - 2026 Jul 23
+TI  - Integrated bioinformatic evaluation unveils a cellular senescence gene signature 
+      as a poor prognostic factor in hepatocellular carcinoma.
+LID - 308 [pii]
+LID - 10.1007/s10238-026-02258-5 [doi]
+AB  - Cellular senescence (CS) plays a crucial role in various diseases, but its role 
+      in hepatocellular carcinoma (HCC) remains unclear. CS-related genes were 
+      clustered to identify subtypes. A risk score was constructed and validated in 
+      three independent cohorts. Associations with clinical characteristics, tumor 
+      immune microenvironment, mutation status, heterogeneity, and treatment efficacy 
+      were analyzed. Single-cell analysis was used to examine risk score distribution, 
+      and machine learning algorithms along with a nomogram were applied to assess 
+      prognostic value. Three CS subtypes were identified, with subtype 1 showing the 
+      worst prognosis. High risk score was associated with advanced clinical stage and 
+      grade, poor prognosis, and an immunosuppressive microenvironment driven by 
+      regulatory T cells. It also correlated with higher tumor mutations (notably TP53) 
+      and increased heterogeneity. High-risk patients showed poor response to sorafenib 
+      and transcatheter arterial chemoembolization (TACE) and may benefit less from 
+      immunotherapy. At single-cell level, the risk score was predominantly expressed 
+      in malignant hepatocytes and linked to cell stemness. The CS-related risk score 
+      is a potential prognostic indicator for poor outcomes in HCC, playing a 
+      significant role in tumor progression and offering potential value for clinical 
+      diagnosis and prediction of treatment response.
+CI  - © 2026. The Author(s).
+FAU - Lu, Shaoyang
+AU  - Lu S
+AD  - First Clinical Medical College, Bengbu Medical University, Bengbu, 233080, Anhui 
+      Province, China.
+FAU - Ma, Junjie
+AU  - Ma J
+AD  - Department of Hepatobiliary and Pancreatic Surgery, The Third Xiangya Hospital, 
+      Central South University, Changsha, 410013, Hunan Province, China.
+FAU - Wang, Xiaodan
+AU  - Wang X
+AD  - Department of Oncology Surgery, the Second Affiliated Hospital of Bengbu Medical 
+      University, Bengbu, 233080, Anhui Province, China.
+FAU - Zhang, Lei
+AU  - Zhang L
+AD  - Department of Oncology Surgery, the Second Affiliated Hospital of Bengbu Medical 
+      University, Bengbu, 233080, Anhui Province, China.
+FAU - Lu, Jin
+AU  - Lu J
+AD  - Department of Human Anatomy, Bengbu Medical University, Bengbu, 233030, Anhui 
+      Province, China. 0100197@bbmu.edu.cn.
+FAU - Hu, Junjie
+AU  - Hu J
+AD  - Department of Radiotherapy, the Second Affiliated Hospital of Bengbu Medical 
+      University, Bengbu, 233080, Anhui, China. 472863866@qq.com.
+LA  - eng
+GR  - 2023AH051929/Key Natural Science Research Project of Anhui Provincial 
+      Universities/
+GR  - XJ2024014201/Key Natural Science Project of Bengbu Medical University/
+PT  - Journal Article
+DEP - 20260723
+PL  - Italy
+TA  - Clin Exp Med
+JT  - Clinical and experimental medicine
+JID - 100973405
+RN  - 0 (Biomarkers, Tumor)
+SB  - IM
+MH  - Humans
+MH  - *Carcinoma, Hepatocellular/genetics/pathology/therapy/diagnosis/mortality
+MH  - *Liver Neoplasms/genetics/pathology/therapy/diagnosis/mortality
+MH  - Prognosis
+MH  - *Cellular Senescence/genetics
+MH  - Female
+MH  - *Computational Biology/methods
+MH  - Tumor Microenvironment/genetics
+MH  - Male
+MH  - Middle Aged
+MH  - Biomarkers, Tumor/genetics
+MH  - Gene Expression Profiling
+MH  - Single-Cell Analysis
+OTO - NOTNLM
+OT  - Cellular senescence
+OT  - Hepatocellular carcinoma
+OT  - Immunotherapy
+OT  - Tumor immune microenvironment
+COIS- Declarations. Ethics approval and consent to participate: Not applicable. Consent 
+      for publication: Not applicable. Competing interests: The authors declare no 
+      competing interests.
+EDAT- 2026/08/28 11:46
+MHDA- 2026/08/28 11:47
+CRDT- 2026/08/27 23:58
+PHST- 2026/03/25 00:00 [received]
+PHST- 2026/07/08 00:00 [accepted]
+PHST- 2026/08/28 11:47 [medline]
+PHST- 2026/08/28 11:46 [pubmed]
+PHST- 2026/08/27 23:58 [entrez]
+AID - 10.1007/s10238-026-02258-5 [pii]
+AID - 10.1007/s10238-026-02258-5 [doi]
+PST - epublish
+SO  - Clin Exp Med. 2026 Jul 23;26(1):308. doi: 10.1007/s10238-026-02258-5.

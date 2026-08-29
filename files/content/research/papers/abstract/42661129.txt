@@ -1,0 +1,7 @@
+<ul style="font-size:18px;">
+  <li>Abstract</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  Cellular senescence (CS) plays a crucial role in various diseases, but its role in hepatocellular carcinoma (HCC) remains unclear. CS-related genes were clustered to identify subtypes. A risk score was constructed and validated in three independent cohorts. Associations with clinical characteristics, tumor immune microenvironment, mutation status, heterogeneity, and treatment efficacy were analyzed. Single-cell analysis was used to examine risk score distribution, and machine learning algorithms along with a nomogram were applied to assess prognostic value. Three CS subtypes were identified, with subtype 1 showing the worst prognosis. High risk score was associated with advanced clinical stage and grade, poor prognosis, and an immunosuppressive microenvironment driven by regulatory T cells. It also correlated with higher tumor mutations (notably TP53) and increased heterogeneity. High-risk patients showed poor response to sorafenib and transcatheter arterial chemoembolization (TACE) and may benefit less from immunotherapy. At single-cell level, the risk score was predominantly expressed in malignant hepatocytes and linked to cell stemness. The CS-related risk score is a potential prognostic indicator for poor outcomes in HCC, playing a significant role in tumor progression and offering potential value for clinical diagnosis and prediction of treatment response.
+</p>
