@@ -614,7 +614,7 @@
   height: 18px;
   margin: 2px;
   border-radius: 20px;
-  background: var(--primary);
+  background: #FE4A49;
 }
 
 .mjjLoader div:nth-child(1) { animation: mjjLoader 1s ease-in-out infinite 0s; }
@@ -626,14 +626,23 @@
 .mjjLoader div:nth-child(7) { animation: mjjLoader 1s ease-in-out infinite 0s; }
 
 @keyframes mjjLoader {
-  0%,
-  100% {
-    background: var(--accent);
+  0% {
+    background: #FED766;
     transform: scaleY(0.55);
   }
+  25% {
+    background: #009FB7;
+  }
   50% {
-    background: var(--primary);
+    background: #59CD90;
     transform: scaleY(1.8);
+  }
+  75% {
+    background: #FE4A49;
+  }
+  100% {
+    background: #D91E36;
+    transform: scaleY(0.55);
   }
 }
 

@@ -22,13 +22,24 @@ function showModalWithFile(modalId, outTextId, fileName) {
   const modal = document.getElementById(modalId);
   const outBox = document.getElementById(outTextId);
   showModal(modalId);
+  if (outBox.dataset.loadedFile === fileName) {
+    loading.style.display = 'none';
+    return;
+  }
+  if (outBox.dataset.loadingFile === fileName) return;
+  outBox.dataset.loadingFile = fileName;
   loading.style.display = 'flex';
-  setTimeout(() => {
     fetch(fileName)
-      .then(r => r.text())
+      .then(r => {
+        if (!r.ok) throw new Error(`Failed to load file: ${r.status}`);
+        return r.text();
+      })
       .then(html => {
         loading.style.display = 'none';
         outBox.innerHTML = html;
+        outBox.dataset.loadedFile = fileName;
+        outBox.style.fontSize = '';
+        outBox.style.textAlign = '';
         const content = modal.querySelector('.modal-content'); 
         const contentHeight = content.scrollHeight; 
         const viewHeight = window.innerHeight;
@@ -44,8 +55,10 @@ function showModalWithFile(modalId, outTextId, fileName) {
         outBox.style.fontSize = '20px';
         outBox.style.textAlign = 'center';
         outBox.innerText = 'The file cannot be loaded 🤨';
+      })
+      .finally(() => {
+        delete outBox.dataset.loadingFile;
       });
-  }, 500);
 }
 
 window.onclick = function(event) {
