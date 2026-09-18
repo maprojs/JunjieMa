@@ -341,6 +341,20 @@
   letter-spacing: 0;
 }
 
+.research-page .first-author-count {
+  margin-top: 8px;
+  color: var(--primary);
+  font-family: "MiSans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.research-page .first-author-count:not([hidden]) {
+  display: block;
+}
+
 .research-page section > div:not(.page-hero) > p:empty {
   display: none;
 }
