@@ -1,9 +1,9 @@
 let showAllPapers = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('#pubmedPapers > .firstPaper, #pubmedPapers > .otherPaper, #cnkiPapers > .firstPaper, #cnkiPapers > .otherPaper')
+  document.querySelectorAll('.research-page .research-card')
     .forEach(paper => {
-      if (!paper.dataset.article) {
+      if (paper.matches('.firstPaper, .otherPaper') && !paper.dataset.article) {
         paper.dataset.article = 'Article';
       }
 

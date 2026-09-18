@@ -346,10 +346,7 @@
 }
 
 .research-page section > div:not(.page-hero) > p,
-.research-page #pubmedPapers > .firstPaper,
-.research-page #pubmedPapers > .otherPaper,
-.research-page #cnkiPapers > .firstPaper,
-.research-page #cnkiPapers > .otherPaper {
+.research-page .research-card {
   position: relative;
   min-height: 0;
   margin: 0 0 16px;
@@ -369,15 +366,11 @@
 }
 
 .research-page section > div:not(.page-hero) > p:last-child,
-.research-page #pubmedPapers > :is(.firstPaper, .otherPaper):last-child,
-.research-page #cnkiPapers > :is(.firstPaper, .otherPaper):last-child {
+.research-page .research-card:last-child {
   margin-bottom: 0;
 }
 
-.research-page #pubmedPapers > .firstPaper,
-.research-page #pubmedPapers > .otherPaper,
-.research-page #cnkiPapers > .firstPaper,
-.research-page #cnkiPapers > .otherPaper {
+.research-page .research-card {
   min-height: 204px;
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
@@ -497,8 +490,7 @@
   .home-page section > ul > div:hover,
   .education-page section > ul > div:hover,
   .research-page section > div:not(.page-hero) > p:not(:empty):hover,
-  .research-page #pubmedPapers > :is(.firstPaper, .otherPaper):hover,
-  .research-page #cnkiPapers > :is(.firstPaper, .otherPaper):hover {
+  .research-page .research-card:hover {
     z-index: 2;
     border-color: var(--hover-border);
     box-shadow: var(--shadow-md);
@@ -650,10 +642,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .research-page #pubmedPapers > .firstPaper,
-  .research-page #pubmedPapers > .otherPaper,
-  .research-page #cnkiPapers > .firstPaper,
-  .research-page #cnkiPapers > .otherPaper {
+  .research-page .research-card {
     grid-template-columns: 160px minmax(0, 1fr);
   }
 
@@ -804,10 +793,7 @@
     left: -28px;
   }
 
-  .research-page #pubmedPapers > .firstPaper,
-  .research-page #pubmedPapers > .otherPaper,
-  .research-page #cnkiPapers > .firstPaper,
-  .research-page #cnkiPapers > .otherPaper {
+  .research-page .research-card {
     grid-template-columns: 1fr;
     gap: 0;
     padding: 18px 16px;
