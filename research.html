@@ -63,15 +63,26 @@
         </div>
 
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Papers--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-        <h2 id="papers" style="margin-top:80px;text-shadow:0.6px 0.6px 0 #000;">
+        <h2 id="papers" class="research-section-title">
           Published Papers 
-          <span class="clickToSection" style="font-size:1.1rem;">(
-            <a href="javascript:void(0)" onclick="scrollToSection('pubmedPapers')">PubMed</a> &
-            <a href="javascript:void(0)" onclick="scrollToSection('cnkiPapers')">CNKI</a> &
-            <a href="javascript:void(0)" id="paperFilter" onclick="toggleFirstAuthor()">1stAuthor</a> )
-          </span>
-          <span id="firstAuthorCount" class="first-author-count" aria-live="polite"></span>
         </h2>
+        <div class="paper-controls" aria-label="Paper browsing options">
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-language-popup">Language</button>
+            <div class="paper-control-popup" id="paper-language-popup" role="group" aria-label="Language" hidden>
+              <button type="button" data-paper-section="pubmedPapers" aria-pressed="false">English</button>
+              <button type="button" data-paper-section="cnkiPapers" aria-pressed="false">Chinese</button>
+            </div>
+          </div>
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-role-popup">Role</button>
+            <div class="paper-control-popup" id="paper-role-popup" role="group" aria-label="Role" hidden>
+              <button type="button" data-paper-role="all" aria-pressed="true">All authors</button>
+              <button type="button" data-paper-role="first" aria-pressed="false">First author</button>
+            </div>
+          </div>
+        </div>
+        <p id="firstAuthorCount" class="first-author-count" aria-live="polite"></p>
         
         <div id="pubmedPapers" style="margin:0;margin-bottom:20px;">
           <div class="firstPaper research-card" data-article="Article">
@@ -94,7 +105,6 @@
             </div> -->
           </div>
         
-        <div id="pubmedPapers" style="margin:0;margin-bottom:20px;">
           <div class="firstPaper research-card" data-article="Article">
             <img class="paper-image" src="files/images/research/papers/42661129.webp" alt="Paper figure">
             <bi>Integrated bioinformatic evaluation unveils a cellular senescence gene signature as a poor prognostic factor in hepatocellular carcinoma</bi> <br> 
@@ -367,7 +377,7 @@
         
         
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Patents--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-        <h2 id="patents" style="margin-top:50px;text-shadow:0.6px 0.6px 0 #000;">
+        <h2 id="patents" class="research-section-title">
           Approved Patents &amp; Software Copyrights 
         </h2>
         
@@ -400,12 +410,12 @@
         
         
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Funding--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-        <h2 id="funding" style="text-shadow:0.6px 0.6px 0 #000;margin-top:50px;">
+        <h2 id="funding" class="research-section-title">
           Approved Funding
         </h2>
         
         <div style="margin:0;margin-bottom:20px;">
-          <p>
+          <article class="funding-card">
             <bi>Construction, evaluation, and validation of a diabetic nephropathy risk prediction model based on machine learning</bi> <br> 
             2023-10-10 to 2025-11-03, <bi>Participant</bi>, CNY 10,000 <br>
             <!-- Mohan Cao, Qin Fan, Xudong Wang, Shaoguang An, <bi>Junjie Ma</bi>, Yuting Tang <br>  -->
@@ -419,9 +429,9 @@
                 <div id='outText-202310367071'></div>
               </div>
             </div>
-          </p>
+          </article>
 
-          <p>
+          <article class="funding-card">
             <bi>Screening and verification of prognosis-related genes for head and neck squamous cell carcinoma based on bioinformatics</bi> <br> 
             2022-9-14 to 2024-11-04, <bi>Host</bi>, CNY 10,000 <br>
             <!-- <bi>Junjie Ma</bi>, Jingyu Mei, Lili Ren, Wang Li, Yifan Zhu, Haoxuan Zhang <br> -->
@@ -439,9 +449,9 @@
                 <div id='outText-202210367002'></div>
               </div>
             </div>
-          </p>
+          </article>
       
-          <p>
+          <article class="funding-card">
             <bi>Construction and validation of key gene screening and risk prediction model for hepatocellular carcinoma based on bioinformatics and artificial intelligence techniques</bi> <br> 
             2022-9-14 to 2024-11-04, <bi>Participant</bi>, CNY 10,000 <br>
             <!-- Shaoguang An, <bi>Junjie Ma</bi>, Zhixuan Guo, Jiahui Zhang, Yi Zhao, Jin Lu <br>  -->
@@ -455,11 +465,11 @@
                 <div id='outText-202210367042'></div>
               </div>
             </div>
-          </p>
+          </article>
         </div>
         
-        <hr class="research-note-divider">
-        <p class="research-note" style="font-size:14px;margin-left:2px;">
+        <hr style="margin-bottom:2px;">
+        <p style="font-size:0.8rem;margin-left:2px;color:grey;">
           <bi>Note: <sup>†</sup>Co-first author, <sup>*</sup>Corresponding author.</bi><bi>Citation counts are provided by <a href="https://crossref.org/" target="_blank">crossref</a></bi>
         </p>
       </section>

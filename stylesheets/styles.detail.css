@@ -66,7 +66,8 @@
   gap: 7px;
 }
 
-.hero-profile-links a {
+.hero-profile-links a,
+.paper-control-button {
   min-height: 32px;
   padding: 6px 10px;
   display: inline-flex;
@@ -82,10 +83,71 @@
 }
 
 .hero-profile-links a:hover,
-.hero-profile-links a:active {
+.hero-profile-links a:active,
+.paper-control-button:hover,
+.paper-control-button:active {
   color: var(--accent);
   border-color: var(--accent);
   background: transparent;
+}
+
+.paper-controls {
+  display: flex;
+  justify-content: flex-start;
+  gap: 7px;
+  margin: 0 0 8px;
+  text-align: left;
+}
+
+.paper-control {
+  position: relative;
+}
+
+.paper-control-button {
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: flex-start;
+  text-align: left;
+  cursor: pointer;
+}
+
+.paper-control-popup {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  z-index: 20;
+  min-width: 120px;
+  padding: 6px;
+  border-radius: 7px;
+  background: var(--primary-fill);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  text-align: left;
+}
+
+.paper-control-popup button {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.paper-control-popup button:hover,
+.paper-control-popup button:focus-visible,
+.paper-control-popup button[aria-pressed="true"] {
+  color: var(--accent);
 }
 
 .page-hero .eyebrow {
@@ -173,7 +235,7 @@
 
 .index-title,
 .education-page section > h2,
-.research-page section > h2 {
+.research-page .research-section-title {
   position: relative;
   margin: 64px 0 26px !important;
   padding-bottom: 14px;
@@ -188,7 +250,7 @@
 
 .index-title::after,
 .education-page section > h2::after,
-.research-page section > h2::after {
+.research-page .research-section-title::after {
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -197,6 +259,10 @@
   content: "";
   border-radius: 99px;
   background: var(--primary);
+}
+
+.research-page #firstAuthorCount {
+  margin: 8px 0 26px;
 }
 
 .page-hero + .index-title {
@@ -277,10 +343,12 @@
 }
 
 .education-page section > ul {
+  --timeline-offset: 6px;
+  --timeline-gap: calc(28px - var(--timeline-offset));
   position: relative;
-  max-width: 900px;
-  margin: 0;
-  padding-left: 28px;
+  max-width: calc(900px - var(--timeline-offset));
+  margin: 0 0 0 var(--timeline-offset);
+  padding-left: var(--timeline-gap);
   border-left: 2px solid var(--line);
 }
 
@@ -298,7 +366,8 @@
 .education-page section > ul > div::before {
   position: absolute;
   top: 34px;
-  left: -36px;
+  left: calc(-1 * var(--timeline-gap) - 2px);
+  transform: translateX(-50%);
   width: 14px;
   height: 14px;
   content: "";
@@ -360,6 +429,7 @@
 }
 
 .research-page section > div:not(.page-hero) > p,
+.research-page .funding-card,
 .research-page .research-card {
   position: relative;
   min-height: 0;
@@ -380,6 +450,7 @@
 }
 
 .research-page section > div:not(.page-hero) > p:last-child,
+.research-page .funding-card:last-child,
 .research-page .research-card:last-child {
   margin-bottom: 0;
 }
@@ -509,6 +580,10 @@
     border-color: var(--hover-border);
     box-shadow: var(--shadow-md);
     transform: scale(1.001);
+  }
+
+  .education-page section > ul > div:hover {
+    transform: none;
   }
 }
 
@@ -680,6 +755,16 @@
     padding-left: 8px;
   }
 
+  .research-page .modal-content {
+    padding-left: 6px;
+    padding-right: 10px;
+  }
+
+  .research-page .modal-content ul > li::before {
+    display: none;
+    content: none;
+  }
+
   .page-hero {
     grid-template-columns: 134px minmax(0, 1fr);
     align-items: center;
@@ -805,15 +890,15 @@
   }
 
   .education-page section > ul {
-    padding-left: 20px;
+    --timeline-gap: calc(20px - var(--timeline-offset));
   }
 
   .education-page section > ul > div {
     padding: 24px 20px;
   }
 
-  .education-page section > ul > div::before {
-    left: -28px;
+  .research-page .funding-card {
+    padding: 18px 16px;
   }
 
   .research-page .research-card {
