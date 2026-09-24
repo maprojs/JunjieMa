@@ -1,11 +1,11 @@
 .page-hero {
   position: relative;
   display: grid;
-  grid-template-columns: fit-content(680px) clamp(190px, 22vw, 240px);
-  align-items: center;
-  justify-content: start;
-  gap: clamp(32px, 4.5vw, 56px);
-  padding: clamp(56px, 9vw, 104px) 0 clamp(44px, 7vw, 76px);
+  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-areas: "portrait heading" "portrait links";
+  align-content: center;
+  gap: 24px 40px;
+  padding: 20px 0 48px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -20,17 +20,21 @@
   background: var(--primary);
 }
 
-.page-hero .hero-copy {
+.hero-heading {
+  grid-area: heading;
+  width: fit-content;
+  max-width: 100%;
   min-width: 0;
-  max-width: 680px;
+  align-self: end;
 }
 
 .hero-portrait {
   position: relative;
-  width: min(100%, 230px);
-  margin: 0;
-  justify-self: start;
   isolation: isolate;
+  grid-area: portrait;
+  width: 190px;
+  margin: 0;
+  align-self: center;
 }
 
 .hero-portrait::before {
@@ -38,12 +42,16 @@
   top: 12px;
   left: 12px;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   z-index: -1;
   content: "";
   border-radius: 20px;
   background: linear-gradient(145deg, var(--primary), var(--accent));
   opacity: 0.9;
+}
+
+[data-theme="dark"] .hero-portrait::before {
+  background: linear-gradient(145deg, var(--accent), var(--primary));
 }
 
 .hero-portrait img {
@@ -53,20 +61,106 @@
   display: block;
   object-fit: cover;
   object-position: center 42%;
-  border: 6px solid var(--surface);
-  border-radius: 18px;
+  border: 4px solid var(--surface);
+  border-radius: 20px;
   background: var(--surface);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-sm);
 }
 
 .hero-profile-links {
-  margin-top: 22px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
+  grid-area: links;
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-self: start;
+  gap: 10px;
 }
 
-.hero-profile-links a,
+.hero-profile-links a {
+  min-width: 0;
+  padding: 5px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  color: var(--muted);
+  line-height: 1.4;
+  text-align: center;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  transition: border-color 180ms ease;
+}
+
+.hero-profile-links a:hover,
+.hero-profile-links a:active {
+  border-color: var(--primary);
+  background: transparent;
+}
+
+.hero-profile-links a:hover .profile-link-label,
+.hero-profile-links a:active .profile-link-label {
+  color: var(--accent);
+}
+
+.profile-link-label {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 180ms ease;
+}
+
+.profile-link-value {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 621px) {
+  .profile-link-label {
+    font-size: 12px;
+  }
+
+  .profile-link-value {
+    font-size: 11px;
+  }
+}
+
+.hero-school svg,
+.hero-location svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+}
+
+.page-hero .hero-location {
+  margin: 12px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hero-school {
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.hero-school > span {
+  position: relative;
+  top: 1.5px;
+}
+
 .paper-control-button {
   min-height: 32px;
   padding: 6px 10px;
@@ -82,8 +176,6 @@
   background: transparent;
 }
 
-.hero-profile-links a:hover,
-.hero-profile-links a:active,
 .paper-control-button:hover,
 .paper-control-button:active {
   color: var(--accent);
@@ -151,14 +243,20 @@
 }
 
 .page-hero .eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 10px;
+  color: var(--primary);
   font-size: 11px;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .page-hero h1 {
   color: var(--ink);
+  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
 }
 
 .page-hero h1 span {
@@ -766,29 +864,21 @@
   }
 
   .page-hero {
-    grid-template-columns: 134px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 128px minmax(0, max-content) minmax(0, 1fr);
+    grid-template-areas: ". portrait heading ." "links links links links";
     align-items: center;
-    gap: 20px 16px;
-    padding-top: 32px;
-    padding-bottom: 36px;
-  }
-
-  .page-hero .hero-copy {
-    display: contents;
+    gap: 24px 0;
+    padding-top: 4px;
+    padding-bottom: 32px;
   }
 
   .hero-heading {
-    min-width: 0;
-    grid-row: 1;
-    grid-column: 2;
     align-self: center;
+    margin-left: 36px;
   }
 
   .hero-portrait {
-    width: 126px;
-    grid-row: 1;
-    grid-column: 1;
-    justify-self: start;
+    width: 128px;
   }
 
   .hero-portrait::before {
@@ -798,22 +888,33 @@
   }
 
   .hero-portrait img {
-    border-width: 4px;
-    border-color: var(--primary-soft);
+    border-width: 3px;
     border-radius: 14px;
-    background: var(--primary-soft);
   }
 
   .page-hero .eyebrow {
     margin-bottom: 8px;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.5;
     letter-spacing: 0.12em;
   }
 
   .page-hero h1 {
-    font-size: clamp(2.2rem, 10vw, 2.5rem);
+    position: relative;
+    top: -8px;
+    font-size: clamp(2rem, 7vw, 2.75rem);
     letter-spacing: -0.045em;
+  }
+
+  .page-hero .hero-location {
+    margin-top: 18px;
+    font-size: 12px;
+  }
+
+  .hero-school {
+    max-width: calc(18ch + 23px);
+    margin-top: 8px;
+    font-size: 12px;
   }
 
   .hero-actions,
@@ -873,6 +974,7 @@
   }
 
   .hero-profile-links {
+    max-width: none;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
@@ -880,9 +982,15 @@
 
   .hero-profile-links a {
     width: 100%;
-    min-height: 38px;
-    padding: 6px 8px;
+    padding: 5px 12px;
+  }
+
+  .profile-link-label {
     font-size: 11px;
+  }
+
+  .profile-link-value {
+    font-size: 9px;
   }
 
   .home-page section > ul {
@@ -930,16 +1038,28 @@
 
 @media (max-width: 380px) {
   .page-hero {
-    grid-template-columns: 114px minmax(0, 1fr);
-    gap: 18px 14px;
+    grid-template-columns: minmax(0, 1fr) 110px minmax(0, max-content) minmax(0, 1fr);
+    gap: 18px 0;
+  }
+
+  .hero-heading {
+    margin-left: 30px;
   }
 
   .hero-portrait {
-    width: 106px;
+    width: 110px;
   }
 
   .page-hero h1 {
-    font-size: 2.1rem;
+    font-size: 2rem;
+  }
+
+  .hero-profile-links {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-link-value {
+    font-size: 10px;
   }
 
   .hero-actions {
