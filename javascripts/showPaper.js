@@ -6,10 +6,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     updatePaperOptionCounts('all', 'all');
 
+    const popupAnimations = new Map();
+    const animatePopup = (popup, opening) => {
+      popupAnimations.get(popup)?.cancel();
+      popupAnimations.delete(popup);
+      popup.inert = !opening;
+      if (opening) popup.hidden = false;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        popup.hidden = !opening;
+        return;
+      }
+      const collapsed = { opacity: 0, transform: 'translateY(-6px) scale(0.98)' };
+      const expanded = { opacity: 1, transform: 'translateY(0) scale(1)' };
+      const animation = popup.animate(opening ? [collapsed, expanded] : [expanded, collapsed], {
+        duration: opening ? 180 : 140,
+        easing: 'ease-out',
+        fill: 'forwards'
+      });
+      popupAnimations.set(popup, animation);
+      animation.onfinish = () => {
+        if (popupAnimations.get(popup) !== animation) return;
+        popup.hidden = !opening;
+        popupAnimations.delete(popup);
+        animation.cancel();
+      };
+    };
+
     const closePopups = () => {
       controls.querySelectorAll('.paper-control-button').forEach(button => {
+        if (button.getAttribute('aria-expanded') !== 'true') return;
         button.setAttribute('aria-expanded', 'false');
-        document.getElementById(button.getAttribute('aria-controls')).hidden = true;
+        animatePopup(document.getElementById(button.getAttribute('aria-controls')), false);
       });
     };
 
@@ -22,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!wasOpen) {
           button.setAttribute('aria-expanded', 'true');
           const popup = document.getElementById(button.getAttribute('aria-controls'));
-          popup.hidden = false;
+          animatePopup(popup, true);
           // Only keyboard activation needs focus moved into the popup.
           if (event.detail === 0) {
             popup.querySelector('button').focus({ preventScroll: true });
@@ -47,9 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
       applyPaperFilters();
     });
 
-    document.addEventListener('click', event => {
-      if (!controls.contains(event.target)) closePopups();
-    });
+    const closeOnOutsideInteraction = event => {
+      const trigger = controls.querySelector('[aria-expanded="true"]');
+      if (trigger && !event.composedPath().includes(trigger.closest('.paper-control'))) {
+        closePopups();
+      }
+    };
+    // Capture touch/mouse presses before scrolling or other handlers can cancel click.
+    document.addEventListener('pointerdown', closeOnOutsideInteraction, { capture: true, passive: true });
+    document.addEventListener('click', closeOnOutsideInteraction, true);
     controls.addEventListener('keydown', event => {
       if (event.key === 'Tab') {
         setTimeout(() => {
@@ -147,4 +180,7 @@ function applyPaperFilters() {
   const languages = { all: '', pubmedPapers: 'English · ', cnkiPapers: 'Chinese · ' };
   document.getElementById('firstAuthorCount').textContent = `${languages[sectionId]}${labels[role]}: ${count}`;
   updatePaperOptionCounts(sectionId, role);
+  document.dispatchEvent(new CustomEvent('papers:filtered', {
+    detail: [...papers].filter(paper => matchesPaperLanguage(paper, sectionId) && matchesPaperRole(paper, role))
+  }));
 }

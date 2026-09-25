@@ -1,0 +1,175 @@
+/* Journal badges stay inline with each paper's bibliographic information. */
+.research-page :is(#pubmedPapers, #cnkiPapers) .research-card jif {
+  display: inline-flex;
+  padding: 2.5px 4px;
+  border-radius: 5px;
+  background: #0f766e;
+  color: #fff;
+  gap: 0;
+  vertical-align: middle;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9em;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translateY(-1px);
+}
+
+.research-page :is(#pubmedPapers, #cnkiPapers) .research-card jif.journal-metrics {
+  padding: 0;
+  background: transparent;
+}
+
+.research-page .research-card jif > span {
+  padding: 2.5px 4px;
+  color: #fff;
+}
+
+.research-page .research-card .journal-impact {
+  padding-right: 3px;
+  border-radius: 5px 0 0 5px;
+  background: #2866cc;
+}
+
+.research-page .research-card .journal-quartile {
+  padding-left: 3px;
+  border-radius: 0 5px 5px 0;
+  background: #64748b;
+}
+
+.research-page .research-card .journal-quartile[data-quartile="Q1"] { background: #c98b00; }
+.research-page .research-card .journal-quartile[data-quartile="Q2"] { background: #4f46e5; }
+.research-page .research-card .journal-quartile[data-quartile="Q3"] { background: #3f7f86; }
+.research-page .research-card .journal-quartile[data-quartile="Q4"] { background: #7c3aed; }
+
+.papers-pagination,
+.papers-page-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.papers-pagination {
+  flex-direction: column;
+  --papers-card: #f7f9fc;
+  --papers-border: #e5e7eb;
+  margin: 24px 0;
+  gap: 10px 12px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .papers-pagination {
+  --papers-card: #141b2e;
+  --papers-border: #24314b;
+}
+
+.papers-pagination[hidden],
+.papers-page-buttons[hidden] { display: none; }
+
+.papers-page-size { position: relative; }
+
+.papers-page-size > summary,
+.papers-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--papers-border);
+  background: var(--papers-card);
+  color: var(--primary-fill);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  list-style: none;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.papers-page-size > summary {
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: var(--primary-fill);
+  border-color: var(--primary-fill);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.papers-page-button,
+.papers-page-buttons > span {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.papers-page-buttons > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-fill);
+}
+
+.papers-page-size > summary::-webkit-details-marker { display: none; }
+.papers-per-page-label { transform: translateY(-2.3px); }
+.papers-page-button[aria-current="page"] {
+  background: var(--primary-fill);
+  border-color: var(--primary-fill);
+  color: #fff;
+  cursor: default;
+}
+.papers-page-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.papers-page-button:hover:not(:disabled):not([aria-current]),
+.papers-page-size > summary:hover {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.papers-page-button:hover:not(:disabled):not([aria-current]) { transform: translateY(-1px); }
+
+.papers-page-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 1300;
+  min-width: 80px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--primary-fill);
+  box-shadow: var(--shadow-md);
+}
+.papers-page-options button {
+  display: block;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.papers-page-options button:hover,
+.papers-page-options button[aria-pressed="true"] { color: var(--accent); }
+.papers-pagination :is(button, summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.research-page #firstAuthorCount { scroll-margin-top: 130px; }
+
+@media (max-width: 480px) {
+  .papers-pagination { gap: 8px; margin-top: 18px; font-size: 13px; }
+  .papers-page-buttons { gap: 5px; }
+  .papers-page-size > summary,
+  .papers-page-options button { font-size: 13px; }
+  .papers-page-size > summary,
+  .papers-page-button,
+  .papers-page-buttons > span {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 7px;
+  }
+}

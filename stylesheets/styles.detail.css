@@ -206,6 +206,7 @@
 }
 
 .paper-control-popup {
+  transform-origin: top left;
   position: absolute;
   top: calc(100% + 7px);
   left: 0;
@@ -579,13 +580,26 @@
   align-self: center;
 }
 
-.research-page .paper-copy > bi:first-child {
+.research-page .paper-copy > bi:first-child,
+.research-page .paper-copy > h3:first-child {
   margin: 0 104px 4px 0;
   display: block;
   color: var(--ink);
   font-family: "Ubuntu", "MiSans", sans-serif;
   font-size: 17px;
+  font-weight: 700;
   line-height: 1.46;
+}
+
+.research-page .paper-copy > h3 ~ p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.research-page .paper-copy > h3:first-child {
+  /* Badge width + right offset + gap - card padding. */
+  margin-right: calc(88px + 12px + 20px - 24px);
 }
 
 .research-page .paper-copy > bi:first-child + br {
@@ -1022,7 +1036,8 @@
     margin-bottom: 10px;
   }
 
-  .research-page .paper-copy > bi:first-child {
+  .research-page .paper-copy > bi:first-child,
+  .research-page .paper-copy > h3:first-child {
     margin-right: 0;
   }
 
