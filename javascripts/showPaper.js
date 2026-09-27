@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#pubmedPapers .research-card, #cnkiPapers .research-card').forEach(paper => {
+    paper.dataset.paperLanguage = paper.closest('#pubmedPapers, #cnkiPapers').id;
+  });
   const controls = document.querySelector('.paper-controls');
   if (controls) {
     controls.querySelectorAll('[data-paper-section], [data-paper-role]').forEach(option => {
@@ -7,11 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePaperOptionCounts('all', 'all');
 
     const popupAnimations = new Map();
+    const positionPopup = popup => {
+      const viewport = window.visualViewport;
+      const left = (viewport?.offsetLeft || 0) + 12;
+      const width = viewport?.width || document.documentElement.clientWidth;
+      const parent = popup.parentElement.getBoundingClientRect();
+      popup.style.maxWidth = `${Math.max(0, width - 24)}px`;
+      const popupWidth = popup.offsetWidth;
+      popup.style.left = `${Math.max(left, Math.min(parent.left, left + width - 24 - popupWidth)) - parent.left}px`;
+    };
     const animatePopup = (popup, opening) => {
       popupAnimations.get(popup)?.cancel();
       popupAnimations.delete(popup);
       popup.inert = !opening;
-      if (opening) popup.hidden = false;
+      if (opening) {
+        popup.hidden = false;
+        positionPopup(popup);
+      }
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         popup.hidden = !opening;
         return;
@@ -71,6 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
           option.setAttribute('aria-pressed', String(option === button));
         });
       }
+      if (button.dataset.paperSort) {
+        controls.querySelectorAll('[data-paper-sort]').forEach(option => {
+          option.setAttribute('aria-pressed', String(option === button));
+        });
+        trigger.textContent = button.textContent;
+        trigger.setAttribute('aria-label', `Sort: ${button.textContent}`);
+      }
       applyPaperFilters();
     });
 
@@ -100,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Outside clicks and keyboard Tab handle those cases explicitly.
       if (event.relatedTarget && !controls.contains(event.relatedTarget)) closePopups();
     });
+    const reposition = () => controls.querySelectorAll('.paper-control-popup:not([hidden])').forEach(positionPopup);
+    window.addEventListener('resize', reposition);
+    window.visualViewport?.addEventListener('resize', reposition);
   }
   const paperCount = document.getElementById('firstAuthorCount');
   if (paperCount) {
@@ -135,7 +160,7 @@ function matchesPaperRole(paper, role) {
 }
 
 function matchesPaperLanguage(paper, sectionId) {
-  return sectionId === 'all' || Boolean(paper.closest(`#${sectionId}`));
+  return sectionId === 'all' || paper.dataset.paperLanguage === sectionId;
 }
 
 function updatePaperOptionCounts(sectionId, role) {
@@ -172,13 +197,14 @@ function applyPaperFilters() {
       .some(paper => paper.style.display !== 'none');
     section.style.display = hasVisiblePapers ? '' : 'none';
   });
-  const labels = {
-    all: 'Total papers',
-    first: 'First/co-first author papers',
-    corresponding: 'Corresponding author papers'
-  };
-  const languages = { all: '', pubmedPapers: 'English · ', cnkiPapers: 'Chinese · ' };
-  document.getElementById('firstAuthorCount').textContent = `${languages[sectionId]}${labels[role]}: ${count}`;
+  document.getElementById('firstAuthorCount').textContent = `Total papers: ${count}`;
+  for (const [kind, category] of [['section', 'Language'], ['role', 'Role']]) {
+    const selected = document.querySelector(`[data-paper-${kind}][aria-pressed="true"]`);
+    const trigger = selected.closest('.paper-control').querySelector('.paper-control-button');
+    const label = kind === 'section' && sectionId === 'all' ? 'All languages' : selected.dataset.label;
+    trigger.textContent = label;
+    trigger.setAttribute('aria-label', `${category}: ${label}`);
+  }
   updatePaperOptionCounts(sectionId, role);
   document.dispatchEvent(new CustomEvent('papers:filtered', {
     detail: [...papers].filter(paper => matchesPaperLanguage(paper, sectionId) && matchesPaperRole(paper, role))

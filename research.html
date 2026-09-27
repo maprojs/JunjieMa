@@ -77,7 +77,7 @@
         </h2>
         <div class="paper-controls" aria-label="Paper browsing options">
           <div class="paper-control">
-            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-language-popup">Language</button>
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-language-popup" aria-label="Language: All languages">All languages</button>
             <div class="paper-control-popup" id="paper-language-popup" role="group" aria-label="Language" hidden>
               <button type="button" data-paper-section="all" aria-pressed="true">All</button>
               <button type="button" data-paper-section="pubmedPapers" aria-pressed="false">English</button>
@@ -85,15 +85,25 @@
             </div>
           </div>
           <div class="paper-control">
-            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-role-popup">Role</button>
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-role-popup" aria-label="Role: All authors">All authors</button>
             <div class="paper-control-popup" id="paper-role-popup" role="group" aria-label="Role" hidden>
               <button type="button" data-paper-role="all" aria-pressed="true">All authors</button>
               <button type="button" data-paper-role="first" aria-pressed="false">First author</button>
               <button type="button" data-paper-role="corresponding" aria-pressed="false">Corresponding</button>
             </div>
           </div>
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-sort-popup" aria-label="Sort: Default order">Default order</button>
+            <div class="paper-control-popup" id="paper-sort-popup" role="group" aria-label="Sort" hidden>
+              <button type="button" data-paper-sort="default" aria-pressed="true">Default order</button>
+              <button type="button" data-paper-sort="year" aria-pressed="false">Publication date</button>
+              <button type="button" data-paper-sort="impact" aria-pressed="false">Impact factor</button>
+              <button type="button" data-paper-sort="citations" aria-pressed="false">Citation count</button>
+            </div>
+          </div>
         </div>
         <p id="firstAuthorCount" class="first-author-count" aria-live="polite"></p>
+        <div id="paperIndices" class="paper-indices" aria-live="polite" title="Calculated from papers in the current filters with available Crossref counts, including zero citations. Duplicate DOIs are counted once.">h-index: – · g-index: – · i10-index: – (0 papers used)</div>
         
         <div id="pubmedPapers" style="margin:0;margin-bottom:20px;">
           <div class="firstPaper research-card" data-article="Article">
@@ -386,7 +396,20 @@
           </div>
        </div>
         
-        
+        <hr style="margin-bottom:2px;height:2px;color:grey;">
+        <p style="font-size:0.8rem;margin-left:2px;color:grey;">
+          <bi>Note: <sup>†</sup>Co-first author, <sup>*</sup>Corresponding author. 
+            <span class="papers-citations" aria-label="Citation data">
+              <span>Citations from <a href="https://www.crossref.org/" target="_blank" rel="noopener noreferrer">Crossref</a> · <span id="citeSourceLabel">Snapshot: </span><button type="button" class="research-link" id="citeVer" aria-expanded="false" aria-controls="citeVersionPopup" disabled>Loading…</button></span>
+              <span id="citeVersionPopup" class="paper-control-popup citation-version-popup" role="note" hidden>Citation updates are scheduled daily at 00:00 UTC (<span id="citeLocalSchedule">loading your local time…</span>). Latest update: <strong id="citeLatestVersion">Loading…</strong>.</span>
+              <button type="button" class="research-link" id="refreshCiteSnapshot" title="Reload the latest daily snapshot, bypassing the browser cache">Force update</button>
+              <button type="button" class="research-link" id="fetchLiveCites" title="Fetch current citation counts directly from Crossref">Fetch online</button>
+              <span id="citationStatus" role="status" aria-live="polite"></span>
+            </span>
+          </bi>
+        </p>
+
+
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Patents--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
         <h2 id="patents" class="research-section-title">
           Approved Patents &amp; Software Copyrights 
@@ -478,11 +501,6 @@
             </div>
           </article>
         </div>
-        
-        <hr style="margin-bottom:2px;">
-        <p style="font-size:0.8rem;margin-left:2px;color:grey;">
-          <bi>Note: <sup>†</sup>Co-first author, <sup>*</sup>Corresponding author.</bi><bi>Citation counts are provided by <a href="https://crossref.org/" target="_blank">crossref</a></bi>
-        </p>
       </section>
       <footer class="site-footer">
         <div class="footer-meta" aria-label="Page information">

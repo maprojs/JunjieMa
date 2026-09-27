@@ -1,0 +1,49 @@
+name: Update Daily Publication Citations
+
+on:
+  schedule:
+    # UTC 24:00 is 00:00 at the start of the next day.
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: update-publication-citations-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch citations and publish snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            # Only reset this disposable runner checkout; regenerate from latest source.
+            git fetch --depth=1 origin "$GITHUB_REF_NAME"
+            git reset --hard FETCH_HEAD
+            node files/scripts/update-citations.cjs
+            git add -A -- files/content/publications/citations javascripts/cited.js
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore: update daily publication citations"
+            if git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"; then exit 0; fi
+            if [ "$attempt" -lt 3 ]; then sleep 2; fi
+          done
+          echo "Failed to push citation snapshot after 3 attempts."
+          exit 1

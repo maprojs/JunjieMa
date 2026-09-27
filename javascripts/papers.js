@@ -1,3 +1,20 @@
+// Every tie ends at the immutable source position, never the last rendered order.
+function comparePaperRecords(a, b, mode) {
+  const chronological = () => b.year - a.year
+    || Number(a.language === 'cnkiPapers') - Number(b.language === 'cnkiPapers')
+    || (a.language === 'pubmedPapers' ? b.pmid - a.pmid : 0)
+    || a.index - b.index;
+  if (mode === 'default') return a.index - b.index;
+  if (mode === 'impact' || mode === 'citations') {
+    const key = mode === 'impact' ? 'impact' : 'citations';
+    const validA = Number.isFinite(a[key]) && a[key] >= 0;
+    const validB = Number.isFinite(b[key]) && b[key] >= 0;
+    if (validA !== validB) return validA ? -1 : 1;
+    if (validA && a[key] !== b[key]) return b[key] - a[key];
+  }
+  return chronological();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Keep journal metrics editable as plain <jif>IF=5.5, Q1</jif> in HTML.
   document.querySelectorAll('.research-page :is(#pubmedPapers, #cnkiPapers) .research-card jif').forEach(badge => {
@@ -21,6 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = ['pubmedPapers', 'cnkiPapers'].map(id => document.getElementById(id));
   if (sections.some(section => !section)) return;
   const papers = sections.flatMap(section => [...section.querySelectorAll('.research-card')]);
+  const records = new Map(papers.map((paper, index) => {
+    const bibliography = paper.querySelector('jt, cjt')?.closest('p');
+    const year = Number(bibliography?.querySelector('b')?.textContent.match(/\b(?:19|20)\d{2}\b/)?.[0] || 0);
+    const impact = bibliography?.querySelector('jif')?.textContent.match(/IF\s*=\s*(\d+(?:\.\d+)?)/i);
+    const pmid = paper.querySelector('a[href*="pubmed.ncbi.nlm.nih.gov/"]')?.getAttribute('href').match(/pubmed\.ncbi\.nlm\.nih\.gov\/(\d+)/)?.[1];
+    return [paper, { index, year, impact: impact ? Number(impact[1]) : null,
+      pmid: Number(pmid || 0), language: paper.dataset.paperLanguage }];
+  }));
   let matches = papers;
   let page = 1;
   let size = 10;
@@ -55,6 +80,20 @@ document.addEventListener('DOMContentLoaded', () => {
   sections[1].after(pagination);
 
   function render(scroll = false) {
+    const mode = document.querySelector('[data-paper-sort][aria-pressed="true"]').dataset.paperSort;
+    papers.forEach(paper => {
+      const text = paper.querySelector('.cited[data-doi]')?.textContent.trim();
+      records.get(paper).citations = /^\d+$/.test(text || '') ? Number(text) : null;
+    });
+    const ordered = [...papers].sort((a, b) => comparePaperRecords(records.get(a), records.get(b), mode));
+    const matching = new Set(matches);
+    matches = ordered.filter(paper => matching.has(paper));
+    // A shared container permits true cross-language ordering. Language is kept
+    // in immutable metadata, so filters keep working after cards move.
+    ordered.forEach(paper => {
+      const section = mode === 'default' ? document.getElementById(records.get(paper).language) : sections[0];
+      section.append(paper);
+    });
     const perPage = size === 'all' ? Math.max(1, matches.length) : size;
     const totalPages = Math.max(1, Math.ceil(matches.length / perPage));
     page = Math.max(1, Math.min(page, totalPages));
@@ -122,6 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
     matches = event.detail;
     page = 1;
     render();
+  });
+  document.addEventListener('papers:citations-updated', () => {
+    if (document.querySelector('[data-paper-sort][aria-pressed="true"]').dataset.paperSort === 'citations') {
+      page = 1;
+      render();
+    }
   });
   document.addEventListener('pointerdown', event => {
     if (!sizeMenu.contains(event.target)) sizeMenu.open = false;
