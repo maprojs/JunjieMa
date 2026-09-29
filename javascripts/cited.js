@@ -1,7 +1,7 @@
 // Daily snapshots and explicitly requested live counts use the same card markup.
 (() => {
   // Updated by files/scripts/update-citations.cjs together with the snapshot.
-  const snapshotFile = 'files/content/publications/citations/cited-2026-09-28.json.gz';
+  const snapshotFile = 'files/content/publications/citations/cited-2026-09-29.json.gz';
   const directory = 'files/content/publications/citations/';
   const validCount = count => Number.isSafeInteger(count) && count >= 0;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
