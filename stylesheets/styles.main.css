@@ -58,6 +58,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep the page width unchanged when a modal hides the scrollbar. */
+  scrollbar-gutter: stable;
 }
 
 body {

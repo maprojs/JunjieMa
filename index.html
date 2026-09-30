@@ -81,43 +81,24 @@
           <div style="display:flex;flex-wrap:wrap;align-items:center;margin:0 0 10px 0;line-height:2em">
             <div style="width:100px;display:flex;align-items:center;">
               <li>Awards</li>&nbsp;
-              <a href="javascript:void(0)" onclick="showModalWithFile('scholarships','outText-scholarships','files/content/home/scholarships.txt')" class="modal-img">
+              <a href="javascript:void(0)" data-modal-file="files/content/home/scholarships.txt" data-modal-width="480px" data-modal-title="Awards" aria-label="View awards" class="modal-img">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="17" style="vertical-align:-3.5px;">
               </a>
-              <div id="scholarships" class="modal">
-                <div class="modal-content" style="max-width:480px;text-align:justify;">
-                  <div class="modal-top"></div>
-                  <span class="close" onclick="closeModal('scholarships')">&times;</span>
-                  <div id="loading-scholarships" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-scholarships"></div>
-                </div>
-              </div>
+
             </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div style="margin-left:38px;width:108px;">
               Honors
-              <a href="javascript:void(0)" class="modal-img" onclick="showModalWithFile('honors','outText-honors','files/content/home/honors.txt')">
+              <a href="javascript:void(0)" class="modal-img" data-modal-file="files/content/home/honors.txt" data-modal-width="590px" data-modal-title="Honors" aria-label="View honors">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="17" style="vertical-align:-3.5px;margin-right:18px;">
               </a>
-              <div id="honors" class="modal">
-                <div class="modal-content" style="max-width:590px;text-align:justify;">
-                  <span class="close" onclick="closeModal('honors')"> &times;</span>
-                  <div id="loading-honors" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-honors"></div>
-                </div>
-              </div>
+
             </div>
             <div style="width:165px;margin-left:20px">
               Competitions
-              <a href="javascript:void(0)" class="modal-img" onclick="showModalWithFile('comps','outText-comps','files/content/home/competitions.txt')">
+              <a href="javascript:void(0)" class="modal-img" data-modal-file="files/content/home/competitions.txt" data-modal-width="750px" data-modal-title="Competitions" aria-label="View competitions">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="17" style="vertical-align:-3.5px;">
               </a>
-              <div id="comps" class="modal">
-                <div class="modal-content" style="max-width:750px;text-align:justify;">
-                  <span class="close" onclick="closeModal('comps')"> &times;</span>
-                  <div id="loading-comps" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-comps"></div>
-                </div>
-              </div>
+
             </div>
           </div>
           
@@ -128,32 +109,20 @@
               <a href="research.html#funding" class="modal-img">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="17" style="vertical-align:-3.5px;">
               </a>
-              <!-- <a href="javascript:void(0)" onclick="showModalWithFile('projects','outText-projects','files/content/home/projects.txt')" class="modal-img">
+              <!-- <a href="javascript:void(0)" data-modal-file="files/content/home/projects.txt" data-modal-width="700px" data-modal-align="left" class="modal-img">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="15" style="vertical-align:-2px;">
               </a>
-              <div id="projects" class="modal">
-                <div class="modal-content" style="max-width:700px;text-align:left;">
-                  <span class="close" onclick="closeModal('projects')">&times;</span>
-                  <div id="loading-projects" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-projects"></div>
-                </div>
-              </div> -->
+ -->
             </div>
             <div style="margin-left:50px">
               Papers 
               <a href="research.html#papers" class="modal-img">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="17" style="vertical-align:-3.5px;">
               </a>
-              <!-- <a href="javascript:void(0)" onclick="showModalWithFile('papers','outText-papers','files/content/home/papers.txt')" class="modal-img">
+              <!-- <a href="javascript:void(0)" data-modal-file="files/content/home/papers.txt" data-modal-width="750px" data-modal-align="left" class="modal-img">
                 <img src="files/images/logo/view.webp" data-hover-src="files/images/logo/view-a.webp" width="18" height="15" style="vertical-align:-2px;">
               </a>
-              <div id="papers" class="modal">
-                <div class="modal-content" style="max-width:750px;text-align:left;">
-                  <span class="close" onclick="closeModal('papers')">&times;</span>
-                  <div id="loading-papers" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-papers"></div>
-                </div>
-              </div> -->
+ -->
             </div>
           </div>
           
@@ -163,24 +132,12 @@
               <li><blueBold> R </blueBold></li>
             </div>
             <div>
-              <!--<a href="javascript:void(0)" onclick="showModalWithFile('skillModalBioinfo','outText-skillBioinfo','files/content/home/skillBioinfo.txt')">
+              <!--<a href="javascript:void(0)" data-modal-file="files/content/home/skillBioinfo.txt" data-modal-align="left">
                 Bioinformatics</a>-->Bioinformatics,
-              <div id="skillModalBioinfo" class="modal">
-                <div class="modal-content" style="max-width:800px;text-align:left;">
-                  <span class="close" onclick="closeModal('skillModalBioinfo')"> &times;</span>
-                  <div id="loading-skillBioinfo" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-skillBioinfo"></div>
-                </div>
-              </div>
+
               Statistical Analysis,
               Machine Learning,
-              <div id="skillModalML" class="modal">
-                <div class="modal-content" style="max-width:700px;">
-                  <span class="close" onclick="closeModal('skillModalML')"> &times;</span>
-                  <div id="loading-skillML" class="loading"><div class="mjjLoader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-                  <div id="outText-skillML"></div>
-                </div>
-              </div>
+
               Research Plotting
             </div>
           </div>

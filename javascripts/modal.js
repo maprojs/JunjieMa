@@ -1,81 +1,145 @@
-function showModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (!modal) return;
+(() => {
+  const files = new Map();
+  let modal, panel, output, loading, opener, previousOverflow, closingAnimation;
+  let requestVersion = 0;
 
-  if (modal.parentElement !== document.body) {
+  function createModal() {
+    if (modal) return;
+    modal = document.createElement('dialog');
+    modal.id = 'file-modal';
+    modal.className = 'modal';
+    modal.setAttribute('aria-label', 'Details');
+    modal.innerHTML = `
+      <div class="modal-content">
+        <button type="button" class="close" aria-label="Close dialog" autofocus>&times;</button>
+        <div class="loading" role="status" aria-label="Loading content">
+          <div class="mjjLoader" aria-hidden="true">${'<div></div>'.repeat(7)}</div>
+        </div>
+        <div class="modal-output" aria-live="polite"></div>
+      </div>`;
     document.body.appendChild(modal);
+    panel = modal.querySelector('.modal-content');
+    output = modal.querySelector('.modal-output');
+    loading = modal.querySelector('.loading');
+    modal.querySelector('.close').addEventListener('click', closeModal);
+    modal.addEventListener('cancel', event => {
+      event.preventDefault();
+      closeModal();
+    });
+    modal.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const targets = [...modal.querySelectorAll('a[href], button, input, select, textarea, [tabindex]')]
+        .filter(element => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
+      const first = targets[0];
+      const last = targets[targets.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+    // A selection ending on the backdrop must not dismiss the dialog.
+    let pressedBackdrop = false;
+    modal.addEventListener('pointerdown', event => {
+      pressedBackdrop = event.target === modal;
+    });
+    modal.addEventListener('click', event => {
+      if (pressedBackdrop && event.target === modal) closeModal();
+      pressedBackdrop = false;
+    });
   }
 
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-function showModalWithFile(modalId, outTextId, fileName) {
-  const uniqueId = outTextId.split('-')[1];
-  const loadingId = 'loading-' + uniqueId;
-  const loading = document.getElementById(loadingId);
-  const modal = document.getElementById(modalId);
-  const outBox = document.getElementById(outTextId);
-  showModal(modalId);
-  if (outBox.dataset.loadedFile === fileName) {
-    loading.style.display = 'none';
-    return;
+  function finishClose() {
+    modal.close();
+    document.body.style.overflow = previousOverflow;
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
   }
-  if (outBox.dataset.loadingFile === fileName) return;
-  outBox.dataset.loadingFile = fileName;
-  loading.style.display = 'flex';
-    fetch(fileName)
-      .then(r => {
-        if (!r.ok) throw new Error(`Failed to load file: ${r.status}`);
-        return r.text();
-      })
-      .then(html => {
-        loading.style.display = 'none';
-        outBox.innerHTML = html;
-        outBox.dataset.loadedFile = fileName;
-        outBox.style.fontSize = '';
-        outBox.style.textAlign = '';
-        const content = modal.querySelector('.modal-content'); 
-        const contentHeight = content.scrollHeight; 
-        const viewHeight = window.innerHeight;
-        if (contentHeight > viewHeight) {
-          content.style.maxHeight = (viewHeight * 0.8) + 'px';
-        } else {
-          content.style.maxHeight = '90vh';
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        loading.style.display = 'none';
-        outBox.style.fontSize = '20px';
-        outBox.style.textAlign = 'center';
-        outBox.innerText = 'The file cannot be loaded 🤨';
-      })
-      .finally(() => {
-        delete outBox.dataset.loadingFile;
+
+  function closeModal() {
+    if (!modal?.open || closingAnimation) return;
+    requestVersion += 1;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      finishClose();
+      return;
+    }
+    const animation = modal.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 140, easing: 'ease-out'
+    });
+    closingAnimation = animation;
+    animation.onfinish = () => {
+      closingAnimation = undefined;
+      finishClose();
+    };
+  }
+
+  function loadFile(fileName) {
+    if (!files.has(fileName)) {
+      const pending = fetch(fileName).then(response => {
+        if (!response.ok) throw new Error(`Failed to load file: ${response.status}`);
+        return response.text();
+      }).catch(error => {
+        files.delete(fileName); // Allow retry after a failed request.
+        throw error;
       });
-}
-
-window.onclick = function(event) {
-    var modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-      if (event.target === modal) {
-        closeModal(modal.id); 
-      }
-    });
-};
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape' || event.keyCode === 27) {
-    document.querySelectorAll('.modal').forEach(modal => {
-      if (modal.style.display === 'flex') {
-        closeModal(modal.id);
-      }
-    });
+      files.set(fileName, pending);
+    }
+    return files.get(fileName);
   }
-});
+
+  async function openFileModal(fileName, options = {}) {
+    createModal();
+    closingAnimation?.cancel();
+    closingAnimation = undefined;
+    const version = ++requestVersion;
+    panel.style.maxWidth = options.maxWidth || '800px';
+    panel.style.textAlign = options.textAlign || 'justify';
+    modal.setAttribute('aria-label', options.title || 'Details');
+    output.replaceChildren();
+    loading.style.display = 'flex';
+    output.setAttribute('aria-busy', 'true');
+    if (!modal.open) {
+      opener = document.activeElement;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      modal.showModal(); // Native focus containment and background inertness.
+    }
+    panel.scrollTop = 0;
+    try {
+      const html = await loadFile(fileName);
+      // Ignore a slow response after switching files or closing.
+      if (version !== requestVersion || !modal.open) return;
+      output.innerHTML = html;
+    } catch (error) {
+      if (version !== requestVersion || !modal.open) return;
+      console.error(error);
+      const message = document.createElement('p');
+      message.className = 'modal-error';
+      message.textContent = 'The file cannot be loaded. Please close and try again.';
+      output.appendChild(message);
+    } finally {
+      if (version === requestVersion) {
+        loading.style.display = 'none';
+        output.setAttribute('aria-busy', 'false');
+      }
+    }
+  }
+
+  window.openFileModal = openFileModal;
+  window.closeModal = closeModal;
+  // Existing three-argument links also work without per-file HTML.
+  window.showModalWithFile = (_modalId, _outTextId, fileName) => openFileModal(fileName);
+
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('[data-modal-file]');
+    if (!trigger) return;
+    event.preventDefault();
+    trigger.focus({ preventScroll: true });
+    openFileModal(trigger.dataset.modalFile, {
+      maxWidth: trigger.dataset.modalWidth,
+      textAlign: trigger.dataset.modalAlign,
+      title: trigger.dataset.modalTitle || trigger.textContent.trim() || 'Details'
+    });
+  });
+})();

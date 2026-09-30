@@ -705,6 +705,10 @@
   z-index: 1000;
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
   display: none;
   overflow: hidden;
   align-items: center;
@@ -714,10 +718,28 @@
   backdrop-filter: blur(6px);
 }
 
+.modal[open] {
+  display: flex;
+  animation: modal-fade-in 180ms ease-out;
+}
+
+.modal::backdrop { background: transparent; }
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-slide-in {
+  from { transform: translateY(-8px) scale(0.98); }
+  to { transform: translateY(0) scale(1); }
+}
+
 .modal-content {
   position: relative;
-  width: min(92%, 780px);
+  width: 92%;
   max-height: 88vh;
+  max-height: min(88dvh, calc(100dvh - 40px));
   overflow: auto;
   padding: 34px 30px 30px;
   color: var(--ink);
@@ -726,6 +748,53 @@
   border-radius: 12px;
   background: var(--surface);
   box-shadow: 0 28px 90px rgba(11, 23, 44, 0.32);
+  font-size: 16px;
+  line-height: 1.5;
+  overscroll-behavior: contain;
+}
+
+.modal[open] .modal-content { animation: modal-slide-in 180ms ease-out; }
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 12px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border: 2px solid var(--surface);
+  border-radius: 999px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+.modal-content::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox uses the standard properties; keep rounded thumbs in WebKit/Blink. */
+@supports not selector(::-webkit-scrollbar) {
+  .modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+
+  .modal-content:hover {
+    scrollbar-color: var(--primary) transparent;
+  }
+}
+
+.modal-error { text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .modal[open], .modal[open] .modal-content, .modal .mjjLoader div { animation: none; }
 }
 
 .modal-content img {
@@ -744,9 +813,10 @@
 }
 
 .close {
+  border: 0;
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 3px;
+  right: 3px;
   z-index: 4;
   width: 38px;
   height: 38px;
