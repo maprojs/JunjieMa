@@ -1,0 +1,31 @@
+<ul style="font-size:18px;">
+  <li>Background</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  Neural regulation and an imbalanced immune microenvironment promote Pancreatic ductal adenocarcinoma (PDAC) progression. However, the molecular mechanisms and clinical implications of neuron–tumor interactions remain unclear.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Methods</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  We integrated single-cell and spatial transcriptomic data to characterize neuron–tumor interactions in PDAC and classified patients into five innervation subtypes. We then assessed subtype differences in prognosis, immune microenvironment, and genomic instability. In parallel, we developed and externally validated a pathology-based machine learning model for subtype prediction. Finally, functional experiments were performed to investigate the role of a key subtype gene.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Results</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  Single-cell analysis suggested that NEFM-positive neurons exhibited prominent inferred ligand–receptor interactions with PDAC cells. Based on prognosis-associated receptor–ligand pairs derived from this inferred interaction axis, we classified patients with PDAC into five innervation subtypes. These subtypes showed graded differences in prognosis, immune microenvironment, and genomic instability. By integrating histopathological features, we developed and optimized a multiclass model that was externally validated in the XY3-PDAC cohort. This model predicted innervation subtypes and survival with good performance and highlighted key morphological features, improving clinical interpretability and supporting precise PDAC stratification. PTK7 was identified as a key gene in the NICS subtype, and its knockout reduced PDAC cell proliferation and migration and suppressed tumor growth in mice. Single-cell immunotherapy data and multiplex immunofluorescence further showed that PTK7 expression was associated with high M2 macrophage infiltration and low CD8+ T cell infiltration, suggesting a role in immunotherapy resistance.
+</p>
+
+<ul style="font-size:18px;">
+  <li>Conclusions</li>
+</ul>
+
+<p style="margin-left:22px; text-indent:1em;">
+  We mapped the molecular landscape of neuron–PDAC regulation and developed a novel receptor–ligand based classification framework to predict prognosis and guide treatment selection for patients with PDAC.
+</p>
