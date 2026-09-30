@@ -581,7 +581,8 @@
 }
 
 .research-page .paper-copy > bi:first-child,
-.research-page .paper-copy > h3:first-child {
+.research-page .paper-copy > h3:first-child,
+.research-page .funding-card > h3:first-child {
   margin: 0 104px 4px 0;
   display: block;
   color: var(--ink);
@@ -589,6 +590,10 @@
   font-size: 17px;
   font-weight: 700;
   line-height: 1.46;
+}
+
+.research-page .funding-card > h3:first-child {
+  margin-right: 0;
 }
 
 .research-page .paper-copy > h3 ~ p {
