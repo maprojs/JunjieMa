@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { gzipSync } = require('node:zlib');
 const root = path.resolve(__dirname, '../..');
-const snapshotDirectory = 'files/content/publications/citations';
+const snapshotDirectory = 'files/content/research/publications';
 const frontendFile = 'javascripts/cited.js';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 

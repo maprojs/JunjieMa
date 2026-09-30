@@ -37,7 +37,7 @@ test('publishes consistent gzip/JSON snapshots and preserves files on total fail
   const options = { workspace, now: new Date('2026-09-27T16:01:00Z'), sleepImpl: async () => {} };
   const result = await generate({ ...options, fetchImpl: async () => ({ ok: true, json: async () => ({ message: { 'is-referenced-by-count': 0 } }) }) });
   assert.equal(result.total, 1);
-  const directory = path.join(workspace, 'files/content/publications/citations');
+  const directory = path.join(workspace, 'files/content/research/publications');
   const latest = JSON.parse(await fs.readFile(path.join(directory, 'latest.json')));
   const compressed = await fs.readFile(path.join(directory, latest.file));
   assert.deepEqual(JSON.parse(gunzipSync(compressed)), result);

@@ -39,7 +39,7 @@ jobs:
             git fetch --depth=1 origin "$GITHUB_REF_NAME"
             git reset --hard FETCH_HEAD
             node files/scripts/update-citations.cjs
-            git add -A -- files/content/publications/citations javascripts/cited.js
+            git add -A -- files/content/research/publications javascripts/cited.js
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "chore: update daily publication citations"
             if git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"; then exit 0; fi
