@@ -77,7 +77,8 @@
   gap: 10px;
 }
 
-.hero-profile-links a {
+.hero-profile-links a,
+.hero-profile-links button {
   min-width: 0;
   padding: 5px 16px;
   display: flex;
@@ -90,17 +91,23 @@
   border: 2px solid var(--line);
   border-radius: 10px;
   background: transparent;
+  font-family: inherit;
+  cursor: pointer;
   transition: border-color 180ms ease;
 }
 
 .hero-profile-links a:hover,
-.hero-profile-links a:active {
+.hero-profile-links a:active,
+.hero-profile-links button:hover,
+.hero-profile-links button:active {
   border-color: var(--primary);
   background: transparent;
 }
 
 .hero-profile-links a:hover .profile-link-label,
-.hero-profile-links a:active .profile-link-label {
+.hero-profile-links a:active .profile-link-label,
+.hero-profile-links button:hover .profile-link-label,
+.hero-profile-links button:active .profile-link-label {
   color: var(--accent);
 }
 
@@ -135,6 +142,15 @@
   flex: 0 0 17px;
 }
 
+.hero-school svg {
+  position: relative;
+  top: 1.3px;
+}
+
+.hero-email svg {
+  top: 2.3px;
+}
+
 .page-hero .hero-location {
   margin: 12px 0 0;
   display: flex;
@@ -159,6 +175,20 @@
 .hero-school > span {
   position: relative;
   top: 1.5px;
+}
+
+.hero-email a {
+  min-width: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  overflow-wrap: anywhere;
+  position: relative;
+  top: 1.5px;
+}
+
+.hero-email a:hover {
+  color: var(--accent);
 }
 
 .paper-control-button {
@@ -745,8 +775,10 @@
   width: 92%;
   max-height: 88vh;
   max-height: min(88dvh, calc(100dvh - 40px));
-  overflow: auto;
-  padding: 34px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
   color: var(--ink);
   text-align: center;
   border-top: 5px solid var(--primary);
@@ -760,38 +792,50 @@
 
 .modal[open] .modal-content { animation: modal-slide-in 180ms ease-out; }
 
-.modal-content::-webkit-scrollbar {
+.modal-header {
+  position: relative;
+  flex: 0 0 44px;
+}
+
+.modal-body {
+  min-height: 0;
+  overflow: auto;
+  padding: 0 30px 30px 20px;
+  overscroll-behavior: contain;
+}
+
+.modal-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-.modal-content::-webkit-scrollbar-track {
+.modal-body::-webkit-scrollbar-track {
   background: transparent;
   margin-block: 12px;
 }
 
-.modal-content::-webkit-scrollbar-thumb {
+.modal-body::-webkit-scrollbar-thumb {
   background: var(--muted);
   border: 2px solid var(--surface);
   border-radius: 999px;
 }
 
-.modal-content::-webkit-scrollbar-thumb:hover {
+.modal-body::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
 
-.modal-content::-webkit-scrollbar-corner {
+.modal-body::-webkit-scrollbar-corner {
   background: transparent;
 }
 
 /* Firefox uses the standard properties; keep rounded thumbs in WebKit/Blink. */
 @supports not selector(::-webkit-scrollbar) {
-  .modal-content {
+  .modal-body {
     scrollbar-width: thin;
     scrollbar-color: var(--muted) transparent;
   }
 
-  .modal-content:hover {
+  .modal-body:hover {
     scrollbar-color: var(--primary) transparent;
   }
 }
@@ -806,6 +850,10 @@
   height: auto;
   max-width: 100%;
   border-radius: 8px;
+}
+
+.modal-content .wechat-qrcode {
+  width: 80%;
 }
 
 .modal-img {
@@ -838,6 +886,12 @@
 
 .close:hover {
   color: var(--primary);
+}
+
+/* Hide touch/mouse focus rings only for modal controls; keyboard keeps them. */
+html[data-modal-input="pointer"] [data-modal-file]:focus,
+html[data-modal-input="pointer"] .modal .close:focus {
+  outline: none;
 }
 
 .scrollToSection {
@@ -937,12 +991,21 @@
 }
 
 @media (max-width: 620px) {
-  .modal-content {
+  .modal-content .wechat-qrcode {
+    width: 80%;
+  }
+
+  /* Reduce paragraph indentation without moving the section headings. */
+  .modal-output > ul + p {
+    margin-left: 10px !important;
+  }
+
+  .modal-body {
     padding-right: 8px;
     padding-left: 8px;
   }
 
-  .research-page .modal-content {
+  .research-page .modal-body {
     padding-left: 6px;
     padding-right: 10px;
   }
@@ -1069,7 +1132,8 @@
     gap: 8px;
   }
 
-  .hero-profile-links a {
+  .hero-profile-links a,
+  .hero-profile-links button {
     width: 100%;
     padding: 5px 12px;
   }

@@ -4,4 +4,4 @@
 <p style="font-size: 20px; margin-bottom: 15px; color: #86accd;">
   WeChat ID: mjj1428
 </p>
-<img src="./files/images/logo/wechat-qrcode.webp">
+<img class="wechat-qrcode" src="./files/images/logo/wechat-qrcode.webp" alt="WeChat QR code for mjj1428">

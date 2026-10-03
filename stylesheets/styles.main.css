@@ -72,11 +72,6 @@ body {
   transition: color 280ms ease, background-color 280ms ease;
 }
 
-::selection {
-  color: #fff;
-  background: var(--primary-fill);
-}
-
 .skip-link {
   position: fixed;
   top: 10px;

@@ -11,6 +11,15 @@
   font-weight: 400;
   line-height: 1.5;
 }
+.research-page :is(#firstAuthorCount, #paperIndices)::before {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 10px 2px 1px;
+  content: "";
+  border-radius: 50%;
+  background: var(--primary);
+}
 .paper-controls { flex-wrap: wrap; }
 .paper-controls .paper-control-popup { box-sizing: border-box; }
 .paper-controls :is(#paper-role-popup, #paper-sort-popup) { min-width: 170px; }
@@ -40,23 +49,66 @@
 .papers-citations button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .papers-citations [role="status"]:empty { display: none; }
 
+.paper-indices-info {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  transform: translateY(-2.7px);
+}
+.paper-indices-info-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 1.8px solid var(--primary);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--primary);
+  font: 700 0/1 Arial, sans-serif;
+  cursor: pointer;
+}
+.paper-indices-info-button::before {
+  content: '!';
+  font-size: 10px;
+  line-height: 1;
+  transform: translateY(0.5px);
+}
+.paper-indices-info-button::after { content: ''; position: absolute; inset: -15px; }
+.paper-indices-info-button:hover,
+.paper-indices-info-button:focus-visible,
+.paper-indices-info-button[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+.paper-indices-info-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
 .citation-version-popup {
-  position: fixed;
-  z-index: 1400;
+  position: absolute;
+  /* Above page content, below this site's sticky header (z-index: 100). */
+  z-index: 80;
   box-sizing: border-box;
   width: max-content;
   min-width: 0;
-  max-width: min(320px, calc(100vw - 24px));
-  padding: 15px 16px;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 7px 10px;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background: var(--primary);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+  color: #fff;
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
   white-space: normal;
   overflow-wrap: anywhere;
   overflow: auto;
 }
 .citation-version-popup[hidden] { display: none; }
+@media (min-width: 768px) {
+  #paperIndicesPopup { max-width: min(480px, calc(100vw - 32px)); }
+}
 
 /* Journal badges stay inline with each paper's bibliographic information. */
 .research-page :is(#pubmedPapers, #cnkiPapers) .research-card jif {

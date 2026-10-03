@@ -11,11 +11,15 @@
     modal.setAttribute('aria-label', 'Details');
     modal.innerHTML = `
       <div class="modal-content">
-        <button type="button" class="close" aria-label="Close dialog" autofocus>&times;</button>
-        <div class="loading" role="status" aria-label="Loading content">
-          <div class="mjjLoader" aria-hidden="true">${'<div></div>'.repeat(7)}</div>
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close dialog" autofocus>&times;</button>
         </div>
-        <div class="modal-output" aria-live="polite"></div>
+        <div class="modal-body">
+          <div class="loading" role="status" aria-label="Loading content">
+            <div class="mjjLoader" aria-hidden="true">${'<div></div>'.repeat(7)}</div>
+          </div>
+          <div class="modal-output" aria-live="polite"></div>
+        </div>
       </div>`;
     document.body.appendChild(modal);
     panel = modal.querySelector('.modal-content');
@@ -105,7 +109,7 @@
       document.body.style.overflow = 'hidden';
       modal.showModal(); // Native focus containment and background inertness.
     }
-    panel.scrollTop = 0;
+    modal.querySelector('.modal-body').scrollTop = 0;
     try {
       const html = await loadFile(fileName);
       // Ignore a slow response after switching files or closing.
@@ -130,6 +134,16 @@
   window.closeModal = closeModal;
   // Existing three-argument links also work without per-file HTML.
   window.showModalWithFile = (_modalId, _outTextId, fileName) => openFileModal(fileName);
+
+  // Safari may show focus-visible after programmatic focus on touch activation.
+  // Track the input method while keeping focus restoration and keyboard cues.
+  document.addEventListener('pointerdown', () => {
+    document.documentElement.dataset.modalInput = 'pointer';
+  }, { capture: true, passive: true });
+  document.addEventListener('keydown', event => {
+    if (['Shift', 'Control', 'Alt', 'Meta'].includes(event.key)) return;
+    delete document.documentElement.dataset.modalInput;
+  }, true);
 
   document.addEventListener('click', event => {
     const trigger = event.target.closest('[data-modal-file]');

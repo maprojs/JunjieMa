@@ -25,6 +25,7 @@
     if (!spans.length) return;
     const dois = [...new Set(spans.map(span => span.dataset.doi.trim().toLowerCase()).filter(Boolean))];
     const version = document.getElementById('citeVer');
+    const versionTrigger = version;
     const sourceLabel = document.getElementById('citeSourceLabel');
     const versionPopup = document.getElementById('citeVersionPopup');
     const latestVersion = document.getElementById('citeLatestVersion');
@@ -44,52 +45,52 @@
     updateLocalSchedule();
     // A body-level popup avoids clipping and transformed paper/Note ancestors.
     document.body.append(versionPopup);
-    function positionVersionPopup() {
+    function positionCitationPopup(versionTrigger, versionPopup) {
       if (versionPopup.hidden) return;
       const viewport = window.visualViewport;
-      const margin = 12, gap = 7;
+      const margin = 16;
       const left = (viewport?.offsetLeft || 0) + margin;
-      const top = (viewport?.offsetTop || 0) + margin;
       const width = viewport?.width || document.documentElement.clientWidth;
-      const height = viewport?.height || document.documentElement.clientHeight;
       const right = left + width - margin * 2;
-      const bottom = top + height - margin * 2;
-      versionPopup.style.maxWidth = `${Math.max(0, Math.min(320, width - margin * 2))}px`;
-      versionPopup.style.maxHeight = `${Math.max(0, height - margin * 2)}px`;
-      const anchor = version.getBoundingClientRect();
+      const maxWidth = versionPopup.id === 'paperIndicesPopup' && width >= 768 ? 480 : 360;
+      versionPopup.style.maxWidth = `${Math.max(0, Math.min(maxWidth, width - margin * 2))}px`;
+      const anchor = versionTrigger.getBoundingClientRect();
+      const y = anchor.bottom + 8;
       const box = versionPopup.getBoundingClientRect();
-      const below = bottom - anchor.bottom - gap;
-      const above = anchor.top - gap - top;
-      const placeBelow = below >= box.height || below >= above;
-      versionPopup.style.maxHeight = `${Math.max(0, placeBelow ? below : above)}px`;
-      const popupHeight = versionPopup.getBoundingClientRect().height;
-      const y = placeBelow ? anchor.bottom + gap : anchor.top - gap - popupHeight;
-      versionPopup.style.left = `${Math.max(left, Math.min(anchor.left, right - box.width))}px`;
-      versionPopup.style.top = `${Math.max(top, Math.min(y, bottom - popupHeight))}px`;
+      const x = Math.max(left, Math.min(anchor.left + anchor.width / 2 - box.width / 2, right - box.width));
+      // Match the reference popup: remain attached to the date's document
+      // position even when the button scrolls outside the vertical viewport.
+      const parent = versionPopup.offsetParent;
+      const origin = parent?.getBoundingClientRect();
+      const originX = origin ? origin.left + parent.clientLeft - parent.scrollLeft : -window.scrollX;
+      const originY = origin ? origin.top + parent.clientTop - parent.scrollTop : -window.scrollY;
+      versionPopup.style.left = `${x - originX}px`;
+      versionPopup.style.top = `${y - originY}px`;
     }
+    const positionVersionPopup = () => positionCitationPopup(versionTrigger, versionPopup);
     function closeVersionPopup() {
       versionPopup.hidden = true;
-      version.setAttribute('aria-expanded', 'false');
+      versionTrigger.setAttribute('aria-expanded', 'false');
     }
-    version.addEventListener('click', () => {
+    versionTrigger.addEventListener('click', () => {
       const open = versionPopup.hidden;
       versionPopup.hidden = !open;
-      version.setAttribute('aria-expanded', String(open));
+      versionTrigger.setAttribute('aria-expanded', String(open));
       if (open) {
         updateLocalSchedule();
         positionVersionPopup();
       }
     });
     document.addEventListener('pointerdown', event => {
-      if (!version.contains(event.target) && !versionPopup.contains(event.target)) closeVersionPopup();
+      if (!versionTrigger.contains(event.target) && !versionPopup.contains(event.target)) closeVersionPopup();
     });
     document.addEventListener('focusin', event => {
-      if (!version.contains(event.target) && !versionPopup.contains(event.target)) closeVersionPopup();
+      if (!versionTrigger.contains(event.target) && !versionPopup.contains(event.target)) closeVersionPopup();
     });
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && !versionPopup.hidden) {
         closeVersionPopup();
-        version.focus({ preventScroll: true });
+        versionTrigger.focus({ preventScroll: true });
       }
     });
     window.addEventListener('resize', positionVersionPopup);
@@ -100,6 +101,40 @@
     const refreshButton = document.getElementById('refreshCiteSnapshot');
     const liveButton = document.getElementById('fetchLiveCites');
     const indices = document.getElementById('paperIndices');
+    const indexValues = document.getElementById('paperIndexValues');
+    const indicesCount = document.getElementById('paperIndicesCount');
+    const indicesTrigger = document.getElementById('paperIndicesInfo');
+    const indicesPopup = document.getElementById('paperIndicesPopup');
+    document.body.append(indicesPopup);
+    const positionIndicesPopup = () => positionCitationPopup(indicesTrigger, indicesPopup);
+    function closeIndicesPopup() {
+      indicesPopup.hidden = true;
+      indicesTrigger.setAttribute('aria-expanded', 'false');
+    }
+    indicesTrigger.addEventListener('click', () => {
+      const open = indicesPopup.hidden;
+      closeVersionPopup();
+      indicesPopup.hidden = !open;
+      indicesTrigger.setAttribute('aria-expanded', String(open));
+      if (open) positionIndicesPopup();
+    });
+    versionTrigger.addEventListener('click', closeIndicesPopup);
+    document.addEventListener('pointerdown', event => {
+      if (!indicesTrigger.contains(event.target) && !indicesPopup.contains(event.target)) closeIndicesPopup();
+    });
+    document.addEventListener('focusin', event => {
+      if (!indicesTrigger.contains(event.target) && !indicesPopup.contains(event.target)) closeIndicesPopup();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !indicesPopup.hidden) {
+        closeIndicesPopup();
+        indicesTrigger.focus({ preventScroll: true });
+      }
+    });
+    window.addEventListener('resize', positionIndicesPopup);
+    window.addEventListener('scroll', positionIndicesPopup, { passive: true, capture: true });
+    window.visualViewport?.addEventListener('resize', positionIndicesPopup);
+    window.visualViewport?.addEventListener('scroll', positionIndicesPopup);
     let matchingPapers = [...document.querySelectorAll('#pubmedPapers .research-card, #cnkiPapers .research-card')];
     let currentCitations = {};
     let busy = false;
@@ -120,9 +155,11 @@
         if (total >= rank * rank) g = rank;
       });
       const i10 = counts.filter(count => count >= 10).length;
-      indices.textContent = counts.length
-        ? `h-index: ${h}, g-index: ${g}, i10-index: ${i10} (${counts.length} papers used)`
-        : 'h-index: N/A, g-index: N/A, i10-index: N/A (0 papers used)';
+      indexValues.textContent = counts.length
+        ? `h-index: ${h}, g-index: ${g}, i10-index: ${i10}`
+        : 'h-index: N/A, g-index: N/A, i10-index: N/A';
+      indicesCount.textContent = String(counts.length);
+      positionIndicesPopup();
     }
     document.addEventListener('papers:filtered', event => {
       matchingPapers = event.detail;
@@ -173,7 +210,7 @@
       paint(data.citations, 'daily snapshot');
       sourceLabel.textContent = 'Snapshot: ';
       version.textContent = data.date;
-      version.disabled = false;
+      versionTrigger.disabled = false;
       const localDateParts = new Intl.DateTimeFormat('en-GB', {
         year: 'numeric', month: '2-digit', day: '2-digit'
       }).formatToParts(new Date(data.generatedAt));
