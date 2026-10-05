@@ -1,6 +1,11 @@
-name: Update Daily Publication Citations
+name: Update Publication Citations
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'files/content/publications/papers.html'
   schedule:
     # UTC 24:00 is 00:00 at the start of the next day.
     - cron: '0 0 * * *'
