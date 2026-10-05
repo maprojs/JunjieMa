@@ -62,7 +62,9 @@ function sectionButtonPosition() {
     const sectionRect = section.getBoundingClientRect();
     let buttonRight = window.innerWidth - (sectionRect.right + 200);
     buttonRight = Math.max(buttonRight, 0);
-    scrollToSelector.style.right = `${buttonRight}px`;
+    if (scrollToSelector) {
+      scrollToSelector.style.right = `${buttonRight}px`;
+    }
   }
 }
 

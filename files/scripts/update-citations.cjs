@@ -52,7 +52,7 @@ async function collect(dois, { fetchImpl = fetch, sleepImpl = sleep, timeout = 1
   return { citations: Object.fromEntries(dois.map(doi => [doi, citations[doi]])), failures: failures.sort((a, b) => a.doi.localeCompare(b.doi)) };
 }
 async function generate({ workspace = root, now = new Date(), ...collectionOptions } = {}) {
-  const sources = [await fs.readFile(path.join(workspace, 'research.html'), 'utf8')];
+  const sources = [await fs.readFile(path.join(workspace, 'files/content/publications/papers.html'), 'utf8')];
   const dois = [...new Set(sources.flatMap(extractDois))].sort();
   if (!dois.length) throw Error('No DOI records found; keeping the previous snapshot.');
   const frontendPath = path.join(workspace, frontendFile);

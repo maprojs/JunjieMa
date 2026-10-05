@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initializePaperFilters() {
   document.querySelectorAll('#pubmedPapers .research-card, #cnkiPapers .research-card').forEach(paper => {
     paper.dataset.paperLanguage = paper.closest('#pubmedPapers, #cnkiPapers').id;
   });
@@ -128,11 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const paperCount = document.getElementById('firstAuthorCount');
   if (paperCount) {
-    paperCount.textContent = `Total papers: ${document.querySelectorAll('.firstPaper, .otherPaper').length}`;
+    paperCount.textContent = `Total papers: ${document.querySelectorAll('.research-card[data-author]').length}`;
   }
-  document.querySelectorAll('.research-page .research-card')
+}
+
+function initializeResearchCards(root) {
+  root.querySelectorAll('.research-card')
     .forEach(paper => {
-      if (paper.matches('.firstPaper, .otherPaper') && !paper.dataset.article) {
+      if (paper.matches('.research-card[data-author]') && !paper.dataset.article) {
         paper.dataset.article = 'Article';
       }
 
@@ -146,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       paper.appendChild(copy);
     });
-});
+}
 
 function matchesPaperRole(paper, role) {
-  if (role === 'first') return paper.classList.contains('firstPaper');
+  if (role === 'first') return paper.dataset.author === 'firstPaper';
   if (role === 'corresponding') {
     const authors = paper.querySelector('author')?.textContent || '';
     return authors.split(/[,，;；]/).some(author =>
@@ -164,7 +167,7 @@ function matchesPaperLanguage(paper, sectionId) {
 }
 
 function updatePaperOptionCounts(sectionId, role) {
-  const papers = [...document.querySelectorAll('.firstPaper, .otherPaper')];
+  const papers = [...document.querySelectorAll('.research-card[data-author]')];
   document.querySelectorAll('.paper-controls [data-paper-section], .paper-controls [data-paper-role]')
     .forEach(option => {
       // Show the result of choosing this option while keeping the other filter.
@@ -180,7 +183,7 @@ function updatePaperOptionCounts(sectionId, role) {
 function applyPaperFilters() {
   const sectionId = document.querySelector('[data-paper-section][aria-pressed="true"]').dataset.paperSection;
   const role = document.querySelector('[data-paper-role][aria-pressed="true"]').dataset.paperRole;
-  const papers = document.querySelectorAll('.firstPaper, .otherPaper');
+  const papers = document.querySelectorAll('.research-card[data-author]');
   let count = 0;
   papers.forEach(paper => {
     const matchesLanguage = matchesPaperLanguage(paper, sectionId);
@@ -193,7 +196,7 @@ function applyPaperFilters() {
   });
   ['pubmedPapers', 'cnkiPapers'].forEach(id => {
     const section = document.getElementById(id);
-    const hasVisiblePapers = [...section.querySelectorAll('.firstPaper, .otherPaper')]
+    const hasVisiblePapers = [...section.querySelectorAll('.research-card[data-author]')]
       .some(paper => paper.style.display !== 'none');
     section.style.display = hasVisiblePapers ? '' : 'none';
   });

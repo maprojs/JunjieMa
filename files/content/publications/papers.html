@@ -1,0 +1,237 @@
+        <div class="paper-controls" aria-label="Paper browsing options">
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-language-popup" aria-label="Language: All languages">All languages</button>
+            <div class="paper-control-popup" id="paper-language-popup" role="group" aria-label="Language" hidden>
+              <button type="button" data-paper-section="all" aria-pressed="true">All</button>
+              <button type="button" data-paper-section="pubmedPapers" aria-pressed="false">English</button>
+              <button type="button" data-paper-section="cnkiPapers" aria-pressed="false">Chinese</button>
+            </div>
+          </div>
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-role-popup" aria-label="Role: All authors">All authors</button>
+            <div class="paper-control-popup" id="paper-role-popup" role="group" aria-label="Role" hidden>
+              <button type="button" data-paper-role="all" aria-pressed="true">All authors</button>
+              <button type="button" data-paper-role="first" aria-pressed="false">First author</button>
+              <button type="button" data-paper-role="corresponding" aria-pressed="false">Corresponding</button>
+            </div>
+          </div>
+          <div class="paper-control">
+            <button class="paper-control-button" type="button" aria-expanded="false" aria-controls="paper-sort-popup" aria-label="Sort: Default order">Default order</button>
+            <div class="paper-control-popup" id="paper-sort-popup" role="group" aria-label="Sort" hidden>
+              <button type="button" data-paper-sort="default" aria-pressed="true">Default order</button>
+              <button type="button" data-paper-sort="year" aria-pressed="false">Publication date</button>
+              <button type="button" data-paper-sort="impact" aria-pressed="false">Impact factor</button>
+              <button type="button" data-paper-sort="citations" aria-pressed="false">Citation count</button>
+            </div>
+          </div>
+        </div>
+        <p id="firstAuthorCount" class="first-author-count" aria-live="polite"></p>
+        <div id="paperIndices" class="paper-indices"><span id="paperIndexValues" aria-live="polite">h-index: N/A, g-index: N/A, i10-index: N/A</span><span class="paper-indices-info"><button type="button" class="paper-indices-info-button" id="paperIndicesInfo" aria-label="View index calculation scope" aria-expanded="false" aria-controls="paperIndicesPopup" aria-describedby="paperIndicesPopup">!</button></span><span id="paperIndicesPopup" class="citation-version-popup" role="tooltip" hidden>Calculated using papers in the current filters with available Crossref citation counts, including zero citations. Papers with missing citation counts are excluded. Each DOI is counted once.<br>Papers included: <span id="paperIndicesCount">0</span>.</span></div>
+        
+        <div id="pubmedPapers" style="margin:0;margin-bottom:20px;">
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/1.png" alt="Paper figure">
+            <h3>Explainable pathomics and multi-omics define PDAC innervation subtypes linked to neuron–tumor crosstalk and immunotherapy response</h3>
+            <author><bhr>Junjie Ma</bhr><sup>†</sup>, Wei Xiang<sup>†</sup>, An Yan, Yukun Yang, Yuxi Liu, Linwei Wang, Ben Liu, Shuang Li, Jiahao Li, Wenzhe Gao*, Hongwei Zhu*</author>
+            <p><jt>Biology Direct</jt>, <b>2026-09-23</b>, Accepted. <jif>IF=5.5, Q1</jif></p>
+            <a href="https://doi.org/10.1186/s13062-026-00995-x" class="research-link" target="_blank">DOI</a>
+            <!-- <a href="https://pubmed.ncbi.nlm.nih.gov/42661129" class="research-link" target="_blank">PubMed</a> -->
+            <!-- <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/42661129.txt" class="research-link">Abstract</a> -->
+            <a href="files/content/research/papers/pdf/1.pdf" class="research-link" target="_blank" download="Integrated bioinformatic evaluation unveils a cellular senescence gene signature as a poor prognostic factor in hepatocellular carcinoma.pdf">PDF</a>
+            <!-- <a href="files/content/research/papers/cite/EndNote/42661129.nbib" class="research-link" target="_blank" download>EndNote</a> -->
+            <a href="javascript:void(0)" class="research-link">Citations: <span class="cited" data-doi="10.1186/s13062-026-00995-x">-</span></a>
+          </div>
+        
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/42661129.webp" alt="Paper figure">
+            <h3>Integrated bioinformatic evaluation unveils a cellular senescence gene signature as a poor prognostic factor in hepatocellular carcinoma</h3>
+            <author>Shaoyang Lu<sup>†</sup>, <bhr>Junjie Ma</bhr><sup>†</sup>, Xiaodan Wang, Lei Zhang, Jin Lu*, Junjie Hu*</author>
+            <p><jt>Clinical and Experimental Medicine</jt>, <b>2026</b>, 26 (1): 308. <jif>IF=4.5, Q2</jif></p>
+            <a href="https://doi.org/10.1007/s10238-026-02258-5" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42661129" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/42661129.txt" class="research-link">Abstract</a>
+            <a href="files/content/research/papers/pdf/42661129.pdf" class="research-link" target="_blank" download="Integrated bioinformatic evaluation unveils a cellular senescence gene signature as a poor prognostic factor in hepatocellular carcinoma.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/42661129.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="javascript:void(0)" class="research-link">Citations: <span class="cited" data-doi="10.1007/s10238-026-02258-5">-</span></a>
+          </div>
+
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/41378005.webp" alt="Paper figure">
+            <h3>Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification</h3>
+            <author>Jin Lu<sup>†</sup>, <bhr>Junjie Ma</bhr><sup>†</sup>, Can Yu, Shaoyang Lu, Xueying Zhao, Lei Zhang*</author>
+            <p><jt>Translational Cancer Research</jt>, <b>2025</b>, 14 (11): 7995-8011. <jif>IF=2.1, Q3</jif></p>
+            <a href="https://doi.org/10.21037/tcr-2025-1067" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41378005" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/41378005.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/41378005" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/41378005.pdf" class="research-link" target="_blank" download="Identification of the key gene for hepatocellular carcinoma based on bioinformatics and machine learning and experimental verification.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/41378005.enw" class="research-link" target="_blank" download>EndNote</a>
+            <a href="https://www.semanticscholar.org/paper/Identification-of-the-key-gene-for-hepatocellular-Lu-Ma/dd5513d5b93181e9cf15641be935e243eccdaa12#citing-papers" class="research-link" target="_blank">Citations: <span class="cited" data-doi="10.21037/tcr-2025-1067">-</span></a>
+          </div>
+          
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/38393509.webp" alt="Paper figure">
+            <h3>Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability</h3>
+            <author><bhr>Junjie Ma</bhr>, Shaoguang An, Mohan Cao, Lei Zhang, Jin Lu*</author>
+            <p><jt>Endocrine</jt>, <b>2024</b>, 85 (2): 615-625. <jif>IF=3.7, Q2</jif></p>
+            <a href="https://doi.org/10.1007/s12020-024-03735-1" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38393509" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/38393509.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/38393509" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/38393509.pdf" class="research-link" target="_blank" download="Integrated machine learning and deep learning for predicting diabetic nephropathy model construction, validation, and interpretability.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/38393509.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="https://www.semanticscholar.org/paper/Integrated-machine-learning-and-deep-learning-for-Ma-An/589ea08db6af4e8e2e47792544f18ec154476d52#citing-papers" class="research-link" target="_blank">Citations: <span class="cited" data-doi="10.1007/s12020-024-03735-1">-</span></a>
+          </div>
+    
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/38887993.webp" alt="Paper figure">
+            <h3>PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing</h3>
+            <author><bhr>Junjie Ma</bhr><sup>†</sup>, Lei Zhang<sup>†</sup>, Jin Lu, Haoxuan Zhang*</author>
+            <p><jt>Chinese Medical Sciences Journal</jt>, <b>2024</b>, 39 (2): 111-121. <jif>MEDLINE</jif> <jif>CSCD</jif></p>
+            <a href="https://doi.org/10.24920/004354" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38887993" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/38887993.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/38887993" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/38887993.pdf" class="research-link" target="_blank" download="PPP1R14A is associated with immunotherapy resistance in head and neck squamous cell carcinoma identified by single-cell and bulk RNA-sequencing.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/38887993.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="https://www.semanticscholar.org/paper/PPP1R14A-is-Associated-with-Immunotherapy-in-Head-Ma-Zhang/8e5e0e948e87319aaf4421e185ddbf3b11ef5c14#citing-papers" class="research-link" target="_blank">Citations: <span class="cited" data-doi="10.24920/004354">-</span></a>
+          </div>
+     
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/38147724.webp" alt="Paper figure">
+            <h3>Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma</h3>
+            <author>Lei Zhang<sup>†</sup>, Jiatao Wu<sup>†</sup>, Weiwei Yin<sup>†</sup>, Junjie Hu, Lingli Liao, <bhr>Junjie Ma</bhr>, Ziwei Xu, Shiwu Wu*</author>
+            <p><jt>Pathology Research and Practice</jt>, <b>2024</b>, 253: 155048. <jif>IF=2.9, Q1</jif></p>
+            <a href="https://doi.org/10.1016/j.prp.2023.155048" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38147724" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/38147724.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/38147724" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/38147724.pdf" class="research-link" target="_blank" download="Vasculogenic mimicry-associated novel gene signature predicted prognosis and response to immunotherapy in lung adenocarcinoma.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/38147724.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="https://www.semanticscholar.org/paper/Vasculogenic-mimicry-associated-novel-gene-and-to-Zhang-Wu/6ceb61695388a020f15c8a80076b5dfbfc53aa0b#citing-papers" class="research-link" target="_blank">Citations: <span class="cited" data-doi="10.1016/j.prp.2023.155048">-</span></a>
+          </div>
+     
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/38952090.webp" alt="Paper figure">
+            <h3>Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma</h3>
+            <author>Xinyu Liu<sup>†</sup>, Zebang Ding<sup>†</sup>, Huan Wu, <bhr>Junjie Ma</bhr>, Jin Lu*</author>
+            <p><jt>Chinese journal of cellular and molecular immunology</jt>, <b>2024</b>, 340 (6): 508-519. <jif>MEDLINE</jif> <jif>CSCD</jif></p>
+            <a href="https://doi.org/10.13423/j.cnki.cjcmi.009797" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/38952090" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/38952090.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/38952090" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/38952090.pdf" class="research-link" target="_blank" download="Analysis of correlation between high expression of nucleoporin 85 (NUP85) and immune cell infiltration in hepatocellular carcinoma.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/38952090.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="javascript:void(0)" class="research-link">Citations: <span class="cited" data-doi="10.13423/j.cnki.cjcmi.009797">-</span></a>
+          </div>
+     
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/37980550.webp" alt="Paper figure">
+            <h3>Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells</h3>
+            <author>Haoxuan Zhang, <bhr>Junjie Ma</bhr>, Shaoguang An, Lixue Xu, Jin Lu, Chengyi Jiang*</author>
+            <p><jt>Chinese journal of cellular and molecular immunology</jt>, <b>2023</b>, 39 (11): 988-995. <jif>MEDLINE</jif> <jif>CSCD</jif></p>
+            <a href="https://doi.org/10.13423/j.cnki.cjcmi.009669" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/37980550" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/37980550.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/37980550" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/37980550.pdf" class="research-link" target="_blank" download="Screen of key characteristic genes of nasopharyngeal carcinoma (NPC) base on machine learning and analysis of their correlation with immune cells.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/37980550.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="javascript:void(0)" class="research-link">Citations: <span class="cited" data-doi="10.13423/j.cnki.cjcmi.009669">-</span></a>
+          </div>
+     
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/36647592.webp" alt="Figure for the Topoisomerase II alpha hepatocellular carcinoma study">
+            <h3>Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis</h3>
+            <author>Jin Lu, Shaoguang An, <bhr>Junjie Ma</bhr>, Yue Yang, Lei Zhang, Peng Yu, Heng Tao, Yunfan Chen, Haoxuan Zhang*</author>
+            <p><jt>Chinese medical sciences journal</jt>, <b>2022</b>, 37 (4): 331-339. <jif>MEDLINE</jif> <jif>CSCD</jif></p>
+            <a href="https://doi.org/10.24920/004006" class="research-link" target="_blank">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/36647592" class="research-link" target="_blank">PubMed</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/36647592.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/36647592" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/36647592.pdf" class="research-link" target="_blank" download="Topoisomerase Ⅱα Gene as a Marker for Prognostic Prediction of Hepatocellular Carcinoma: A Bioinformatics Analysis.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/36647592.nbib" class="research-link" target="_blank" download>EndNote</a>
+            <a href="javascript:void(0)" class="research-link">Citations: <span class="cited" data-doi="10.24920/004006">-</span></a>
+          </div>
+        </div>
+        
+        <div id="cnkiPapers" style="margin:0;margin-bottom:20px;">
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/202403015.webp" alt="Paper figure">
+            <h3 style="letter-spacing:1.8px;">糖尿病并发冠心病风险预测模型的构建、评价与验证</h3>
+            <author>夏桂溪, <bhr>马俊杰</bhr>, 赵子涵, 王子婕, 陆进<sup>*</sup></author>
+            <p><cjt>牡丹江医学院学报</cjt>, <b>2024</b>, 45 (3): 47-54.</p>
+            <a href="https://doi.org/10.13799/j.cnki.mdjyxyxb.2024.03.015" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXOaMQQ55CxTwDhUY649TrzaL5DgOQ0pAxcKtqvdZAuF0HD8RMrS051wNI2znPwFOwLffkatMDXw3cByk-lGadQB8ZZPjRE8PnBRuw-jCHj86ngHHlfRik1nwFwGehuLzXuvyWLJJF8nXI_z0yLCNmohLnYKUqO8us3rajfMvRD0Bmr-4TPCCKKv&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/202403015.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/202403015" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/202403015.pdf" class="research-link" target="_blank" download="糖尿病并发冠心病风险预测模型的构建、评价与验证.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/202403015.enw" class="research-link" target="_blank" download>EndNote</a>
+          </div>
+
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/202310002.webp" alt="Paper figure">
+            <h3 style="letter-spacing:1.8px;">肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析</h3>
+            <author><bhr>马俊杰</bhr>, 安韶光, 梅静宇, 张磊, 张浩轩, 陆进<sup>*</sup></author>
+            <p><cjt>中国医科大学学报</cjt>, <b>2023</b>, 52 (10): 871-878. <jif>北大核心</jif></p>
+            <a href="https://doi.org/10.12007/j.issn.0258-4646.2023.10.002" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=IXLqNOIxNnvLtSDZ3XodKG2OuM1YArnemIYFx1qNkeG1ROJILuFVXgVSSd-e-Nlipvj9ICQfEdZkWxzGkVj00Hmjm2M9BDTnKEu-Xz1wrDXHd-iN5cSDEjxqEDzOOZnDBO2sGi2KHPVSt0Kg15Dnbe8xRLmiohyvdEulpbQ8WaVhKkZVCQOGXqnB5rtYqnr-&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/202310002.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/202310002" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/202310002.pdf" class="research-link" target="_blank" download="肾透明细胞癌中拓扑异构酶Ⅱα与免疫浸润的关系及相关基因分析.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/202310002.enw" class="research-link" target="_blank" download>EndNote</a>
+          </div>
+          
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/202304009.webp" alt="Paper figure">
+            <h3 style="letter-spacing:1.8px;">爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义</h3>
+            <author>安韶光, <bhr>马俊杰</bhr>, 张浩轩, 陆进<sup>*</sup></author>
+            <p><cjt>解剖学报</cjt>, <b>2023</b>, 54 (4): 434-444. <jif>CSCD</jif></p>
+            <a href="https://doi.org/10.16098/j.issn.0529-1356.2023.04.009" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXOd-So44jyGE0vXjkUZ6uH1hTaZ9OLie7VhxtEAQdFnVqTk2BboCEdD0NHAzOjwr1kuykOvGI5GEej_L37UwhdYIN1gPqVtXd-WJHBuGneqyWbCbluvvf0MXOHT-pNbYcpUmn3R1WDIo1H03E0yF10H4VB6TbJWzATu8djSHhCVEx_gqP3zeHgd&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/202304009.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/202304009" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/202304009.pdf" class="research-link" target="_blank" download="爪蟾驱动蛋白样蛋白2靶蛋白在肝细胞癌的表达及临床预后的意义.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/202304009.enw" class="research-link" target="_blank" download>EndNote</a>
+          </div>
+          
+          <div class="research-card" data-author="firstPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/202301004.webp" alt="Paper figure">
+            <h3 style="letter-spacing:1.8px;">PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义</h3>
+            <author><bhr>马俊杰</bhr>, 安韶光, 陆进, 张浩轩<sup>*</sup></author>
+            <p><cjt>赣南医学院学报</cjt>, <b>2023</b>, 43 (1): 17-26.</p>
+            <a href="https://doi.org/10.3969/j.issn.1001-5779.2023.01.004" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXPt68yAlHL99q6gZN3bpR2OuelYxoZa_wzljQ6wqDsiV17PE4osj_E_PblyTtiJeVNTmAZ2Qb4dZPvqSCbQ48tML_5AIxN32v2p47I15yWwBWIcsXxXEZVdQDP4_h4zSdOO5gzV01ZKMZJ5D0NC7vrqGe32ZErVl6ePkG_c8cKSWr9SgEJ1XYVu&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/202301004.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/202301004" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/202301004.pdf" class="research-link" target="_blank" download="PLAU与MMP1在头颈鳞状细胞癌中的表达及临床预后意义.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/202301004.enw" class="research-link" target="_blank" download>EndNote</a>
+          </div>
+      
+          <div class="research-card" data-author="otherPaper" data-article="Article">
+            <img class="paper-image" src="files/images/research/papers/202205042.webp" alt="Paper figure">
+            <h3 style="letter-spacing:1.8px;">hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义</h3>
+            <author>陆进, 安韶光, <bhr>马俊杰</bhr>, 俞鹏, 陶恒, 陈云帆, 张浩轩<sup>*</sup></author>
+            <p><cjt>牡丹江医学院学报</cjt>, <b>2022</b>, 43 (5): 27-34.</p>
+            <a href="https://doi.org/10.13799/j.cnki.mdjyxyxb.2022.05.042" class="research-link" target="_blank">DOI</a>
+            <a href="https://kns.cnki.net/kcms2/article/abstract?v=Dm4VI7mKrXNGj_fSWwRsqbp8J2SdLfyZOvQLMshkKFP0pPxWAQGIarVWcsjoVmpbpUXwvMKQR8BFz6xNkshY2W-28Y08wJyTh8y4CFO6ILtPPeOuGVN4sEh0KPgnndj9pHkvMiYbtK-YjGDjZNKGuruwj6kPvXvP81nCCCFbkKYVN7_VH9W8ukYdvwVUhhcT&uniplatform=NZKPT&language=CHS" class="research-link" target="_blank">CNKI</a>
+            <a href="javascript:void(0)" data-modal-file="files/content/research/papers/abstract/202205042.txt" class="research-link">Abstract</a>
+            <!--<a href="https://docs.junjiema.org/papers/202205042" class="research-link" target="_blank">PDF</a>-->
+            <a href="files/content/research/papers/pdf/202205042.pdf" class="research-link" target="_blank" download="hsa-miR-106b-5p调控ESR1表达对肝细胞癌患者生存预后的意义.pdf">PDF</a>
+            <a href="files/content/research/papers/cite/EndNote/202205042.enw" class="research-link" target="_blank" download>EndNote</a>
+          </div>
+       </div>
+        
+        <hr style="margin-bottom:2px;height:2px;color:grey;">
+        <p style="font-size:0.8rem;margin-left:2px;color:grey;">
+          <bi>Note: <sup>†</sup>Co-first author, <sup>*</sup>Corresponding author. 
+            <span class="papers-citations" aria-label="Citation data">
+              <span>Citations from <a href="https://www.crossref.org/" target="_blank" rel="noopener noreferrer">Crossref</a> · <span id="citeSourceLabel">Snapshot: </span><button type="button" class="research-link" id="citeVer" aria-expanded="false" aria-controls="citeVersionPopup" aria-describedby="citeVersionPopup" disabled>Loading…</button></span>
+              <span id="citeVersionPopup" class="citation-version-popup" role="tooltip" hidden>Citation updates are scheduled daily at 00:00 UTC (<span id="citeLocalSchedule">loading your local time…</span>).<br>Latest update: <strong id="citeLatestVersion">Loading…</strong>.</span>
+              <button type="button" class="research-link" id="refreshCiteSnapshot" title="Reload the latest daily snapshot, bypassing the browser cache">Force update</button>
+              <button type="button" class="research-link" id="fetchLiveCites" title="Fetch current citation counts directly from Crossref">Fetch online</button>
+              <span id="citationStatus" role="status" aria-live="polite"></span>
+            </span>
+          </bi>
+        </p>
+
+

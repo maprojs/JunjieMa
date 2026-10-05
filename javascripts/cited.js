@@ -20,7 +20,7 @@
     try { return await read(true); } catch { return read(false); }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  window.initializePaperCitations = () => {
     const spans = [...document.querySelectorAll('.cited[data-doi]')];
     if (!spans.length) return;
     const dois = [...new Set(spans.map(span => span.dataset.doi.trim().toLowerCase()).filter(Boolean))];
@@ -250,5 +250,5 @@
       try { await snapshot(); }
       catch (error) { version.textContent = 'Snapshot unavailable'; throw error; }
     });
-  });
+  };
 })();

@@ -15,7 +15,7 @@ function comparePaperRecords(a, b, mode) {
   return chronological();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initializePaperPagination() {
   // Keep journal metrics editable as plain <jif>IF=5.5, Q1</jif> in HTML.
   document.querySelectorAll('.research-page :is(#pubmedPapers, #cnkiPapers) .research-card jif').forEach(badge => {
     if (badge.classList.contains('journal-metrics')) return;
@@ -181,4 +181,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.relatedTarget && !sizeMenu.contains(event.relatedTarget)) sizeMenu.open = false;
   });
   applyPaperFilters();
-});
+}

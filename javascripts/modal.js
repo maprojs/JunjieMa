@@ -101,6 +101,9 @@
     panel.style.textAlign = options.textAlign || 'justify';
     modal.setAttribute('aria-label', options.title || 'Details');
     output.replaceChildren();
+    const isPaperAbstract = /^files\/content\/research\/papers\/abstract\//.test(fileName);
+    output.classList.toggle('paper-abstract', isPaperAbstract);
+    output.removeAttribute('lang');
     loading.style.display = 'flex';
     output.setAttribute('aria-busy', 'true');
     if (!modal.open) {
@@ -115,6 +118,10 @@
       // Ignore a slow response after switching files or closing.
       if (version !== requestVersion || !modal.open) return;
       output.innerHTML = html;
+      if (isPaperAbstract) {
+        // Some Chinese-journal papers have English abstracts; use the actual text language.
+        output.lang = /\p{Script=Han}/u.test(output.textContent) ? 'zh-CN' : 'en';
+      }
     } catch (error) {
       if (version !== requestVersion || !modal.open) return;
       console.error(error);

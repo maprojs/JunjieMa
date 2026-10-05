@@ -33,7 +33,10 @@ test('publishes consistent gzip/JSON snapshots and preserves files on total fail
   await fs.mkdir(path.join(workspace, 'javascripts'));
   const frontend = path.join(workspace, 'javascripts/cited.js');
   await fs.writeFile(frontend, "const snapshotFile = 'old.json.gz';");
-  await fs.writeFile(path.join(workspace, 'research.html'), '<span data-doi="10.a/b"><span data-doi="10.a/b">');
+  await fs.mkdir(path.join(workspace, 'files/content/publications'), { recursive: true });
+  // The page shell has no DOI records after fragment migration.
+  await fs.writeFile(path.join(workspace, 'research.html'), '<add-file filepath="files/content/publications/papers.html"></add-file>');
+  await fs.writeFile(path.join(workspace, 'files/content/publications/papers.html'), '<span data-doi="10.a/b"><span data-doi="10.a/b">');
   const options = { workspace, now: new Date('2026-09-27T16:01:00Z'), sleepImpl: async () => {} };
   const result = await generate({ ...options, fetchImpl: async () => ({ ok: true, json: async () => ({ message: { 'is-referenced-by-count': 0 } }) }) });
   assert.equal(result.total, 1);
