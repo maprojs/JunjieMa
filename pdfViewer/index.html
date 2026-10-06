@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>PDF Reader | Junjie Ma</title>
+  <link rel="icon" href="../files/images/logo/logo.webp" type="image/webp">
+  <link rel="stylesheet" href="../stylesheets/styles.main.css">
+  <link rel="stylesheet" href="pdfjs/web/pdf_viewer.css">
+  <link rel="stylesheet" href="stylesheets/pdf-viewer.css">
+  <script src="../javascripts/theme.js"></script>
+  <script type="module" src="javascripts/pdf-viewer.js"></script>
+</head>
+<body class="pdf-reader">
+
+  <a class="skip-link" href="#pdfViewerContainer">Skip to document</a>
+  <header class="pdf-header">
+    <div class="pdf-header-start">
+      <div class="pdf-brand">
+        <img src="../files/images/logo/logo-high.webp" alt="Junjie Ma website logo" width="40" height="40">
+        <span>Junjie Ma</span>
+      </div>
+      <a id="pdfBack" class="pdf-back" href="../research.html"><svg><use href="icon/viewer-icons.svg#icon-back"/></svg><span>Back</span></a>
+    </div>
+    <div class="pdf-heading">
+      <h1 id="pdfTitle" class="pdf-title"><span id="pdfTitleText">PDF Reader</span></h1>
+      <div id="pdfMetadata" class="pdf-metadata" hidden>
+        <div id="pdfMetadataContent" class="pdf-metadata-content">
+          <div id="pdfCitation" class="pdf-metadata-text" hidden><span id="pdfAuthor" hidden></span><span id="pdfJournal" hidden></span></div>
+          <div id="pdfDetails" class="pdf-metadata-extra" hidden><span id="pdfYear" hidden></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pdf-header-actions">
+      <button id="themeToggle" class="theme-toggle" type="button" title="Switch to dark mode" aria-label="Switch to dark mode"><span class="moon-icon" aria-hidden="true">☾</span></button>
+    </div>
+  </header>
+
+  <div id="pdfToolbar" class="pdf-toolbar" role="toolbar" aria-label="PDF reading tools">
+    <div id="pdfPageTools" class="pdf-tools-group pdf-page-tools">
+      <button id="pdfSidebarToggle" class="pdf-icon-button" type="button" title="Document navigation" aria-label="Document navigation" aria-controls="pdfSidebar" aria-expanded="false" disabled><svg><use href="icon/viewer-icons.svg#icon-sidebar"/></svg></button>
+      <span class="pdf-divider"></span>
+      <button id="pdfPageToggle" class="pdf-icon-button pdf-page-toggle" type="button" title="Page number" aria-label="Page number" aria-controls="pdfPageControls" aria-expanded="false" hidden disabled><svg><use href="icon/viewer-icons.svg#icon-book-open"/></svg></button>
+      <div id="pdfPageControls" class="pdf-page-controls">
+        <button id="pdfPrev" class="pdf-icon-button" type="button" title="Previous page" aria-label="Previous page" disabled><svg><use href="icon/viewer-icons.svg#icon-back"/></svg></button>
+        <label class="pdf-page-label"><span class="pdf-sr-only">Page number</span><input id="pdfPage" type="number" min="1" value="1" placeholder="1" inputmode="numeric" aria-label="Page number" disabled></label>
+        <span class="pdf-page-count">&nbsp;/ <span id="pdfPageCount">—</span></span>
+        <button id="pdfNext" class="pdf-icon-button" type="button" title="Next page" aria-label="Next page" disabled><svg><use href="icon/viewer-icons.svg#icon-next"/></svg></button>
+      </div>
+    </div>
+    <div class="pdf-tools-group pdf-zoom-tools">
+      <button id="pdfZoomOut" class="pdf-icon-button pdf-minus" type="button" title="Zoom out" aria-label="Zoom out" disabled>−</button>
+      <div class="pdf-scale-wrap">
+        <button id="pdfScale" class="pdf-scale-button" type="button" aria-label="Zoom level" aria-haspopup="listbox" aria-expanded="false" aria-controls="pdfScaleOptions" disabled><span id="pdfScaleCaption">Fit page</span><span aria-hidden="true">▾</span></button>
+        <div id="pdfScaleOptions" class="pdf-scale-menu" role="listbox" aria-label="Zoom options" hidden>
+          <button class="pdf-scale-option active" type="button" role="option" data-scale="page-fit" aria-selected="true" tabindex="-1">Fit page</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="page-width" aria-selected="false" tabindex="-1">Fit width</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="0.5" aria-selected="false" tabindex="-1">50%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="0.75" aria-selected="false" tabindex="-1">75%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="1" aria-selected="false" tabindex="-1">100%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="1.25" aria-selected="false" tabindex="-1">125%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="1.5" aria-selected="false" tabindex="-1">150%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="2" aria-selected="false" tabindex="-1">200%</button>
+          <button class="pdf-scale-option" type="button" role="option" data-scale="3" aria-selected="false" tabindex="-1">300%</button>
+        </div>
+      </div>
+      <button id="pdfZoomIn" class="pdf-icon-button pdf-plus" type="button" title="Zoom in" aria-label="Zoom in" disabled>+</button>
+    </div>
+    <div id="pdfToolsEnd" class="pdf-tools-group pdf-tools-end">
+      <div id="pdfMoreControls" class="pdf-more-controls">
+        <button id="pdfSpreadToggle" class="pdf-icon-button" type="button" title="Two-page view" aria-label="Two-page view" aria-controls="pdfPages" aria-pressed="false" disabled><svg><use href="icon/viewer-icons.svg#icon-spread"/></svg></button>
+        <button id="pdfSearchToggle" class="pdf-icon-button" type="button" title="Search document (Ctrl+F)" aria-label="Search document" aria-controls="pdfSearchPanel" aria-expanded="false" disabled><svg><use href="icon/viewer-icons.svg#icon-search"/></svg></button>
+        <button id="pdfFullscreen" class="pdf-icon-button" type="button" title="Fullscreen" aria-label="Fullscreen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
+      </div>
+      <a id="pdfDownload" class="pdf-download pdf-icon-button" aria-label="Download PDF" title="Download PDF" hidden download><svg><use href="icon/viewer-icons.svg#icon-download"/></svg></a>
+      <button id="pdfToolsToggle" class="pdf-icon-button" type="button" title="More tools" aria-label="More tools" aria-controls="pdfMoreControls" aria-expanded="false" hidden><svg><use href="icon/viewer-icons.svg#icon-tools"/></svg></button>
+    </div>
+  </div>
+
+  <main id="pdfWorkspace" class="pdf-workspace">
+  <form id="pdfSearchPanel" class="pdf-search-panel" role="search" hidden inert>
+    <label for="pdfSearch" class="pdf-sr-only">Search document</label>
+    <div class="pdf-search-row">
+      <div class="pdf-search-field">
+        <input id="pdfSearch" type="search" placeholder="Search document" autocomplete="off">
+        <div class="pdf-search-actions">
+          <button id="pdfSearchSubmit" class="pdf-icon-button" type="submit" aria-label="Search document" title="Search"><svg><use href="icon/viewer-icons.svg#icon-search"/></svg></button>
+          <button id="pdfSearchClear" class="pdf-icon-button" type="button" aria-label="Clear search" title="Clear search"><svg><use href="icon/viewer-icons.svg#icon-circle-x"/></svg></button>
+        </div>
+      </div>
+      <button id="pdfSearchClose" class="pdf-icon-button" type="button" aria-label="Close search" title="Close search" aria-controls="pdfSearchPanel"><svg><use href="icon/viewer-icons.svg#icon-eye-off"/></svg></button>
+    </div>
+    <div class="pdf-search-matches">
+      <button id="pdfFindPrev" class="pdf-icon-button" type="button" aria-label="Previous match" title="Previous match" disabled><svg><use href="icon/viewer-icons.svg#icon-back"/></svg></button>
+      <span id="pdfSearchStatus" class="pdf-search-status" role="status" aria-live="polite">Enter a search term</span>
+      <button id="pdfFindNext" class="pdf-icon-button" type="button" aria-label="Next match" title="Next match" disabled><svg><use href="icon/viewer-icons.svg#icon-next"/></svg></button>
+    </div>
+  </form>
+
+    <button id="pdfSidebarScrim" class="pdf-sidebar-scrim" type="button" aria-label="Close document navigation" hidden></button>
+    <aside id="pdfSidebar" class="pdf-sidebar" aria-label="Document navigation" hidden>
+      <div class="pdf-sidebar-heading"><span>Navigation</span><button id="pdfSidebarClose" class="pdf-icon-button" type="button" aria-label="Close document navigation"><svg><use href="icon/viewer-icons.svg#icon-close"/></svg></button></div>
+      <div class="pdf-sidebar-tabs" role="tablist" aria-label="Navigation tabs">
+        <button id="pdfThumbnailsTab" type="button" role="tab" aria-controls="pdfThumbnails" aria-selected="true">Thumbnails</button>
+        <button id="pdfOutlineTab" type="button" role="tab" aria-controls="pdfOutlinePanel" aria-selected="false" tabindex="-1">Bookmarks</button>
+      </div>
+      <div id="pdfOutlinePanel" class="pdf-outline-panel" role="tabpanel" aria-labelledby="pdfOutlineTab" hidden>
+        <p id="pdfOutlineStatus" class="pdf-outline-status" role="status">Loading bookmarks…</p>
+        <ul id="pdfOutline" class="pdf-outline" hidden></ul>
+      </div>
+      <div id="pdfThumbnails" class="pdf-thumbnails" role="tabpanel" aria-labelledby="pdfThumbnailsTab"></div>
+    </aside>
+    <div id="pdfViewerContainer" class="pdf-viewer-container" tabindex="0" aria-label="PDF document" aria-busy="true">
+      <div id="pdfPages" class="pdfViewer"></div>
+    </div>
+    <section id="pdfStatus" class="pdf-status" role="status" aria-live="polite">
+      <div id="pdfSpinner" class="pdf-spinner"></div>
+      <svg id="pdfStatusIcon" hidden><use href="icon/viewer-icons.svg#icon-file"/></svg>
+      <h1 id="pdfStatusTitle">Loading PDF</h1>
+      <p id="pdfStatusMessage">Preparing your document…</p>
+      <div id="pdfProgress" class="pdf-download-progress indeterminate">
+        <div id="pdfProgressTrack" class="pdf-progress-track" role="progressbar" aria-label="PDF download progress" aria-valuemin="0" aria-valuemax="100"><span id="pdfProgressBar" class="pdf-progress-bar"></span></div>
+        <small id="pdfProgressText">Preparing download…</small>
+      </div>
+      <div class="pdf-status-actions">
+        <button id="pdfRetry" class="pdf-action" type="button" hidden>Retry</button>
+        <a id="pdfOriginal" class="pdf-action pdf-action-secondary" target="_blank" rel="noopener" hidden>Open original PDF</a>
+      </div>
+    </section>
+  </main>
+  <div id="pdfReadingStatus" class="pdf-sr-only" role="status" aria-live="polite">Loading</div>
+  <div id="pdfPageBadge" class="pdf-page-badge" aria-label="Current page and total pages" hidden><span id="pdfBadgeCurrent">1</span><span class="pdf-badge-divider">/</span><span id="pdfBadgeTotal">—</span></div>
+  <noscript><div class="pdf-noscript">Enable JavaScript to read this PDF, or return to the previous page to open the file.</div></noscript>
+</body>
+</html>

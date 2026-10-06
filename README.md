@@ -15,6 +15,20 @@ All pages share one native dialog, created by `javascripts/modal.js` on demand. 
 
 Optional attributes: `data-modal-width="700px"`, `data-modal-align="left"`, and `data-modal-title="Achievements"`. Content files contain trusted repository HTML. Successful requests are cached for the page session; failed requests can be retried by reopening. The dialog supports Escape, backdrop click, keyboard focus containment, focus restoration, and reduced motion. JavaScript callers can use `openFileModal(fileName, { maxWidth, textAlign, title })`; the old three-argument `showModalWithFile` call remains supported.
 
+## PDF reader
+
+Paper PDF links open the local reader in `pdfViewer/`. It uses the site's fonts, colors, and shared theme preference, with system theme on mobile. PDF.js, its worker, CMaps, fonts, and image decoders are bundled locally with their licenses. Serve the site over HTTP(S) to use the reader.
+
+The reader supports page navigation, zoom, two-page view, selectable text, document search, thumbnails, embedded bookmarks, fullscreen, downloading, and saved reading progress. File and return URLs must share the site's origin; loading errors provide retry and original-file links.
+
+To enable it on another page, load `pdfViewer/javascripts/view-pdf.js` and add `viewPDF` to a PDF anchor, keeping its original PDF `href` and removing any `download` attribute. Dynamically inserted links are supported. Paper metadata comes from `.research-card`; other links can set `data-pdf-title`, `data-pdf-author`, `data-pdf-journal`, and `data-pdf-year`. For example:
+
+```html
+<a href="files/content/cv/cv.pdf" viewPDF data-pdf-title="Curriculum Vitae">Read CV</a>
+```
+
+Direct links use `pdfViewer/?file=files/content/cv/cv.pdf`; an optional `#page=2` takes priority over saved progress. The Back link restores the source page's scroll position when storage is available.
+
 ## Paper citation counts
 
 The `Update Daily Publication Citations` GitHub Actions workflow fetches Crossref counts daily at 24:00 UTC (00:00 the next day; scheduled runs may be delayed). It also supports manual runs from the Actions tab. Push these files to the default branch to enable the schedule; Actions must be allowed to write repository contents.
