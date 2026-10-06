@@ -160,19 +160,56 @@ function showError(message, retry = true) {
   $('pdfReadingStatus').textContent = 'Loading failed';
 }
 $('pdfRetry').addEventListener('click', () => location.reload());
-$('pdfFullscreen').hidden = !document.documentElement.requestFullscreen;
-$('pdfFullscreen').addEventListener('click', async () => {
+const fullscreenButton = $('pdfFullscreen');
+let useNativeFullscreen = typeof document.documentElement.requestFullscreen === 'function'
+  && typeof document.exitFullscreen === 'function' && document.fullscreenEnabled !== false;
+let focusMode = false;
+let fullscreenRequestPending = false;
+function syncReadingModeButton() {
+  const active = focusMode || Boolean(document.fullscreenElement);
+  const label = focusMode || !useNativeFullscreen
+    ? active ? 'Exit focus mode' : 'Focus mode'
+    : active ? 'Exit fullscreen' : 'Fullscreen';
+  fullscreenButton.setAttribute('aria-pressed', String(active));
+  fullscreenButton.setAttribute('aria-label', label);
+  fullscreenButton.title = label;
+}
+function setFocusMode(active) {
+  focusMode = active;
+  document.body.classList.toggle('pdf-focus-mode', active);
+  syncReadingModeButton();
+}
+fullscreenButton.addEventListener('click', async () => {
+  if (fullscreenRequestPending) return;
+  if (focusMode || !useNativeFullscreen) {
+    setFocusMode(!focusMode);
+    return;
+  }
+  fullscreenRequestPending = true;
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
     else await document.documentElement.requestFullscreen();
-  } catch { $('pdfReadingStatus').textContent = 'Fullscreen is unavailable in this browser'; }
+  } catch {
+    if (!document.fullscreenElement) {
+      // Some embedded browsers expose the API but reject the request.
+      useNativeFullscreen = false;
+      setFocusMode(true);
+    } else {
+      $('pdfReadingStatus').textContent = 'Unable to exit fullscreen. Use your browser’s exit control.';
+    }
+  } finally {
+    fullscreenRequestPending = false;
+    syncReadingModeButton();
+  }
 });
 document.addEventListener('fullscreenchange', () => {
-  const active = Boolean(document.fullscreenElement);
-  $('pdfFullscreen').setAttribute('aria-pressed', String(active));
-  $('pdfFullscreen').setAttribute('aria-label', active ? 'Exit fullscreen' : 'Fullscreen');
-  $('pdfFullscreen').title = active ? 'Exit fullscreen' : 'Fullscreen';
+  if (document.fullscreenElement && focusMode) setFocusMode(false);
+  else syncReadingModeButton();
 });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && focusMode) setFocusMode(false);
+});
+syncReadingModeButton();
 
 let readerPromise;
 let cachedDownloadURL;
