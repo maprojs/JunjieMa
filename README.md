@@ -21,7 +21,7 @@ Paper PDF links open the local reader in `pdfViewer/`. It uses the site's fonts,
 
 The reader supports page navigation, zoom, two-page view, selectable text, document search, thumbnails, embedded bookmarks, fullscreen, downloading, and saved reading progress. File and return URLs must share the site's origin; loading errors provide retry and original-file links.
 
-To enable it on another page, load `pdfViewer/javascripts/view-pdf.js` and add `viewPDF` to a PDF anchor, keeping its original PDF `href` and removing any `download` attribute. Dynamically inserted links are supported. Paper metadata comes from `.research-card`; other links can set `data-pdf-title`, `data-pdf-author`, `data-pdf-journal`, and `data-pdf-year`. For example:
+To enable it on another page, load `javascripts/view-pdf.js` and add `viewPDF` to a PDF anchor, keeping its original PDF `href` and removing any `download` attribute. The script resolves `../pdfViewer/` relative to its own URL; update this path if relocating the script again. Dynamically inserted links are supported. Paper metadata comes from `.research-card`; other links can set `data-pdf-title`, `data-pdf-author`, `data-pdf-journal`, and `data-pdf-year`. For example:
 
 ```html
 <a href="files/content/cv/cv.pdf" viewPDF data-pdf-title="Curriculum Vitae">Read CV</a>

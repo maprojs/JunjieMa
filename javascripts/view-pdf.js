@@ -5,7 +5,7 @@
   'use strict';
   const script = document.currentScript;
   if (!script || window.ViewPDF) return;
-  const viewerURL = new URL('../', script.src);
+  const viewerURL = new URL('../pdfViewer/', script.src);
   const originals = new WeakMap();
 
   function sourceFor(anchor) {
