@@ -66,7 +66,7 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
 .pdf-minus, .pdf-plus { font-size: 22px !important; font-weight: 400; }
 .pdf-minus { transform: translateY(-.5px); }
 .pdf-plus { transform: translateY(-1.5px); }
-.pdf-search-panel { position: absolute; top: 0; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 16px 8px; background: var(--background); border-bottom: 1px solid var(--line); box-shadow: 0 4px 12px #0f172a1a; z-index: 4; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms; }
+.pdf-search-panel { position: relative; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 16px 8px; background: var(--background); border-bottom: 1px solid var(--line); box-shadow: 0 4px 12px #0f172a1a; z-index: 4; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms; }
 .pdf-search-panel.show { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
 .pdf-search-row { display: flex; align-items: center; gap: 8px; width: min(464px, 100%); }
 .pdf-search-field { position: relative; flex: 1; min-width: 0; }

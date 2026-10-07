@@ -222,6 +222,9 @@ if (pdfURL) {
   if (!title) {
     setTitle(filename);
   }
+  const downloadTitle = $('pdfTitleText').textContent.trim().replace(/\.pdf$/i, '');
+  const downloadFilename = (downloadTitle.replace(/[<>:"/\\|?*\u0000-\u001f]/g, '_').replace(/[. ]+$/, '') || 'document') + '.pdf';
+  $('pdfDownload').download = downloadFilename;
   $('pdfDownload').addEventListener('click', async event => {
     event.preventDefault();
     if (downloadBusy) return;
@@ -236,7 +239,6 @@ if (pdfURL) {
         const bytes = await documentPDF.getData();
         cachedDownloadURL = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
         $('pdfDownload').href = cachedDownloadURL;
-        $('pdfDownload').download = filename;
       }
       downloadURL = cachedDownloadURL;
     } catch {
@@ -245,7 +247,7 @@ if (pdfURL) {
     }
     const link = document.createElement('a');
     link.href = downloadURL;
-    link.download = filename;
+    link.download = downloadFilename;
     document.body.append(link);
     link.click();
     link.remove();
