@@ -1,4 +1,7 @@
 /* Route reader gestures through PDF.js so zoomed pages are rendered again. */
+export const MIN_PDF_SCALE = .25;
+export const MAX_PDF_SCALE = 10;
+
 export function bindPDFZoomGestures({ container, viewer, TouchManager, isReady, signal }) {
   const zoomDelay = 150;
   let targetScale = null;
@@ -15,7 +18,7 @@ export function bindPDFZoomGestures({ container, viewer, TouchManager, isReady, 
     const currentScale = viewer.currentScale;
     if (lastScale !== currentScale) targetScale = currentScale;
     // Keep small trackpad/touch changes that PDF.js rounds to two decimals.
-    targetScale = Math.max(.25, Math.min(4, targetScale * factor));
+    targetScale = Math.max(MIN_PDF_SCALE, Math.min(MAX_PDF_SCALE, targetScale * factor));
     const rect = container.getBoundingClientRect();
     const [top, left] = viewer.containerTopLeft;
     viewer.updateScale({

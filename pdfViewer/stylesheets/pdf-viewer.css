@@ -80,7 +80,7 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
 .pdf-search-matches .pdf-icon-button { width: 28px; height: 28px; }
 .pdf-search-status { min-width: 100px; min-height: 17px; font-size: 12px; font-weight: 600; color: var(--reader-blue); text-align: center; }
 .pdf-workspace { display: flex; position: relative; z-index: 0; flex: 1; min-height: 0; overflow: hidden; background: var(--reader-bg); }
-.pdf-viewer-container { position: absolute; inset: 0; overflow: auto; overscroll-behavior: contain; }
+.pdf-viewer-container { position: absolute; inset: 0; z-index: 0; overflow: auto; overscroll-behavior: contain; }
 .pdf-workspace.sidebar-open .pdf-viewer-container { left: 200px; }
 .pdfViewer { padding: 24px 16px; }
 .pdfViewer .page { box-sizing: content-box; max-width: none; padding: 0; margin: 0 auto 20px; border: 0; border-radius: 2px; box-shadow: 0 3px 16px #0f172a1a; }
@@ -133,7 +133,9 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
 .pdf-status h1 { font-size: 19px; margin: 18px 0 8px; font-weight: 600; }
 .pdf-status p { max-width: 500px; color: var(--reader-muted); font-size: 14px; }
 .pdf-status > svg { width: 44px; height: 44px; color: var(--reader-blue); }
-.pdf-spinner { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: pdf-spin .8s linear infinite; }
+.pdf-spinner, .pdfViewer .page.loadingIcon::after { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: pdf-spin .8s linear infinite; }
+/* Replace PDF.js's GIF with the same spinner used by the document loading panel. */
+.pdfViewer .page.loadingIcon::after { top: 50%; left: 50%; margin: -17px 0 0 -17px; background: none; pointer-events: none; }
 .pdf-download-progress { display: grid; width: min(420px, 100%); gap: 7px; margin-top: 18px; justify-items: center; }
 .pdf-progress-track { width: 100%; height: 8px; overflow: hidden; background: color-mix(in srgb, var(--primary) 12%, var(--surface)); border-radius: 999px; }
 .pdf-progress-bar { display: block; width: 0; height: 100%; background: var(--primary); border-radius: inherit; transition: width .15s ease; }
@@ -198,7 +200,7 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pdf-outline-toggle svg { transition: none; }
-  .pdf-spinner, .pdf-download[aria-busy="true"]::after { animation-duration: 2s; }
+  .pdf-spinner, .pdfViewer .page.loadingIcon::after, .pdf-download[aria-busy="true"]::after { animation-duration: 2s; }
   .pdf-title.is-marquee > span, .pdf-metadata.is-marquee > .pdf-metadata-content { animation: none; }
   .pdf-scale-menu, .pdf-search-panel { transition: none; }
   .pdf-progress-bar { transition: none; }

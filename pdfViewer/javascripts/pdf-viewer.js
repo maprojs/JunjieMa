@@ -1,5 +1,5 @@
 /* Independent PDF reader. PDF.js, its worker, fonts and CMaps are hosted locally. */
-import { bindPDFZoomGestures } from './pdf-zoom.js';
+import { bindPDFZoomGestures, MIN_PDF_SCALE, MAX_PDF_SCALE } from './pdf-zoom.js';
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const siteRoot = new URL('../../', import.meta.url);
@@ -272,7 +272,7 @@ if (pdfURL) {
 
 async function initializeReader() {
   const pdfjs = await import('../pdfjs/build/pdf.mjs');
-  const { PDFViewer, PDFLinkService, PDFFindController, EventBus, LinkTarget, FindState, DownloadManager, GenericL10n, SpreadMode } =
+  const { PDFViewer, PDFLinkService, PDFFindController, EventBus, LinkTarget, FindState, DownloadManager, GenericL10n, SpreadMode, RenderingStates } =
     await import('../pdfjs/web/pdf_viewer.mjs');
   pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs', import.meta.url).href;
   const assets = new URL('../pdfjs/', import.meta.url);
@@ -293,6 +293,8 @@ async function initializeReader() {
   linkService.setViewer(viewer);
   let documentPDF;
   let ready = false;
+  let initialRenderComplete = false;
+  let renderingFailed = false;
   const gestureController = new AbortController();
   bindPDFZoomGestures({
     container, viewer, TouchManager: pdfjs.TouchManager,
@@ -399,8 +401,8 @@ async function initializeReader() {
       option.classList.toggle('active', selected);
       option.setAttribute('aria-selected', String(selected));
     });
-    $('pdfZoomOut').disabled = viewer.currentScale <= .25;
-    $('pdfZoomIn').disabled = viewer.currentScale >= 4;
+    $('pdfZoomOut').disabled = viewer.currentScale <= MIN_PDF_SCALE;
+    $('pdfZoomIn').disabled = viewer.currentScale >= MAX_PDF_SCALE;
     // A previous manual zoom can leave a horizontal offset after refitting.
     if (['page-width', 'page-fit'].includes(value)) {
       requestAnimationFrame(() => { container.scrollLeft = 0; });
@@ -523,8 +525,8 @@ async function initializeReader() {
   document.addEventListener('focusin', event => {
     if (!event.target.closest('.pdf-scale-wrap')) setScaleMenu(false);
   });
-  $('pdfZoomOut').addEventListener('click', () => { viewer.currentScale = Math.max(.25, viewer.currentScale / 1.2); });
-  $('pdfZoomIn').addEventListener('click', () => { viewer.currentScale = Math.min(4, viewer.currentScale * 1.2); });
+  $('pdfZoomOut').addEventListener('click', () => { viewer.currentScale = Math.max(MIN_PDF_SCALE, viewer.currentScale / 1.2); });
+  $('pdfZoomIn').addEventListener('click', () => { viewer.currentScale = Math.min(MAX_PDF_SCALE, viewer.currentScale * 1.2); });
 
   function setSidebar(open) {
     $('pdfSidebar').hidden = !open;
@@ -861,6 +863,22 @@ async function initializeReader() {
     $('pdfThumbnails').replaceChildren(fragment);
   }
 
+  function finishInitialLoad() {
+    if (!ready || initialRenderComplete || renderingFailed) return;
+    const double = viewer.spreadMode !== SpreadMode.NONE;
+    const first = double ? Math.floor((viewer.currentPageNumber - 1) / 2) * 2 : viewer.currentPageNumber - 1;
+    const pages = [viewer.getPageView(first)];
+    if (double && viewer.getPageView(first + 1)) pages.push(viewer.getPageView(first + 1));
+    // A CSS resize or a background page finishing must not dismiss the loading panel.
+    if (pages.some(page => !page || page.renderingState !== RenderingStates.FINISHED
+      || (page.detailView && page.detailView.renderingState !== RenderingStates.FINISHED))) return;
+    initialRenderComplete = true;
+    $('pdfStatus').hidden = true;
+    $('pdfPageBadge').hidden = false;
+    container.setAttribute('aria-busy', 'false');
+    clearTimeout(loadTimeout);
+  }
+
   eventBus.on('pagesinit', () => {
     ready = true;
     buttons.forEach(id => { $(id).disabled = false; });
@@ -876,14 +894,17 @@ async function initializeReader() {
     if (!ready) return;
     updatePage();
     if (viewer.spreadMode !== SpreadMode.NONE) refit();
+    finishInitialLoad();
   });
   eventBus.on('scalechanging', updateScale);
-  eventBus.on('pagerendered', ({ error }) => {
-    if (error) { showError('This page could not be rendered. Please retry.'); return; }
-    $('pdfStatus').hidden = true;
-    $('pdfPageBadge').hidden = false;
-    container.setAttribute('aria-busy', 'false');
-    clearTimeout(loadTimeout);
+  eventBus.on('pagerendered', ({ error, cssTransform }) => {
+    if (error) {
+      renderingFailed = true;
+      clearTimeout(loadTimeout);
+      showError('This page could not be rendered. Please retry.');
+      return;
+    }
+    if (!cssTransform) finishInitialLoad();
     if (viewer.spreadMode !== SpreadMode.NONE) refit();
   });
   const task = pdfjs.getDocument({
