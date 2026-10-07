@@ -286,7 +286,8 @@ async function initializeReader() {
     annotationMode: pdfjs.AnnotationMode.ENABLE, enableScripting: false,
     imageResourcesPath: new URL('../icon/', import.meta.url).href,
     maxCanvasPixels: 10000000, maxCanvasDim: 8192,
-    enableDetailCanvas: false, enableAutoLinking: false
+    // Redraw the visible area at full resolution when the full-page canvas is capped.
+    enableDetailCanvas: true, enableAutoLinking: false
   });
   linkService.setViewer(viewer);
   let documentPDF;
