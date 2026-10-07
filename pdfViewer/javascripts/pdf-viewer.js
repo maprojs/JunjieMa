@@ -1,4 +1,5 @@
 /* Independent PDF reader. PDF.js, its worker, fonts and CMaps are hosted locally. */
+import { bindPDFZoomGestures } from './pdf-zoom.js';
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const siteRoot = new URL('../../', import.meta.url);
@@ -292,6 +293,11 @@ async function initializeReader() {
   linkService.setViewer(viewer);
   let documentPDF;
   let ready = false;
+  const gestureController = new AbortController();
+  bindPDFZoomGestures({
+    container, viewer, TouchManager: pdfjs.TouchManager,
+    isReady: () => ready, signal: gestureController.signal
+  });
   let searchQuery = '';
   let searchHasRun = false;
   let scaleCloseTimer;
@@ -916,7 +922,10 @@ async function initializeReader() {
     void loadOutline();
   } catch (error) { clearTimeout(loadTimeout); throw error; }
   window.addEventListener('pagehide', event => {
-    if (!event.persisted) { stopped = true; thumbnailObserver.disconnect(); task.destroy(); }
+    if (!event.persisted) {
+      gestureController.abort();
+      stopped = true; thumbnailObserver.disconnect(); task.destroy();
+    }
   });
   return documentPDF;
 }
