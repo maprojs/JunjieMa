@@ -215,8 +215,8 @@ let readerPromise;
 let cachedDownloadURL;
 let downloadBusy = false;
 if (pdfURL) {
-  $('pdfDownload').href = $('pdfOriginal').href = pdfURL.href;
-  $('pdfDownload').hidden = $('pdfOriginal').hidden = false;
+  $('pdfDownload').href = pdfURL.href;
+  $('pdfDownload').hidden = false;
   let filename = pdfURL.pathname.split('/').pop();
   try { filename = decodeURIComponent(filename); } catch { /* Use the encoded filename. */ }
   if (!title) {
@@ -262,7 +262,7 @@ if (pdfURL) {
     console.error('PDF reader:', error);
     const message = error.name === 'InvalidPDFException' ? 'The file is not a valid PDF, or its contents are damaged.'
       : /404|MissingPDF/.test(error.message) ? 'This PDF could not be found. Return to the previous page to choose another file.'
-      : 'The file could not be loaded. Check your connection and retry, or open the original PDF.';
+      : 'The file could not be loaded. Check your connection and retry.';
     showError(message);
   }
 }
@@ -870,7 +870,7 @@ async function initializeReader() {
   });
   eventBus.on('scalechanging', updateScale);
   eventBus.on('pagerendered', ({ error }) => {
-    if (error) { showError('This page could not be rendered. Retry or open the original PDF.'); return; }
+    if (error) { showError('This page could not be rendered. Please retry.'); return; }
     $('pdfStatus').hidden = true;
     $('pdfPageBadge').hidden = false;
     container.setAttribute('aria-busy', 'false');
@@ -883,7 +883,7 @@ async function initializeReader() {
     wasmUrl: new URL('wasm/', assets).href, isEvalSupported: false
   });
   const loadTimeout = setTimeout(() => {
-    $('pdfStatusMessage').textContent = 'Loading is taking longer than expected. You can keep waiting or open the original PDF.';
+    $('pdfStatusMessage').textContent = 'Loading is taking longer than expected. You can keep waiting or retry.';
     $('pdfRetry').hidden = false;
   }, 20000);
   task.onProgress = ({ loaded, total }) => {
@@ -904,7 +904,7 @@ async function initializeReader() {
     const password = window.prompt(reason === pdfjs.PasswordResponses.INCORRECT_PASSWORD
       ? 'Incorrect password. Enter the PDF password again:' : 'This PDF is password protected. Enter its password:');
     if (password !== null) submit(password);
-    else { clearTimeout(loadTimeout); showError('Password entry cancelled. Retry or open the original PDF.'); task.destroy(); }
+    else { clearTimeout(loadTimeout); showError('Password entry cancelled. Please retry.'); task.destroy(); }
   };
   try {
     documentPDF = await task.promise;
