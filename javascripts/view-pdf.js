@@ -45,10 +45,12 @@
     const year = anchor.getAttribute('data-pdf-year')?.trim()
       || card?.querySelector('p b')?.textContent.trim();
     url.searchParams.set('title', title.slice(0, 1000));
-    if (firstAuthor) url.searchParams.set('author', firstAuthor.slice(0, 200));
-    if (journal) url.searchParams.set('journal', journal.slice(0, 300));
-    if (year) url.searchParams.set('year', year.slice(0, 20));
-    if (journal) url.searchParams.set('meta', [journal, year].filter(Boolean).join(' · '));
+    const metadata = [
+      firstAuthor ? firstAuthor.slice(0, 200) + ', et al.' : '',
+      journal ? journal.slice(0, 300).replace(/\.+$/, '') + '.' : '',
+      year ? year.slice(0, 20) : ''
+    ].filter(Boolean).join(' ');
+    if (metadata) url.searchParams.set('meta', metadata);
     const back = new URL(location.href);
     back.searchParams.delete('pdfReturn');
     if (navigating) {

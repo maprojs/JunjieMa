@@ -4,32 +4,43 @@ const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const siteRoot = new URL('../../', import.meta.url);
 const mobile = matchMedia('(max-width: 640px)');
-const title = params.get('title')?.trim();
+function readPDFMetadata(params) {
+  const raw = params.get('meta')?.trim() || '';
+  const title = params.get('title')?.trim() || '';
+  // Accept previously shared links with JSON or separate metadata fields.
+  if (raw.startsWith('{')) {
+    try {
+      const metadata = JSON.parse(raw);
+      const legacy = new URLSearchParams();
+      for (const key of ['title', 'author', 'journal', 'year']) {
+        if (typeof metadata[key] === 'string') legacy.set(key, metadata[key]);
+      }
+      if (title) legacy.set('title', title);
+      return readPDFMetadata(legacy);
+    } catch { return { title, meta: '' }; }
+  }
+  if (['author', 'journal', 'year'].some(key => params.get(key)?.trim())) {
+    const [oldJournal, oldYear] = raw.split(' · ');
+    const author = params.get('author')?.trim();
+    const journal = params.get('journal')?.trim() || oldJournal;
+    const year = params.get('year')?.trim() || oldYear;
+    return { title, meta: [
+      author ? author + ', et al.' : '',
+      journal ? journal.replace(/\.+$/, '') + '.' : '', year
+    ].filter(Boolean).join(' ') };
+  }
+  return { title, meta: raw };
+}
+const { title, meta } = readPDFMetadata(params);
 function setTitle(text) {
   $('pdfTitleText').textContent = text;
   $('pdfTitle').title = text;
   document.title = text + ' | PDF Reader';
 }
 if (title) setTitle(title);
-const firstAuthor = params.get('author')?.trim();
-const journal = params.get('journal')?.trim() || params.get('meta')?.split(' · ')[0].trim();
-const year = params.get('year')?.trim() || params.get('meta')?.split(' · ')[1]?.trim();
-if (firstAuthor || journal || year) {
+if (meta) {
   $('pdfMetadata').hidden = false;
-  $('pdfCitation').hidden = !(firstAuthor || journal);
-  $('pdfDetails').hidden = !year;
-  if (firstAuthor) {
-    $('pdfAuthor').textContent = $('pdfAuthor').title = firstAuthor + ', et al';
-    $('pdfAuthor').hidden = false;
-  }
-  if (journal) {
-    $('pdfJournal').textContent = $('pdfJournal').title = journal;
-    $('pdfJournal').hidden = false;
-  }
-  if (year) {
-    $('pdfYear').textContent = year;
-    $('pdfYear').hidden = false;
-  }
+  $('pdfMetadataContent').textContent = $('pdfMetadataContent').title = meta;
 }
 let headerScrollFrame;
 function updateHeaderScroll() {
@@ -65,18 +76,39 @@ function syncPageInput(reset = false) {
     pageInput.value = mobile.matches ? '' : pageInput.placeholder;
   }
 }
-function setPageControlsExpanded(open) {
-  const expanded = toolbar.classList.contains('is-page-compact') && open;
-  pageToggle.setAttribute('aria-expanded', String(expanded));
-  pageControls.hidden = toolbar.classList.contains('is-page-compact') && !expanded;
-  if (pageControls.hidden && pageControls.contains(document.activeElement)) pageToggle.focus({ preventScroll: true });
-}
-function setToolsExpanded(open) {
+const toolbarPanelCloseTimers = new Map();
+function setToolbarPanelExpanded(panel, toggle, open) {
   const compact = toolbar.classList.contains('is-page-compact');
-  toolsToggle.setAttribute('aria-expanded', String(compact && open));
-  moreControls.hidden = compact && !open;
-  if (moreControls.hidden && moreControls.contains(document.activeElement)) toolsToggle.focus({ preventScroll: true });
+  const expanded = compact && open;
+  toggle.setAttribute('aria-expanded', String(expanded));
+  if (!compact || expanded) {
+    clearTimeout(toolbarPanelCloseTimers.get(panel));
+    toolbarPanelCloseTimers.delete(panel);
+    panel.hidden = false;
+    panel.inert = false;
+    if (expanded) {
+      // Commit the closed style before starting an entry transition from display:none.
+      void panel.offsetWidth;
+      panel.classList.add('show');
+    } else panel.classList.remove('show');
+    return;
+  }
+  if (panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
+  panel.inert = true;
+  if (!panel.classList.contains('show')) {
+    // Repeated outside clicks must not interrupt an in-progress exit transition.
+    if (!toolbarPanelCloseTimers.has(panel)) panel.hidden = true;
+    return;
+  }
+  panel.classList.remove('show');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) panel.hidden = true;
+  else toolbarPanelCloseTimers.set(panel, setTimeout(() => {
+    panel.hidden = true;
+    toolbarPanelCloseTimers.delete(panel);
+  }, 180));
 }
+function setPageControlsExpanded(open) { setToolbarPanelExpanded(pageControls, pageToggle, open); }
+function setToolsExpanded(open) { setToolbarPanelExpanded(moreControls, toolsToggle, open); }
 function updateToolbarLayout() {
   const compact = mobile.matches;
   const focused = document.activeElement;
@@ -93,7 +125,7 @@ function updateToolbarLayout() {
 }
 mobile.addEventListener('change', updateToolbarLayout);
 pageToggle.addEventListener('click', () => {
-  const open = pageControls.hidden;
+  const open = pageToggle.getAttribute('aria-expanded') !== 'true';
   setToolsExpanded(false);
   setPageControlsExpanded(open);
   if (open) {
@@ -102,7 +134,7 @@ pageToggle.addEventListener('click', () => {
   }
 });
 toolsToggle.addEventListener('click', () => {
-  const open = moreControls.hidden;
+  const open = toolsToggle.getAttribute('aria-expanded') !== 'true';
   setPageControlsExpanded(false);
   setToolsExpanded(open);
 });
@@ -739,7 +771,7 @@ async function initializeReader() {
       panel.classList.remove('show');
       panel.inert = true;
       eventBus.dispatch('findbarclose', { source: document });
-      (moreControls.hidden ? toolsToggle : $('pdfSearchToggle')).focus({ preventScroll: true });
+      (toolsToggle.getAttribute('aria-expanded') === 'true' ? $('pdfSearchToggle') : toolsToggle).focus({ preventScroll: true });
       searchCloseTimer = setTimeout(() => { panel.hidden = true; }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 180);
     }
   }
