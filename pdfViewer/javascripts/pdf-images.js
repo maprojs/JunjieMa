@@ -70,7 +70,9 @@ function resolveImage(page, operation) {
 
 async function imageBlob(image, crop, ImageKind, preview = false) {
   const width = crop?.w || image.width, height = crop?.h || image.height;
-  const ratio = preview ? Math.min(1, 840 / Math.max(width, height)) : 1;
+  // Match the 160px sidebar preview, allowing up to 2x pixels for high-DPI screens.
+  const previewWidth = 160 * Math.min(2, Math.max(1, globalThis.devicePixelRatio || 1));
+  const ratio = preview ? Math.min(1, previewWidth / width, previewWidth * 2 / height) : 1;
   const canvas = document.createElement('canvas');
   canvas.width = Math.max(1, Math.round(width * ratio));
   canvas.height = Math.max(1, Math.round(height * ratio));
