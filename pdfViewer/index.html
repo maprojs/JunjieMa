@@ -74,7 +74,7 @@
         <button id="pdfSearchToggle" class="pdf-icon-button" type="button" title="Search document (Ctrl+F)" aria-label="Search document" aria-controls="pdfSearchPanel" aria-expanded="false" disabled><svg><use href="icon/viewer-icons.svg#icon-search"/></svg></button>
         <button id="pdfFullscreen" class="pdf-icon-button" type="button" title="Fullscreen" aria-label="Fullscreen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
       </div>
-      <a id="pdfDownload" class="pdf-download pdf-icon-button" aria-label="Download PDF" title="Download PDF" hidden download><svg><use href="icon/viewer-icons.svg#icon-download"/></svg></a>
+      <a id="pdfDownload" class="pdf-download pdf-icon-button" aria-label="Download PDF" title="Download PDF" hidden download><svg><use href="icon/viewer-icons.svg#icon-save-image"/></svg></a>
       <button id="pdfToolsToggle" class="pdf-icon-button" type="button" title="More tools" aria-label="More tools" aria-controls="pdfMoreControls" aria-expanded="false" hidden><svg><use href="icon/viewer-icons.svg#icon-tools"/></svg></button>
     </div>
   </div>
@@ -105,12 +105,26 @@
       <div class="pdf-sidebar-tabs" role="tablist" aria-label="Navigation tabs">
         <button id="pdfThumbnailsTab" type="button" role="tab" aria-controls="pdfThumbnails" aria-selected="true">Thumbnails</button>
         <button id="pdfOutlineTab" type="button" role="tab" aria-controls="pdfOutlinePanel" aria-selected="false" tabindex="-1">Bookmarks</button>
+        <button id="pdfImagesTab" type="button" role="tab" aria-controls="pdfImagesPanel" aria-selected="false" tabindex="-1">Images</button>
       </div>
       <div id="pdfOutlinePanel" class="pdf-outline-panel" role="tabpanel" aria-labelledby="pdfOutlineTab" hidden>
         <p id="pdfOutlineStatus" class="pdf-outline-status" role="status">Loading bookmarks…</p>
         <ul id="pdfOutline" class="pdf-outline" hidden></ul>
       </div>
       <div id="pdfThumbnails" class="pdf-thumbnails" role="tabpanel" aria-labelledby="pdfThumbnailsTab"></div>
+      <section id="pdfImagesPanel" class="pdf-images-panel" role="tabpanel" aria-labelledby="pdfImagesTab" hidden inert>
+        <div class="pdf-images-options">
+          <div class="pdf-images-filter"><label><input id="pdfImagesAll" type="checkbox"> <span>Show all</span></label><button id="pdfImagesInfoToggle" class="pdf-icon-button pdf-images-info-button" type="button" aria-label="Image filter information" aria-expanded="false" aria-controls="pdfImagesInfo"><svg aria-hidden="true"><use href="icon/viewer-icons.svg#icon-circle-alert"/></svg></button></div>
+          <span><span>Images</span> <span id="pdfImagesCount" class="notranslate">0</span></span>
+          <div id="pdfImagesInfo" class="pdf-images-info" hidden>By default, only images with both width and height greater than 200px are shown to avoid logos and other small images.</div>
+        </div>
+        <div class="pdf-images-content">
+          <div id="pdfImagesList" class="pdf-images-list" aria-busy="true"></div>
+          <div id="pdfImagesLoading" class="pdf-images-loading" role="status" aria-label="Loading image…"><span class="pdf-spinner" aria-hidden="true"></span></div>
+        </div>
+        <p id="pdfImagesEmpty" class="pdf-images-empty" hidden>No large images found. Try Show all.</p>
+        <p id="pdfImagesErrors" class="pdf-images-errors" hidden>Some images or pages could not be extracted.</p>
+      </section>
     </aside>
     <div id="pdfViewerContainer" class="pdf-viewer-container" tabindex="0" aria-label="PDF document" aria-busy="true">
       <div id="pdfPages" class="pdfViewer"></div>
@@ -129,6 +143,36 @@
       </div>
     </section>
   </main>
+  <dialog id="pdfImageDialog" class="pdf-image-dialog" aria-labelledby="pdfImageDialogTitle">
+    <div class="pdf-image-dialog-header">
+      <strong id="pdfImageDialogTitle"><span>Image</span><span id="pdfImageDialogNumber" class="notranslate"></span></strong>
+      <span id="pdfImageDialogDimensions" class="notranslate"></span>
+      <button id="pdfImageDialogDownload" class="pdf-icon-button pdf-image-download" type="button" title="Download image" aria-label="Download image"><svg><use href="icon/viewer-icons.svg#icon-save-image"/></svg></button>
+      <button id="pdfImageDialogFullscreen" class="pdf-icon-button" type="button" title="Full screen" aria-label="Full screen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
+      <button id="pdfImageDialogClose" class="pdf-icon-button" type="button" title="Close images" aria-label="Close images"><svg><use href="icon/viewer-icons.svg#icon-close"/></svg></button>
+    </div>
+    <div id="pdfImageStage" class="pdf-image-stage" tabindex="0" aria-label="Image preview">
+      <img id="pdfImageFull" class="pdf-image-full" alt="" draggable="false" hidden>
+      <div id="pdfImageDialogStatus" class="pdf-image-dialog-status" role="status"><span class="pdf-spinner"></span><span id="pdfImageDialogMessage">Loading image…</span><button id="pdfImageRetry" class="pdf-action" type="button" hidden>Reload</button></div>
+    </div>
+    <div class="pdf-image-dialog-toolbar" role="toolbar" aria-label="Image zoom">
+      <button id="pdfImageZoomOut" class="pdf-icon-button pdf-minus" type="button" title="Zoom out" aria-label="Zoom out" disabled>−</button>
+      <div class="pdf-image-scale-wrap">
+        <button id="pdfImageScale" class="pdf-scale-button notranslate" type="button" aria-label="Zoom level" aria-haspopup="listbox" aria-expanded="false" aria-controls="pdfImageScaleOptions" disabled>100%</button>
+        <div id="pdfImageScaleOptions" class="pdf-image-scale-options" role="listbox" aria-label="Zoom options" hidden>
+          <button type="button" role="option" data-image-scale="fit" aria-selected="false">Fit to window</button>
+          <button type="button" role="option" data-image-scale="0.25" aria-selected="false" class="notranslate">25%</button>
+          <button type="button" role="option" data-image-scale="0.5" aria-selected="false" class="notranslate">50%</button>
+          <button type="button" role="option" data-image-scale="1" aria-selected="false" class="notranslate">100%</button>
+          <button type="button" role="option" data-image-scale="2" aria-selected="false" class="notranslate">200%</button>
+          <button type="button" role="option" data-image-scale="4" aria-selected="false" class="notranslate">400%</button>
+          <button type="button" role="option" data-image-scale="8" aria-selected="false" class="notranslate">800%</button>
+          <button type="button" role="option" data-image-scale="10" aria-selected="false" class="notranslate">1000%</button>
+        </div>
+      </div>
+      <button id="pdfImageZoomIn" class="pdf-icon-button pdf-plus" type="button" title="Zoom in" aria-label="Zoom in" disabled>+</button>
+    </div>
+  </dialog>
   <div id="pdfReadingStatus" class="pdf-sr-only" role="status" aria-live="polite">Loading</div>
   <div id="pdfPageBadge" class="pdf-page-badge" aria-label="Current page and total pages" hidden><span id="pdfBadgeCurrent">1</span><span class="pdf-badge-divider">/</span><span id="pdfBadgeTotal">—</span></div>
   <noscript><div class="pdf-noscript">Enable JavaScript to read this PDF, or return to the previous page to open the file.</div></noscript>
