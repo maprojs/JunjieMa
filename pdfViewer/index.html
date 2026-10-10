@@ -145,32 +145,41 @@
   </main>
   <dialog id="pdfImageDialog" class="pdf-image-dialog" aria-labelledby="pdfImageDialogTitle">
     <div class="pdf-image-dialog-header">
-      <strong id="pdfImageDialogTitle"><span>Image</span><span id="pdfImageDialogNumber" class="notranslate"></span></strong>
-      <span id="pdfImageDialogDimensions" class="notranslate"></span>
-      <button id="pdfImageDialogDownload" class="pdf-icon-button pdf-image-download" type="button" title="Download image" aria-label="Download image"><svg><use href="icon/viewer-icons.svg#icon-save-image"/></svg></button>
-      <button id="pdfImageDialogFullscreen" class="pdf-icon-button" type="button" title="Full screen" aria-label="Full screen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
-      <button id="pdfImageDialogClose" class="pdf-icon-button" type="button" title="Close images" aria-label="Close images"><svg><use href="icon/viewer-icons.svg#icon-close"/></svg></button>
+      <div class="pdf-image-dialog-info">
+        <strong id="pdfImageDialogTitle"><span>Image</span><span id="pdfImageDialogNumber" class="notranslate"></span></strong>
+        <span id="pdfImageDialogDimensions" class="notranslate"></span>
+      </div>
+      <div class="pdf-image-dialog-zoom" role="toolbar" aria-label="Image zoom">
+        <button id="pdfImageZoomOut" class="pdf-icon-button pdf-minus" type="button" title="Zoom out" aria-label="Zoom out" disabled>−</button>
+        <div class="pdf-image-scale-wrap">
+          <button id="pdfImageScale" class="pdf-scale-button notranslate" type="button" aria-label="Zoom level" aria-haspopup="listbox" aria-expanded="false" aria-controls="pdfImageScaleOptions" disabled>100%</button>
+          <div id="pdfImageScaleOptions" class="pdf-image-scale-options" role="listbox" aria-label="Zoom options" hidden>
+            <button type="button" role="option" data-image-scale="fit" aria-selected="false">Fit to window</button>
+            <button type="button" role="option" data-image-scale="0.25" aria-selected="false" class="notranslate">25%</button>
+            <button type="button" role="option" data-image-scale="0.5" aria-selected="false" class="notranslate">50%</button>
+            <button type="button" role="option" data-image-scale="1" aria-selected="false" class="notranslate">100%</button>
+            <button type="button" role="option" data-image-scale="2" aria-selected="false" class="notranslate">200%</button>
+            <button type="button" role="option" data-image-scale="4" aria-selected="false" class="notranslate">400%</button>
+            <button type="button" role="option" data-image-scale="8" aria-selected="false" class="notranslate">800%</button>
+            <button type="button" role="option" data-image-scale="10" aria-selected="false" class="notranslate">1000%</button>
+          </div>
+        </div>
+        <button id="pdfImageZoomIn" class="pdf-icon-button pdf-plus" type="button" title="Zoom in" aria-label="Zoom in" disabled>+</button>
+      </div>
+      <div class="pdf-image-dialog-actions">
+        <button id="pdfImageDialogDownload" class="pdf-icon-button pdf-image-download" type="button" title="Download image" aria-label="Download image"><svg><use href="icon/viewer-icons.svg#icon-save-image"/></svg></button>
+        <button id="pdfImageDialogFullscreen" class="pdf-icon-button" type="button" title="Full screen" aria-label="Full screen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
+        <button id="pdfImageDialogClose" class="pdf-icon-button" type="button" title="Close images" aria-label="Close images"><svg><use href="icon/viewer-icons.svg#icon-close"/></svg></button>
+      </div>
     </div>
     <div id="pdfImageStage" class="pdf-image-stage" tabindex="0" aria-label="Image preview">
       <img id="pdfImageFull" class="pdf-image-full" alt="" draggable="false" hidden>
       <div id="pdfImageDialogStatus" class="pdf-image-dialog-status" role="status"><span class="pdf-spinner"></span><span id="pdfImageDialogMessage">Loading image…</span><button id="pdfImageRetry" class="pdf-action" type="button" hidden>Reload</button></div>
     </div>
-    <div class="pdf-image-dialog-toolbar" role="toolbar" aria-label="Image zoom">
-      <button id="pdfImageZoomOut" class="pdf-icon-button pdf-minus" type="button" title="Zoom out" aria-label="Zoom out" disabled>−</button>
-      <div class="pdf-image-scale-wrap">
-        <button id="pdfImageScale" class="pdf-scale-button notranslate" type="button" aria-label="Zoom level" aria-haspopup="listbox" aria-expanded="false" aria-controls="pdfImageScaleOptions" disabled>100%</button>
-        <div id="pdfImageScaleOptions" class="pdf-image-scale-options" role="listbox" aria-label="Zoom options" hidden>
-          <button type="button" role="option" data-image-scale="fit" aria-selected="false">Fit to window</button>
-          <button type="button" role="option" data-image-scale="0.25" aria-selected="false" class="notranslate">25%</button>
-          <button type="button" role="option" data-image-scale="0.5" aria-selected="false" class="notranslate">50%</button>
-          <button type="button" role="option" data-image-scale="1" aria-selected="false" class="notranslate">100%</button>
-          <button type="button" role="option" data-image-scale="2" aria-selected="false" class="notranslate">200%</button>
-          <button type="button" role="option" data-image-scale="4" aria-selected="false" class="notranslate">400%</button>
-          <button type="button" role="option" data-image-scale="8" aria-selected="false" class="notranslate">800%</button>
-          <button type="button" role="option" data-image-scale="10" aria-selected="false" class="notranslate">1000%</button>
-        </div>
-      </div>
-      <button id="pdfImageZoomIn" class="pdf-icon-button pdf-plus" type="button" title="Zoom in" aria-label="Zoom in" disabled>+</button>
+    <div class="pdf-image-dialog-toolbar" role="toolbar" aria-label="Image navigation">
+      <button id="pdfImagePrevious" class="pdf-icon-button" type="button" title="Previous image" aria-label="Previous image" disabled><svg><use href="icon/viewer-icons.svg#icon-back"/></svg></button>
+      <span class="pdf-image-counter notranslate" role="status" aria-live="polite" aria-atomic="true"><span id="pdfImageCurrent">1</span><span>/</span><span id="pdfImageTotal">1</span></span>
+      <button id="pdfImageNext" class="pdf-icon-button" type="button" title="Next image" aria-label="Next image" disabled><svg><use href="icon/viewer-icons.svg#icon-next"/></svg></button>
     </div>
   </dialog>
   <div id="pdfReadingStatus" class="pdf-sr-only" role="status" aria-live="polite">Loading</div>

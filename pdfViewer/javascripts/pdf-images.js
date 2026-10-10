@@ -163,6 +163,7 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
     });
     $('pdfImagesCount').textContent = String(count);
     updateLoading();
+    lightbox.refresh();
     $('pdfImagesEmpty').hidden = !complete || count > 0;
     $('pdfImagesEmpty').textContent = $('pdfImagesAll').checked ? 'No embedded images found.' : 'No large images found. Try Show all.';
     $('pdfImagesErrors').hidden = errors === 0;
@@ -306,9 +307,13 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
       actions.append(button); return button;
     }
     const enlarge = action('Enlarge image', 'icon-expand');
+    entry.enlarge = enlarge;
     enlarge.addEventListener('click', () => lightbox.open({
-      number: entry.number, width: entry.width, height: entry.height, opener: enlarge,
-      getBlob: () => getBlob(entry, false), download: (button, blob) => download(entry, button, blob)
+      key: entry.key,
+      getItems: () => [...entries.values()].filter(visible).map(item => ({
+        key: item.key, width: item.width, height: item.height, opener: item.enlarge,
+        getBlob: () => getBlob(item, false), download: (button, blob) => download(item, button, blob)
+      }))
     }));
     const save = action('Download image', 'icon-save-image'); save.classList.add('pdf-image-download');
     save.addEventListener('click', () => void download(entry, save));
@@ -403,8 +408,38 @@ export function createImageLightbox({ returnFocus } = {}) {
   const options = [...menu.querySelectorAll('button')];
   const pointers = new Map();
   let state = { scale: 1, x: 0, y: 0 }, width = 0, height = 0, ready = false, fitted = true;
-  let frame, generation = 0, url, blob, active, opener, drag, nativeGesture, backdropDown = false;
+  let frame, generation = 0, url, blob, active, opener, drag, swipe, getItems, nativeGesture, backdropDown = false;
   let ownsFullscreen = false, nativeFullscreen = false, fullscreenGeneration = 0;
+  const previousButton = $('pdfImagePrevious'), nextButton = $('pdfImageNext');
+  function refresh() {
+    if (!active || !getItems) return;
+    const items = getItems(), index = items.findIndex(item => item.key === active.key);
+    const number = index < 0 ? 0 : index + 1;
+    $('pdfImageDialogNumber').textContent = number;
+    $('pdfImageCurrent').textContent = number;
+    $('pdfImageTotal').textContent = items.length;
+    const focused = document.activeElement;
+    previousButton.disabled = index <= 0;
+    nextButton.disabled = index < 0 || index >= items.length - 1;
+    // Disabling the focused boundary button must not lose the modal shortcuts.
+    if (focused === previousButton && previousButton.disabled || focused === nextButton && nextButton.disabled) {
+      dialog.focus({ preventScroll: true });
+    }
+  }
+  function select(item) {
+    active = item; opener = item.opener; ready = false;
+    setMenu(false);
+    $('pdfImageDialogDimensions').textContent = `${item.width} × ${item.height} px`;
+    refresh(); sizeDialog(); void load();
+  }
+  function move(direction) {
+    if (!dialog.open || !active || !getItems) return;
+    const items = getItems(), index = items.findIndex(item => item.key === active.key);
+    if (index < 0 || !items[index + direction]) return;
+    select(items[index + direction]);
+  }
+  previousButton.addEventListener('click', () => move(-1));
+  nextButton.addEventListener('click', () => move(1));
   const fullscreenButton = $('pdfImageDialogFullscreen');
   const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
   function fullscreenStyle(value) {
@@ -504,7 +539,7 @@ export function createImageLightbox({ returnFocus } = {}) {
   }
   function zoom(scale, point) {
     if (!ready) return;
-    fitted = false; state = zoomImageAt(state, scale, point); draw();
+    swipe = null; fitted = false; state = zoomImageAt(state, scale, point); draw();
   }
   function point(clientX, clientY) {
     const rect = stage.getBoundingClientRect();
@@ -517,7 +552,7 @@ export function createImageLightbox({ returnFocus } = {}) {
   }
   function resetPointers() {
     for (const id of pointers.keys()) if (stage.hasPointerCapture(id)) stage.releasePointerCapture(id);
-    pointers.clear(); drag = nativeGesture = null; stage.classList.remove('is-dragging');
+    pointers.clear(); drag = swipe = nativeGesture = null; stage.classList.remove('is-dragging');
   }
   function releaseImage() {
     image.hidden = true; image.removeAttribute('src');
@@ -531,11 +566,13 @@ export function createImageLightbox({ returnFocus } = {}) {
     dialog.close(); releaseImage();
     if (opener?.isConnected && opener.getClientRects().length) opener.focus({ preventScroll: true });
     else returnFocus?.();
-    active = opener = null;
+    active = opener = getItems = null;
   }
   async function load() {
     const token = ++generation;
-    ready = false; releaseImage(); resetPointers();
+    // Move focus before disabling a zoom/download control that initiated navigation.
+    dialog.focus({ preventScroll: true });
+    ready = false; cancelAnimationFrame(frame); releaseImage(); resetPointers();
     $('pdfImageDialogStatus').hidden = false;
     $('pdfImageDialogStatus').querySelector('.pdf-spinner').hidden = false;
     $('pdfImageDialogMessage').textContent = 'Loading image…'; $('pdfImageRetry').hidden = true;
@@ -591,13 +628,15 @@ export function createImageLightbox({ returnFocus } = {}) {
         : (index + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
       options[next].focus(); return;
     }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); return;
+    }
     if (!ready || event.target.closest('button')) return;
     if (event.key === '+' || event.key === '=') { event.preventDefault(); zoom(state.scale * 1.2); }
     else if (event.key === '-') { event.preventDefault(); zoom(state.scale / 1.2); }
     else if (event.key === '0') { event.preventDefault(); fit(); }
-    else if (event.key.startsWith('Arrow')) {
+    else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault(); fitted = false;
-      state.x += event.key === 'ArrowLeft' ? 40 : event.key === 'ArrowRight' ? -40 : 0;
       state.y += event.key === 'ArrowUp' ? 40 : event.key === 'ArrowDown' ? -40 : 0;
       draw();
     }
@@ -621,12 +660,20 @@ export function createImageLightbox({ returnFocus } = {}) {
   stage.addEventListener('pointerdown', event => {
     if (!ready || event.button !== 0) return;
     event.preventDefault(); stage.focus({ preventScroll: true });
+    // Only a new single-finger gesture at fit scale can switch images.
+    // Once a second finger joins, the entire gesture stays zoom/pan-only.
+    swipe = event.pointerType === 'touch' && pointers.size === 0 && !nativeGesture && state.scale <= fitScale() * 1.01
+      ? { id: event.pointerId, x: event.clientX, y: event.clientY, maxY: 0 } : null;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     stage.setPointerCapture(event.pointerId); stage.classList.add('is-dragging'); startDrag();
   });
   stage.addEventListener('pointermove', event => {
     if (!pointers.has(event.pointerId) || nativeGesture || !drag) return;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (swipe) {
+      swipe.maxY = Math.max(swipe.maxY, Math.abs(event.clientY - swipe.y));
+      return;
+    }
     const current = gesture();
     state = drag.distance > 0 && current.distance > 0
       ? zoomImageAt(drag.state, drag.state.scale * current.distance / drag.distance, drag.center) : { ...drag.state };
@@ -635,11 +682,18 @@ export function createImageLightbox({ returnFocus } = {}) {
   });
   function endPointer(event) {
     if (!pointers.delete(event.pointerId)) return;
+    const candidate = swipe;
+    swipe = null;
     if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
     stage.classList.toggle('is-dragging', pointers.size > 0); startDrag();
+    if (event.type !== 'pointerup' || !candidate || candidate.id !== event.pointerId || pointers.size) return;
+    const dx = event.clientX - candidate.x;
+    const dy = Math.max(candidate.maxY, Math.abs(event.clientY - candidate.y));
+    const threshold = Math.max(40, Math.min(80, stage.clientWidth * .18));
+    if (Math.abs(dx) >= threshold && Math.abs(dx) > dy * 1.5) move(dx < 0 ? 1 : -1);
   }
   for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) stage.addEventListener(event, endPointer);
-  stage.addEventListener('gesturestart', event => { event.preventDefault(); if (ready) nativeGesture = { ...state }; }, { passive: false });
+  stage.addEventListener('gesturestart', event => { event.preventDefault(); swipe = null; if (ready) nativeGesture = { ...state }; }, { passive: false });
   stage.addEventListener('gesturechange', event => {
     event.preventDefault();
     if (!nativeGesture || !Number.isFinite(event.scale)) return;
@@ -651,14 +705,14 @@ export function createImageLightbox({ returnFocus } = {}) {
   resize.observe(dialog);
   return {
     open(options) {
-      active = options; opener = options.opener; ready = false;
-      $('pdfImageDialogNumber').textContent = options.number;
-      $('pdfImageDialogDimensions').textContent = `${options.width} × ${options.height} px`;
+      const item = options.getItems().find(item => item.key === options.key);
+      if (!item) return;
+      getItems = options.getItems;
       if (!dialog.open) dialog.showModal();
-      sizeDialog();
+      select(item);
       dialog.focus({ preventScroll: true });
-      void load();
     },
+    refresh,
     dispose() {
       close(); resize.disconnect();
       document.removeEventListener('fullscreenchange', fullscreenChanged);
