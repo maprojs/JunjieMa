@@ -457,6 +457,25 @@ export function createImageLightbox({ returnFocus } = {}) {
     else close();
   }
 
+  function sizeDialog() {
+    if (!dialog.open || !active) return;
+    const imageWidth = ready ? width : active.width;
+    const imageHeight = ready ? height : active.height;
+    if (!(imageWidth > 0 && imageHeight > 0)) return;
+    // Size the image area to 70vh; header/footer are extra. Keep enough width for controls.
+    const displayHeight = Math.max(1, window.innerHeight * .7 - 32);
+    const minimumWidth = 400;
+    const desired = Math.ceil(Math.max(minimumWidth, Math.min(imageWidth, displayHeight * imageWidth / imageHeight) + 34)) + 'px';
+    if (dialog.style.getPropertyValue('--pdf-image-dialog-width') !== desired) {
+      dialog.style.setProperty('--pdf-image-dialog-width', desired);
+    }
+    // Mobile width is fixed at 80vw; derive its height from the fitted image.
+    const mobileScale = Math.min(1, Math.max(1, dialog.clientWidth - 32) / imageWidth);
+    const mobileHeight = Math.ceil(Math.max(240, imageHeight * mobileScale + 32)) + 'px';
+    if (dialog.style.getPropertyValue('--pdf-image-mobile-height') !== mobileHeight) {
+      dialog.style.setProperty('--pdf-image-mobile-height', mobileHeight);
+    }
+  }
   function fitScale() { return Math.max(.01, Math.min(1, (stage.clientWidth - 32) / width, (stage.clientHeight - 32) / height)); }
   function constrain() {
     const x = Math.max(0, (width * state.scale - stage.clientWidth) / 2);
@@ -530,7 +549,7 @@ export function createImageLightbox({ returnFocus } = {}) {
       if (token !== generation || !dialog.open) return;
       width = image.naturalWidth; height = image.naturalHeight;
       image.style.width = `${width}px`; image.style.height = `${height}px`;
-      image.hidden = false; ready = true;
+      image.hidden = false; ready = true; sizeDialog();
       $('pdfImageDialogStatus').hidden = true; $('pdfImageDialogDownload').disabled = false;
       fit();
     } catch (error) {
@@ -627,14 +646,16 @@ export function createImageLightbox({ returnFocus } = {}) {
     state = zoomImageAt(nativeGesture, nativeGesture.scale * event.scale); fitted = false; draw();
   }, { passive: false });
   stage.addEventListener('gestureend', event => { event.preventDefault(); nativeGesture = null; startDrag(); }, { passive: false });
-  const resize = new ResizeObserver(() => { if (ready && dialog.open) { if (fitted) fit(); else draw(); } });
+  const resize = new ResizeObserver(() => { sizeDialog(); if (ready && dialog.open) { if (fitted) fit(); else draw(); } });
   resize.observe(stage);
+  resize.observe(dialog);
   return {
     open(options) {
-      active = options; opener = options.opener;
+      active = options; opener = options.opener; ready = false;
       $('pdfImageDialogNumber').textContent = options.number;
       $('pdfImageDialogDimensions').textContent = `${options.width} × ${options.height} px`;
       if (!dialog.open) dialog.showModal();
+      sizeDialog();
       $('pdfImageDialogClose').focus({ preventScroll: true });
       void load();
     },
