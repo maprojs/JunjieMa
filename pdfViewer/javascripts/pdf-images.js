@@ -656,7 +656,7 @@ export function createImageLightbox({ returnFocus } = {}) {
       $('pdfImageDialogDimensions').textContent = `${options.width} × ${options.height} px`;
       if (!dialog.open) dialog.showModal();
       sizeDialog();
-      $('pdfImageDialogClose').focus({ preventScroll: true });
+      dialog.focus({ preventScroll: true });
       void load();
     },
     dispose() {
