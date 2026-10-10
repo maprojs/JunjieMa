@@ -2,6 +2,8 @@
 
 Image extraction and the zoom/fullscreen preview share the single module `pdfViewer/javascripts/pdf-images.js`.
 
+After native fullscreen starts from an already-open image dialog, reopen the same modal above the fullscreen root and restore focus, retaining the image and zoom state. This prevents the fullscreen page from covering the modal and blocking interaction. An existing reader fullscreen session and the viewport fallback do not need this step.
+
 The Images tab follows Bookmarks in the 240px navigation sidebar. Page thumbnails are 140px wide, image previews 160px. Labels use Image n/total. Clicking a preview navigates to its PDF page; scrolling the document selects the matching images.
 
 Extraction starts when Images is opened and pauses when hidden. The loading circle has Loading previews completed/total directly underneath. Counts refer to successfully decoded previews in the active filter; the total grows as scanning discovers images. The overlay closes once scanning and preview preparation finish; failed previews do not keep it open. By default both dimensions must exceed 200px; Show all includes small images. The circular information button opens a blue explanation below it.
