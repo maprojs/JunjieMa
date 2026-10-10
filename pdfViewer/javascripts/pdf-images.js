@@ -583,11 +583,16 @@ export function createImageLightbox({ returnFocus } = {}) {
       }
       nativeFullscreen = true;
       // Fullscreen promotes the root above an already-open modal in the top layer.
-      // Reopen the same dialog above it without resetting the image/zoom state.
+      // close() may only schedule top-layer removal. Detach the closed dialog
+      // to remove it immediately before showModal() adds it above the root.
+      // Keep the same node so the image, zoom state and listeners survive.
       const focused = document.activeElement;
+      const parent = dialog.parentNode, next = dialog.nextSibling;
       backdropDown = false;
       resetPointers();
       dialog.close();
+      dialog.remove();
+      parent.insertBefore(dialog, next);
       dialog.showModal();
       (dialog.contains(focused) ? focused : fullscreenButton).focus({ preventScroll: true });
     } catch { if (token === fullscreenGeneration) ownsFullscreen = nativeFullscreen = false; }
