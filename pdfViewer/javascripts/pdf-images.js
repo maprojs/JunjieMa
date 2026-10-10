@@ -100,6 +100,45 @@ async function imageBlob(image, crop, ImageKind, preview = false) {
   }
 }
 
+// Per-document LRU caches own their URLs; detaching a view does not discard its PNG.
+function createImageCache(maxBytes, maxEntries) {
+  const cached = new Map(), pending = new Map();
+  let bytes = 0, disposed = false;
+  function peek(key) {
+    const asset = cached.get(key);
+    if (asset) { cached.delete(key); cached.set(key, asset); }
+    return asset;
+  }
+  return {
+    peek,
+    has: key => cached.has(key),
+    get(key, produce) {
+      if (disposed) return Promise.resolve(null);
+      const hit = peek(key);
+      if (hit) return Promise.resolve(hit);
+      if (pending.has(key)) return pending.get(key);
+      const task = Promise.resolve().then(produce).then(blob => {
+        if (disposed || !blob) return null;
+        const asset = { blob, url: URL.createObjectURL(blob) };
+        cached.set(key, asset); bytes += blob.size;
+        // Retain at least the newest image, even if it alone exceeds the byte budget.
+        while (cached.size > 1 && (bytes > maxBytes || cached.size > maxEntries)) {
+          const [oldKey, old] = cached.entries().next().value;
+          cached.delete(oldKey); bytes -= old.blob.size; URL.revokeObjectURL(old.url);
+        }
+        return asset;
+      }).finally(() => pending.delete(key));
+      pending.set(key, task);
+      return task;
+    },
+    dispose() {
+      disposed = true;
+      for (const asset of cached.values()) URL.revokeObjectURL(asset.url);
+      cached.clear(); pending.clear(); bytes = 0;
+    }
+  };
+}
+
 export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, returnFocus, canCleanup }) {
   const $ = id => document.getElementById(id);
   const panel = $('pdfImagesPanel'), list = $('pdfImagesList');
@@ -120,10 +159,13 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
     }
   });
   const entries = new Map(), cards = new WeakMap(), downloadURLs = new Map();
+  const previewCache = createImageCache(16 * 1024 * 1024, 48);
+  const fullCache = createImageCache(128 * 1024 * 1024, 16);
   const lightbox = createImageLightbox({ returnFocus });
   let open = false, disposed = false, scanning = false, nextPage = 1, errors = 0;
   let currentPage = 1, positionPending = true, positionFrame, preferredEntry;
   let work = Promise.resolve();
+  let preparing = false, preloading = false, preloadTimer;
 
   // Serialize scan/preview/export work so cleanup cannot invalidate another extraction.
   function withPage(number, callback) {
@@ -142,10 +184,60 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
     return result;
   }
   const visible = entry => $('pdfImagesAll').checked || entry.width > 200 && entry.height > 200;
+  function pendingPreviews() {
+    return [...entries.values()].some(entry => visible(entry) && !entry.previewReady && !entry.previewFailed);
+  }
   function updateLoading() {
-    const loading = nextPage <= (getDocument()?.numPages || Infinity);
+    const shown = [...entries.values()].filter(visible);
+    const done = shown.filter(entry => entry.previewReady).length;
+    const loading = nextPage <= (getDocument()?.numPages || Infinity) || pendingPreviews();
+    $('pdfImagesProgress').textContent = `${done}/${shown.length}`;
     $('pdfImagesLoading').hidden = !loading;
     list.setAttribute('aria-busy', String(loading));
+  }
+  function schedulePreload() {
+    clearTimeout(preloadTimer);
+    if (disposed || !open || preparing || scanning || preloading
+      || nextPage <= (getDocument()?.numPages || Infinity) || pendingPreviews()) return;
+    // One background original at a time; let clicks and preview work run first.
+    preloadTimer = setTimeout(() => void preloadNext(), 120);
+  }
+  async function preloadNext() {
+    if (disposed || !open || preparing || scanning || preloading || pendingPreviews()) return;
+    const candidates = [...entries.values()].filter(entry => visible(entry) && entry.previewReady)
+      .sort((a, b) => Number(b.near) - Number(a.near)
+        || Math.abs(a.pages[0] - currentPage) - Math.abs(b.pages[0] - currentPage))
+      .slice(0, 16);
+    const entry = candidates.find(entry => !entry.prefetched && !fullCache.has(entry.key));
+    if (!entry) return;
+    entry.prefetched = true; preloading = true;
+    try { await getAsset(entry, false); }
+    catch (error) { if (!disposed) console.warn('PDF image preload:', error); }
+    finally { preloading = false; schedulePreload(); }
+  }
+  async function preparePreviews() {
+    if (preparing || disposed || !open) return;
+    preparing = true;
+    try {
+      while (open && !disposed) {
+        const entry = [...entries.values()].find(entry => visible(entry) && !entry.previewReady && !entry.previewFailed);
+        if (!entry) break;
+        try {
+          const asset = await getPreviewAsset(entry);
+          if (!asset) { if (!open || disposed) break; continue; }
+          if (entry.near) void loadPreview(entry);
+        } catch (error) {
+          if (!disposed) {
+            entry.previewFailed = true; errors++;
+            console.warn('PDF image preview preparation:', error);
+          }
+        }
+        if (!disposed) updateStatus();
+      }
+    } finally {
+      preparing = false;
+      if (!disposed) { updateLoading(); schedulePreload(); }
+    }
   }
   function previewSpinner(entry) {
     const spinner = document.createElement('span');
@@ -197,7 +289,6 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
   listResize.observe(list);
   function releasePreview(entry) {
     if (!entry.url) return;
-    URL.revokeObjectURL(entry.url);
     entry.url = null;
     previewSpinner(entry);
   }
@@ -208,36 +299,52 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
       if (entry.near && open) void loadPreview(entry);
       else if (!entry.near) releasePreview(entry);
     }
+    schedulePreload();
   }, { root: list, rootMargin: '200px' });
 
-  async function getBlob(entry, preview) {
-    return withPage(entry.pages[0], async (page, operations) => {
-      if (preview && (!open || !entry.near || !visible(entry))) return null;
+  function getAsset(entry, preview) {
+    const cache = preview ? previewCache : fullCache;
+    return cache.get(entry.key, () => withPage(entry.pages[0], async (page, operations) => {
+      if (preview && (!open || !visible(entry))) return null;
       const operation = operations.find(item => item.index === entry.index
         && JSON.stringify(item.crop) === JSON.stringify(entry.crop));
       if (!operation) throw new Error('Image operation unavailable');
       const image = await resolveImage(page, operation);
       if (!image) throw new Error('Image decoding failed');
       return imageBlob(image, entry.crop, pdfjs.ImageKind, preview);
-    });
+    }));
+  }
+  async function getBlob(entry, preview) { return (await getAsset(entry, preview))?.blob; }
+  async function getPreviewAsset(entry) {
+    const asset = previewCache.peek(entry.key) || await getAsset(entry, true);
+    if (!asset || disposed) return null;
+    if (!asset.image) {
+      // Visible previews and the preparation pass share one decode as well as one PNG.
+      if (!asset.decoding) {
+        asset.decoding = (async () => {
+          const image = document.createElement('img');
+          image.alt = ''; image.decoding = 'async';
+          image.width = entry.width; image.height = entry.height; image.src = asset.url;
+          await image.decode(); asset.image = image;
+        })().finally(() => { asset.decoding = null; });
+      }
+      await asset.decoding;
+    }
+    if (disposed) return null;
+    entry.previewReady = true; entry.previewFailed = false;
+    updateLoading();
+    return asset;
   }
   async function loadPreview(entry) {
     if (disposed || entry.url || entry.loading || !visible(entry)) return;
     entry.loading = true;
-    previewSpinner(entry);
-    let previewURL;
     try {
-      const blob = await getBlob(entry, true);
-      if (!blob || disposed || !open || !entry.near || !visible(entry)) return;
-      const image = document.createElement('img');
-      image.alt = ''; image.decoding = 'async';
-      image.width = entry.width; image.height = entry.height;
-      previewURL = URL.createObjectURL(blob);
-      image.src = previewURL;
-      await image.decode();
+      if (!previewCache.has(entry.key)) previewSpinner(entry);
+      const asset = await getPreviewAsset(entry);
+      if (!asset) return;
       if (disposed || !open || !entry.near || !visible(entry)) return;
-      entry.url = previewURL; previewURL = null;
-      entry.preview.replaceChildren(image);
+      entry.url = asset.url;
+      entry.preview.replaceChildren(asset.image);
       entry.preview.removeAttribute('aria-label');
       entry.preview.setAttribute('aria-busy', 'false');
     } catch (error) {
@@ -248,8 +355,8 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
         console.warn('PDF image preview:', error);
       }
     } finally {
-      if (previewURL) URL.revokeObjectURL(previewURL);
       entry.loading = false;
+      schedulePreload();
     }
   }
   async function download(entry, button, existingBlob) {
@@ -312,7 +419,8 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
       key: entry.key,
       getItems: () => [...entries.values()].filter(visible).map(item => ({
         key: item.key, width: item.width, height: item.height, opener: item.enlarge,
-        getBlob: () => getBlob(item, false), download: (button, blob) => download(item, button, blob)
+        peekAsset: () => fullCache.peek(item.key), getAsset: () => getAsset(item, false),
+        download: (button, blob) => download(item, button, blob)
       }))
     }));
     const save = action('Download image', 'icon-save-image'); save.classList.add('pdf-image-download');
@@ -350,20 +458,20 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
           });
         } catch (error) { errors++; console.warn('PDF image page:', error); }
         nextPage++;
-        if (!disposed) updateStatus();
+        if (!disposed) { updateStatus(); void preparePreviews(); }
         // Yield between pages, allowing queued previews and user input to run.
         await new Promise(resolve => setTimeout(resolve, 0));
       }
-    } finally { scanning = false; }
+    } finally { scanning = false; schedulePreload(); }
   }
   function setActive(value) {
     if (disposed || value && !getDocument()) return;
     open = value;
     panel.inert = !value;
     panel.hidden = !value;
-    if (!value) setInfo(false);
+    if (!value) { setInfo(false); clearTimeout(preloadTimer); }
     if (value) {
-      updateStatus(); void scan();
+      updateStatus(); void scan(); void preparePreviews(); schedulePreload();
       for (const entry of entries.values()) if (entry.near) void loadPreview(entry);
     }
   }
@@ -372,21 +480,22 @@ export function createImagePanel({ pdfjs, getDocument, getFilename, navigate, re
       entry.card.hidden = !visible(entry);
       if (entry.card.hidden) releasePreview(entry);
     }
-    positionPending = true; updateStatus();
+    positionPending = true; updateStatus(); void preparePreviews(); schedulePreload();
   });
   return {
     syncPage(page) {
       if (page === currentPage) return;
-      currentPage = page; positionPending = true;
+      currentPage = page; positionPending = true; schedulePreload();
       if (!preferredEntry?.pages.includes(page)) preferredEntry = null;
       updateSelection();
     },
     setActive,
     dispose() {
-      disposed = true; cancelAnimationFrame(positionFrame); observer.disconnect(); listResize.disconnect(); lightbox.dispose();
+      disposed = true; clearTimeout(preloadTimer); cancelAnimationFrame(positionFrame); observer.disconnect(); listResize.disconnect(); lightbox.dispose();
       document.removeEventListener('pointerdown', dismissInfo);
       document.removeEventListener('focusin', dismissInfo);
       for (const entry of entries.values()) releasePreview(entry);
+      previewCache.dispose(); fullCache.dispose();
       for (const [url, timer] of downloadURLs) { clearTimeout(timer); URL.revokeObjectURL(url); }
       entries.clear();
     }
@@ -556,8 +665,7 @@ export function createImageLightbox({ returnFocus } = {}) {
   }
   function releaseImage() {
     image.hidden = true; image.removeAttribute('src');
-    if (url) URL.revokeObjectURL(url);
-    url = blob = null;
+    url = blob = null; // The document cache owns the URL until eviction or disposal.
   }
   function close() {
     if (!dialog.open) return;
@@ -572,16 +680,18 @@ export function createImageLightbox({ returnFocus } = {}) {
     const token = ++generation;
     // Move focus before disabling a zoom/download control that initiated navigation.
     dialog.focus({ preventScroll: true });
+    const cached = active.peekAsset();
     ready = false; cancelAnimationFrame(frame); releaseImage(); resetPointers();
-    $('pdfImageDialogStatus').hidden = false;
+    $('pdfImageDialogStatus').hidden = !!cached;
     $('pdfImageDialogStatus').querySelector('.pdf-spinner').hidden = false;
     $('pdfImageDialogMessage').textContent = 'Loading image…'; $('pdfImageRetry').hidden = true;
     $('pdfImageDialogDownload').disabled = true;
     for (const id of ['pdfImageZoomOut', 'pdfImageZoomIn', 'pdfImageScale']) $(id).disabled = true;
     try {
-      const result = await active.getBlob();
+      const asset = cached || await active.getAsset();
       if (token !== generation || !dialog.open) return;
-      blob = result; url = URL.createObjectURL(blob); image.src = url;
+      if (!asset) throw new Error('Image unavailable');
+      blob = asset.blob; url = asset.url; image.src = url;
       await image.decode();
       if (token !== generation || !dialog.open) return;
       width = image.naturalWidth; height = image.naturalHeight;
@@ -592,6 +702,7 @@ export function createImageLightbox({ returnFocus } = {}) {
     } catch (error) {
       if (token !== generation || !dialog.open) return;
       releaseImage();
+      $('pdfImageDialogStatus').hidden = false;
       $('pdfImageDialogStatus').querySelector('.pdf-spinner').hidden = true;
       $('pdfImageDialogMessage').textContent = 'Image preview failed'; $('pdfImageRetry').hidden = false;
       console.warn('PDF image lightbox:', error);
