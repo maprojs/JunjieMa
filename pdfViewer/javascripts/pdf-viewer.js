@@ -303,11 +303,13 @@ if (pdfURL) {
 }
 
 async function initializeReader() {
-  const pdfjs = await import('../pdfjs/build/pdf.mjs');
+  const { needsPDFCompatibility, loadPDFBytes } = await import('./pdf-loading.js');
+  const compatibilityMode = needsPDFCompatibility();
+  const pdfjs = await import('../pdfjs/build/pdf.mjs?v=5.4.624-legacy');
   const { createImagePanel } = await import('./pdf-images.js');
   const { PDFViewer, PDFLinkService, PDFFindController, EventBus, LinkTarget, FindState, DownloadManager, GenericL10n, SpreadMode, RenderingStates } =
-    await import('../pdfjs/web/pdf_viewer.mjs');
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs', import.meta.url).href;
+    await import('../pdfjs/web/pdf_viewer.mjs?v=5.4.624-legacy');
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs?v=5.4.624-legacy', import.meta.url).href;
   const assets = new URL('../pdfjs/', import.meta.url);
   const eventBus = new EventBus();
   const linkService = new PDFLinkService({ eventBus, externalLinkTarget: LinkTarget.BLANK, externalLinkRel: 'noopener noreferrer' });
@@ -953,16 +955,20 @@ async function initializeReader() {
     if (!cssTransform) finishInitialLoad();
     if (viewer.spreadMode !== SpreadMode.NONE) refit();
   });
-  const task = pdfjs.getDocument({
-    url: pdfURL.href, cMapUrl: new URL('cmaps/', assets).href, cMapPacked: true,
-    standardFontDataUrl: new URL('standard_fonts/', assets).href,
-    wasmUrl: new URL('wasm/', assets).href, isEvalSupported: false
+  let task;
+  const downloadController = new AbortController();
+  window.addEventListener('pagehide', event => {
+    if (!event.persisted) {
+      gestureController.abort();
+      stopped = true; imagePanel.dispose(); thumbnailObserver.disconnect();
+      downloadController.abort(); void task?.destroy();
+    }
   });
   const loadTimeout = setTimeout(() => {
     $('pdfStatusMessage').textContent = 'Loading is taking longer than expected. You can keep waiting or retry.';
     $('pdfRetry').hidden = false;
   }, 20000);
-  task.onProgress = ({ loaded, total }) => {
+  const reportProgress = ({ loaded, total }) => {
     const hasTotal = Number.isFinite(total) && total > 0;
     const percent = hasTotal ? Math.max(0, Math.min(100, loaded / total * 100)) : 0;
     const formatBytes = bytes => bytes < 1024 ? `${Math.round(bytes)} B`
@@ -976,23 +982,31 @@ async function initializeReader() {
       : `Downloaded ${formatBytes(loaded)}`;
     $('pdfStatusMessage').textContent = hasTotal && percent === 100 ? 'Download complete. Preparing pages…' : 'Downloading PDF…';
   };
-  task.onPassword = (submit, reason) => {
-    const password = window.prompt(reason === pdfjs.PasswordResponses.INCORRECT_PASSWORD
-      ? 'Incorrect password. Enter the PDF password again:' : 'This PDF is password protected. Enter its password:');
-    if (password !== null) submit(password);
-    else { clearTimeout(loadTimeout); showError('Password entry cancelled. Please retry.'); task.destroy(); }
-  };
   try {
+    const source = compatibilityMode
+      ? { data: await loadPDFBytes(pdfURL.href, reportProgress, downloadController.signal) }
+      : { url: pdfURL.href };
+    task = pdfjs.getDocument({
+      ...source, cMapUrl: new URL('cmaps/', assets).href, cMapPacked: true,
+      standardFontDataUrl: new URL('standard_fonts/', assets).href,
+      wasmUrl: new URL('wasm/', assets).href, isEvalSupported: false,
+      // Keep image decoding on the established canvas path in older/embedded engines.
+      isImageDecoderSupported: compatibilityMode ? false : undefined,
+      isOffscreenCanvasSupported: compatibilityMode ? false : undefined,
+      useWorkerFetch: compatibilityMode ? false : undefined
+    });
+    task.onProgress = reportProgress;
+    task.onPassword = (submit, reason) => {
+      const password = window.prompt(reason === pdfjs.PasswordResponses.INCORRECT_PASSWORD
+        ? 'Incorrect password. Enter the PDF password again:' : 'This PDF is password protected. Enter its password:');
+      if (password !== null) submit(password);
+      else { clearTimeout(loadTimeout); showError('Password entry cancelled. Please retry.'); task.destroy(); }
+    };
     documentPDF = await task.promise;
     linkService.setDocument(documentPDF);
     viewer.setDocument(documentPDF);
     void loadOutline();
   } catch (error) { clearTimeout(loadTimeout); throw error; }
-  window.addEventListener('pagehide', event => {
-    if (!event.persisted) {
-      gestureController.abort();
-      stopped = true; imagePanel.dispose(); thumbnailObserver.disconnect(); task.destroy();
-    }
-  });
+
   return documentPDF;
 }
