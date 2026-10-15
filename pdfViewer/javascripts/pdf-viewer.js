@@ -303,10 +303,13 @@ if (pdfURL) {
 }
 
 async function initializeReader() {
-  const pdfjs = await import('../pdfjs/build/pdf.mjs');
+  const { needsPDFCompatibility, loadPDFBytes } = await import('./pdf-loading.js');
+  const compatibilityMode = needsPDFCompatibility();
+  const pdfjs = await import('../pdfjs/build/pdf.mjs?v=5.4.624-legacy');
+  const { createImagePanel } = await import('./pdf-images.js');
   const { PDFViewer, PDFLinkService, PDFFindController, EventBus, LinkTarget, FindState, DownloadManager, GenericL10n, SpreadMode, RenderingStates } =
-    await import('../pdfjs/web/pdf_viewer.mjs');
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs', import.meta.url).href;
+    await import('../pdfjs/web/pdf_viewer.mjs?v=5.4.624-legacy');
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs?v=5.4.624-legacy', import.meta.url).href;
   const assets = new URL('../pdfjs/', import.meta.url);
   const eventBus = new EventBus();
   const linkService = new PDFLinkService({ eventBus, externalLinkTarget: LinkTarget.BLANK, externalLinkRel: 'noopener noreferrer' });
@@ -324,6 +327,13 @@ async function initializeReader() {
   });
   linkService.setViewer(viewer);
   let documentPDF;
+  const imagePanel = createImagePanel({
+    pdfjs, getDocument: () => documentPDF,
+    getFilename: () => $('pdfTitleText').textContent,
+    navigate: page => { changePage(page); if (mobile.matches) setSidebar(false); },
+    returnFocus: () => ($('pdfSidebar').hidden ? $('pdfSidebarToggle') : $('pdfImagesTab')).focus({ preventScroll: true }),
+    canCleanup: page => !viewer.getCachedPageViews().has(viewer.getPageView(page - 1))
+  });
   let ready = false;
   let initialRenderComplete = false;
   let renderingFailed = false;
@@ -409,9 +419,10 @@ async function initializeReader() {
     $('pdfReadingStatus').textContent = `Page ${page} of ${documentPDF.numPages}`;
     $('pdfBadgeCurrent').textContent = page;
     $('pdfBadgeTotal').textContent = documentPDF.numPages;
-    document.querySelectorAll('.pdf-thumbnail[aria-current]').forEach(button => button.removeAttribute('aria-current'));
+    $('pdfThumbnails').querySelectorAll('.pdf-thumbnail[aria-current]').forEach(button => button.removeAttribute('aria-current'));
     $('pdfThumbnails').children[page - 1]?.setAttribute('aria-current', 'page');
     revealCurrentThumbnail();
+    imagePanel.syncPage(page);
     updateOutlineSelection();
     const url = new URL(location.href);
     const hash = new URLSearchParams(url.hash.slice(1));
@@ -565,6 +576,7 @@ async function initializeReader() {
     $('pdfWorkspace').classList.toggle('sidebar-open', open);
     $('pdfSidebarToggle').setAttribute('aria-expanded', String(open));
     $('pdfSidebarScrim').hidden = !open || !mobile.matches;
+    imagePanel.setActive(open && navigationTab === 'images');
     if (open) { revealCurrentThumbnail(); revealOutlineSelection(); }
     refit();
   }
@@ -577,23 +589,27 @@ async function initializeReader() {
     navigationTab = tab;
     const outline = tab === 'outline';
     $('pdfOutlinePanel').hidden = !outline;
-    $('pdfThumbnails').hidden = outline;
-    for (const [id, selected] of [['pdfOutlineTab', outline], ['pdfThumbnailsTab', !outline]]) {
+    $('pdfThumbnails').hidden = tab !== 'pages';
+    imagePanel.setActive(tab === 'images' && !$('pdfSidebar').hidden);
+    for (const [id, selected] of [['pdfOutlineTab', outline], ['pdfThumbnailsTab', tab === 'pages'], ['pdfImagesTab', tab === 'images']]) {
       $(id).setAttribute('aria-selected', String(selected));
       $(id).tabIndex = selected ? 0 : -1;
     }
     if (outline) revealOutlineSelection();
-    else revealCurrentThumbnail();
+    else if (tab === 'pages') revealCurrentThumbnail();
   }
   $('pdfOutlineTab').addEventListener('click', () => setNavigationTab('outline'));
   $('pdfThumbnailsTab').addEventListener('click', () => setNavigationTab('pages'));
+  $('pdfImagesTab').addEventListener('click', () => setNavigationTab('images'));
   document.querySelector('.pdf-sidebar-tabs').addEventListener('keydown', event => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    const tab = event.key === 'Home' ? 'pages' : event.key === 'End' ? 'outline'
-      : navigationTab === 'outline' ? 'pages' : 'outline';
+    const tabs = ['pages', 'outline', 'images'];
+    const index = event.key === 'Home' ? 0 : event.key === 'End' ? 2
+      : (tabs.indexOf(navigationTab) + (event.key === 'ArrowRight' ? 1 : 2)) % 3;
+    const tab = tabs[index];
     setNavigationTab(tab);
-    $(tab === 'outline' ? 'pdfOutlineTab' : 'pdfThumbnailsTab').focus();
+    $({ pages: 'pdfThumbnailsTab', outline: 'pdfOutlineTab', images: 'pdfImagesTab' }[tab]).focus();
   });
   function revealOutlineSelection() {
     if (!currentOutlineEntry || $('pdfSidebar').hidden || $('pdfOutlinePanel').hidden) return;
@@ -857,7 +873,7 @@ async function initializeReader() {
     const page = await documentPDF.getPage(Number(button.dataset.page));
     if (stopped) return;
     const base = page.getViewport({ scale: 1 });
-    const viewport = page.getViewport({ scale: 130 / base.width });
+    const viewport = page.getViewport({ scale: 140 / base.width });
     const ratio = Math.min(devicePixelRatio || 1, 1.5);
     const canvas = document.createElement('canvas');
     canvas.width = Math.ceil(viewport.width * ratio);
@@ -885,7 +901,7 @@ async function initializeReader() {
       const paper = document.createElement('span'); paper.className = 'pdf-thumbnail-paper';
       // Reserve space before lazy painting so loading cannot move the scroll position.
       const viewport = viewer.getPageView(page - 1)?.viewport;
-      if (viewport) paper.style.height = 130 * viewport.height / viewport.width + 'px';
+      if (viewport) paper.style.height = 140 * viewport.height / viewport.width + 'px';
       const number = document.createElement('span'); number.textContent = page;
       button.append(paper, number);
       button.addEventListener('click', () => { changePage(page); if (mobile.matches) setSidebar(false); });
@@ -939,16 +955,20 @@ async function initializeReader() {
     if (!cssTransform) finishInitialLoad();
     if (viewer.spreadMode !== SpreadMode.NONE) refit();
   });
-  const task = pdfjs.getDocument({
-    url: pdfURL.href, cMapUrl: new URL('cmaps/', assets).href, cMapPacked: true,
-    standardFontDataUrl: new URL('standard_fonts/', assets).href,
-    wasmUrl: new URL('wasm/', assets).href, isEvalSupported: false
+  let task;
+  const downloadController = new AbortController();
+  window.addEventListener('pagehide', event => {
+    if (!event.persisted) {
+      gestureController.abort();
+      stopped = true; imagePanel.dispose(); thumbnailObserver.disconnect();
+      downloadController.abort(); void task?.destroy();
+    }
   });
   const loadTimeout = setTimeout(() => {
     $('pdfStatusMessage').textContent = 'Loading is taking longer than expected. You can keep waiting or retry.';
     $('pdfRetry').hidden = false;
   }, 20000);
-  task.onProgress = ({ loaded, total }) => {
+  const reportProgress = ({ loaded, total }) => {
     const hasTotal = Number.isFinite(total) && total > 0;
     const percent = hasTotal ? Math.max(0, Math.min(100, loaded / total * 100)) : 0;
     const formatBytes = bytes => bytes < 1024 ? `${Math.round(bytes)} B`
@@ -962,23 +982,31 @@ async function initializeReader() {
       : `Downloaded ${formatBytes(loaded)}`;
     $('pdfStatusMessage').textContent = hasTotal && percent === 100 ? 'Download complete. Preparing pages…' : 'Downloading PDF…';
   };
-  task.onPassword = (submit, reason) => {
-    const password = window.prompt(reason === pdfjs.PasswordResponses.INCORRECT_PASSWORD
-      ? 'Incorrect password. Enter the PDF password again:' : 'This PDF is password protected. Enter its password:');
-    if (password !== null) submit(password);
-    else { clearTimeout(loadTimeout); showError('Password entry cancelled. Please retry.'); task.destroy(); }
-  };
   try {
+    const source = compatibilityMode
+      ? { data: await loadPDFBytes(pdfURL.href, reportProgress, downloadController.signal) }
+      : { url: pdfURL.href };
+    task = pdfjs.getDocument({
+      ...source, cMapUrl: new URL('cmaps/', assets).href, cMapPacked: true,
+      standardFontDataUrl: new URL('standard_fonts/', assets).href,
+      wasmUrl: new URL('wasm/', assets).href, isEvalSupported: false,
+      // Keep image decoding on the established canvas path in older/embedded engines.
+      isImageDecoderSupported: compatibilityMode ? false : undefined,
+      isOffscreenCanvasSupported: compatibilityMode ? false : undefined,
+      useWorkerFetch: compatibilityMode ? false : undefined
+    });
+    task.onProgress = reportProgress;
+    task.onPassword = (submit, reason) => {
+      const password = window.prompt(reason === pdfjs.PasswordResponses.INCORRECT_PASSWORD
+        ? 'Incorrect password. Enter the PDF password again:' : 'This PDF is password protected. Enter its password:');
+      if (password !== null) submit(password);
+      else { clearTimeout(loadTimeout); showError('Password entry cancelled. Please retry.'); task.destroy(); }
+    };
     documentPDF = await task.promise;
     linkService.setDocument(documentPDF);
     viewer.setDocument(documentPDF);
     void loadOutline();
   } catch (error) { clearTimeout(loadTimeout); throw error; }
-  window.addEventListener('pagehide', event => {
-    if (!event.persisted) {
-      gestureController.abort();
-      stopped = true; thumbnailObserver.disconnect(); task.destroy();
-    }
-  });
+
   return documentPDF;
 }
