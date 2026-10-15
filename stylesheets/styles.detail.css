@@ -508,9 +508,9 @@
 
 .education-page section > ul > div::before {
   position: absolute;
-  top: 34px;
+  top: 50%;
   left: calc(-1 * var(--timeline-gap) - 2px);
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
   content: "";
