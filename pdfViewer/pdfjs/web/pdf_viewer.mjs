@@ -8794,7 +8794,8 @@ class PDFViewer {
     if (numVisiblePages === 0) {
       return;
     }
-    const newCacheSize = Math.max(DEFAULT_CACHE_SIZE, 2 * numVisiblePages + 1);
+    // Keep every rendered page for this document so scrolling back reuses its canvas.
+    const newCacheSize = Math.max(DEFAULT_CACHE_SIZE, this.pagesCount, 2 * numVisiblePages + 1);
     this.#buffer.resize(newCacheSize, visible.ids);
     for (const {
       view,
