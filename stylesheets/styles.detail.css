@@ -567,11 +567,11 @@
   display: block;
 }
 
-.research-page section > div:not(.page-hero) > p:empty {
+.research-page section > div:not(.page-hero):not(.research-panel) > p:empty {
   display: none;
 }
 
-.research-page section > div:not(.page-hero) > p,
+.research-page section > div:not(.page-hero):not(.research-panel) > p,
 .research-page .funding-card,
 .research-page .research-card {
   position: relative;
@@ -592,7 +592,7 @@
     border-color 300ms ease;
 }
 
-.research-page section > div:not(.page-hero) > p:last-child,
+.research-page section > div:not(.page-hero):not(.research-panel) > p:last-child,
 .research-page .funding-card:last-child,
 .research-page .research-card:last-child {
   margin-bottom: 0;
@@ -735,7 +735,7 @@
 @media (hover: hover) and (pointer: fine) {
   .home-page section > ul > div:hover,
   .education-page section > ul > div:hover,
-  .research-page section > div:not(.page-hero) > p:not(:empty):hover,
+  .research-page section > div:not(.page-hero):not(.research-panel) > p:not(:empty):hover,
   .research-page .research-card:hover {
     z-index: 2;
     border-color: var(--hover-border);

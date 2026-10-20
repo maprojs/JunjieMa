@@ -81,40 +81,46 @@
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Navigation--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
         <h2 id="research-navigation" class="research-section-title">Navigation </h2>
         <nav class="research-section-nav" aria-label="Research sections">
-          <a href="javascript:void(0)" onclick="scrollToSection('papers')">
+          <a href="research.html" data-research-tab="papers" aria-current="true" aria-controls="papers-panel">
             <h3 class="research-nav-title">📖 Papers</h3>
             <span class="research-nav-description">Journal articles</span>
           </a>
-          <a href="javascript:void(0)" onclick="scrollToSection('funding')">
+          <a href="research.html?section=projects" data-research-tab="projects" aria-controls="projects-panel">
             <h3 class="research-nav-title">📚 Projects</h3>
             <span class="research-nav-description">Funded projects</span>
           </a>
-          <a href="javascript:void(0)" onclick="scrollToSection('works')">
+          <a href="research.html?section=works" data-research-tab="works" aria-controls="works-panel">
             <h3 class="research-nav-title">📁 Works</h3>
             <span class="research-nav-description">Patents, software and datasets</span>
           </a>
         </nav>
 
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Papers--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
-        <h2 id="papers" class="research-section-title" style="margin-top:80px !important;">
+        <div id="papers-panel" class="research-panel" role="region" aria-labelledby="papers">
+        <h2 id="papers" class="research-section-title">
           Published Papers 
         </h2>
 
         <add-file filepath="files/content/publications/papers.html" data-research-section="papers" data-manual>
           <noscript>Please enable JavaScript to view this section.</noscript>
         </add-file>
+        </div>
 
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Funding--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+        <div id="projects-panel" class="research-panel" role="region" aria-labelledby="funding" hidden>
         <h2 id="funding" class="research-section-title">Approved Funding</h2>
         <add-file filepath="files/content/publications/funding.html" data-research-section="funding" data-manual>
           <noscript>Please enable JavaScript to view this section.</noscript>
         </add-file>
+        </div>
 
 <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>--Patents--<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+        <div id="works-panel" class="research-panel" role="region" aria-labelledby="works" hidden>
         <h2 id="works" class="research-section-title">Research Works</h2>
-        <add-file filepath="files/content/publications/works.html" data-research-section="patents" data-manual>
+        <add-file filepath="files/content/publications/works.html" data-research-section="works" data-manual>
           <noscript>Please enable JavaScript to view this section.</noscript>
         </add-file>
+        </div>
 
       </section>
       <footer class="site-footer">

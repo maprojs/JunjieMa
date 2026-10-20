@@ -50,7 +50,7 @@
 
 .research-page .research-section-nav {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-top: 32px;
 }
@@ -104,8 +104,12 @@
   outline-offset: 3px;
 }
 
-.research-page .research-section-nav + #papers {
-  margin-top: 26px !important;
+.research-panel[hidden] {
+  display: none;
+}
+
+.research-page .research-panel > .research-section-title {
+  margin-top: 30px !important;
 }
 
 @media (max-width: 620px) {

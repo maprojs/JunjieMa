@@ -49,6 +49,7 @@ function initializePaperPagination() {
   let matches = papers;
   let page = 1;
   let size = 10;
+  let restoring = false;
 
   const pagination = document.createElement('nav');
   pagination.className = 'papers-pagination';
@@ -68,7 +69,7 @@ function initializePaperPagination() {
       size = value;
       page = 1;
       sizeMenu.open = false;
-      render(true);
+      render(true, 'push');
       sizeToggle.focus({ preventScroll: true });
     });
     options.append(option);
@@ -79,7 +80,7 @@ function initializePaperPagination() {
   pagination.append(sizeMenu, pages);
   sections[1].after(pagination);
 
-  function render(scroll = false) {
+  function render(scroll = false, historyMode = null) {
     const mode = document.querySelector('[data-paper-sort][aria-pressed="true"]').dataset.paperSort;
     papers.forEach(paper => {
       const text = paper.querySelector('.cited[data-doi]')?.textContent.trim();
@@ -132,7 +133,7 @@ function initializePaperPagination() {
       button.addEventListener('click', () => {
         if (number === page) return;
         page = number;
-        render(true);
+        render(true, 'push');
         pages.querySelector('[aria-current="page"]')?.focus({ preventScroll: true });
       });
       pages.append(button);
@@ -151,6 +152,14 @@ function initializePaperPagination() {
       addPage(String(number), number);
     });
     addPage('Next', page + 1, page === totalPages);
+    if (historyMode && !restoring) {
+      const language = document.querySelector('[data-paper-section][aria-pressed="true"]').dataset.paperSection;
+      const role = document.querySelector('[data-paper-role][aria-pressed="true"]').dataset.paperRole;
+      window.researchQuery.write({
+        language: { all: 'all', pubmedPapers: 'english', cnkiPapers: 'chinese' }[language],
+        role, sort: mode, page, size
+      }, historyMode);
+    }
     if (scroll) document.getElementById('firstAuthorCount')?.scrollIntoView({
       behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
       block: 'start'
@@ -160,11 +169,10 @@ function initializePaperPagination() {
   document.addEventListener('papers:filtered', event => {
     matches = event.detail;
     page = 1;
-    render();
+    render(false, 'push');
   });
   document.addEventListener('papers:citations-updated', () => {
     if (document.querySelector('[data-paper-sort][aria-pressed="true"]').dataset.paperSort === 'citations') {
-      page = 1;
       render();
     }
   });
@@ -180,5 +188,30 @@ function initializePaperPagination() {
   sizeMenu.addEventListener('focusout', event => {
     if (event.relatedTarget && !sizeMenu.contains(event.relatedTarget)) sizeMenu.open = false;
   });
-  applyPaperFilters();
+  function restoreQuery() {
+    const state = window.researchQuery.read();
+    restoring = true;
+    const selections = {
+      section: { all: 'all', english: 'pubmedPapers', chinese: 'cnkiPapers' }[state.language],
+      role: state.role, sort: state.sort
+    };
+    for (const [kind, value] of Object.entries(selections)) {
+      document.querySelectorAll(`[data-paper-${kind}]`).forEach(option => {
+        option.setAttribute('aria-pressed', String(option.dataset[`paper${kind[0].toUpperCase()}${kind.slice(1)}`] === value));
+      });
+    }
+    const selectedSort = document.querySelector('[data-paper-sort][aria-pressed="true"]');
+    const sortTrigger = selectedSort.closest('.paper-control').querySelector('.paper-control-button');
+    sortTrigger.textContent = selectedSort.textContent;
+    sortTrigger.setAttribute('aria-label', `Sort: ${selectedSort.textContent}`);
+    size = state.size === 'all' ? 'all' : Number(state.size);
+    applyPaperFilters();
+    page = Number(state.page);
+    render();
+    restoring = false;
+    // Canonicalize out-of-range pages after filtering without creating history.
+    window.researchQuery.write({ page }, 'replace');
+  }
+  document.addEventListener('research:restore', restoreQuery);
+  restoreQuery();
 }
