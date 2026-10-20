@@ -445,7 +445,7 @@
   color: var(--muted);
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--card-background);
   box-shadow: var(--shadow-sm);
   transform-origin: center;
   transition:
@@ -502,7 +502,7 @@
   padding: 28px 30px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--card-background);
   box-shadow: var(--shadow-sm);
 }
 
@@ -583,7 +583,7 @@
   line-height: 1.68;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--card-background);
   box-shadow: var(--shadow-sm);
   transform-origin: center;
   transition:

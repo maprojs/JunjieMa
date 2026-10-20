@@ -23,6 +23,7 @@
   --muted: #677286;
   --line: #e1e6ee;
   --surface: #fff;
+  --card-background: #fff;
   --background: #f6f8fb;
   --header-background: rgba(246, 248, 251, 0.92);
   --control-border: #cfd9eb;
@@ -44,6 +45,7 @@
   --muted: #aab6c9;
   --line: #2c384b;
   --surface: #141e2d;
+  --card-background: var(--surface);
   --background: #0c1421;
   --header-background: rgba(12, 20, 33, 0.92);
   --control-border: #3b4a61;
