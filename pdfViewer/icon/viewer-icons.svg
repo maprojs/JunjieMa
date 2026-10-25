@@ -14,4 +14,6 @@
   <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8Z M14 3v5h5M8 13h8m-8 4h5"/></symbol>
   <symbol id="icon-circle-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 3v.01"/></symbol>
   <symbol id="icon-save-image" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></symbol>
+  <symbol id="icon-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6zM18 12h.01"/></symbol>
+  <symbol id="icon-page-download" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"/><path d="M6 6.5h4M12 12v7m-3-3 3 3 3-3M4 18v3h16v-3"/></symbol>
 </svg>

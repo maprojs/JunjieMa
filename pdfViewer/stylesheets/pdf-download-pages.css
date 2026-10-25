@@ -1,0 +1,26 @@
+/* Search popovers use z-index 4; the partial-download panel sits one level above. */
+.pdf-partial-download { position: fixed; z-index: 5; width: max-content; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 4px 16px #0f172a26; }
+.pdf-partial-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 15px; font-weight: 500; white-space: nowrap; }
+.pdf-reader .pdf-partial-toggle { flex: 1; padding: 0; min-height: 30px; border: 0; background: none; color: var(--reader-blue); font: inherit; text-align: left; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+.pdf-reader .pdf-partial-toggle:hover, .pdf-reader .pdf-partial-toggle:active, .pdf-reader .pdf-partial-toggle[aria-expanded="true"] { color: var(--accent); }
+.pdf-partial-download .pdf-icon-button { width: 30px; height: 30px; }
+.pdf-partial-download form { margin: 8px 0 0; }
+.pdf-partial-input-row { display: flex; align-items: center; gap: 5px; }
+.pdf-partial-input-row input { flex: 1; width: 100%; min-width: 0; height: 36px; box-sizing: border-box; padding: 6px 11px; border: 1.5px solid var(--primary); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 13px; }
+.pdf-partial-download input:focus { outline: none; box-shadow: none; }
+.pdf-partial-download p { max-width: none; margin: 7px 0 0; font-size: 12px; line-height: 1.5; color: var(--reader-muted); overflow-wrap: anywhere; }
+.pdf-partial-download.has-error p { color: #dc5252; }
+.pdf-partial-download input[aria-invalid="true"] { border-color: #dc5252; }
+.pdf-partial-download form[aria-busy="true"] .pdf-icon-button { cursor: progress; }
+#pdfPartialClose { position: static; margin: 0 0 0 10px; width: 30px; height: 30px; }
+#pdfPartialClose svg { width: 20px; height: 20px; stroke-width: 2.5; }
+.pdf-partial-presets { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; }
+.pdf-reader .pdf-partial-presets button { padding: 0; border: 0; background: none; color: var(--reader-blue); font-size: 12px; font-weight: 500; text-decoration: none; }
+.pdf-reader .pdf-partial-presets button:not(:disabled):hover { color: var(--accent); }
+
+
+
+.pdf-partial-download:has(#pdfPartialToggle[aria-expanded="true"]) { width: 360px; }
+
+.pdf-partial-field { position: relative; flex: 1; min-width: 0; }
+.pdf-partial-input-row .pdf-partial-field input { width: 100%; padding-right: 38px; }

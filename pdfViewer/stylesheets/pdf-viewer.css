@@ -41,6 +41,15 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
 .pdf-toolbar.is-page-compact .pdf-page-controls { position: absolute; top: calc(100% + 8px); left: 0; width: max-content; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); box-shadow: 0 4px 16px #0f172a26; z-index: 8; }
 .pdf-tools-end { position: relative; justify-self: end; transform: translateX(4px); }
 .pdf-more-controls { display: contents; }
+#pdfPrint { order: 0; }
+.pdf-print-dialog { position: fixed; inset: 0; margin: auto; width: min(420px, calc(100vw - 40px)); max-height: calc(100dvh - 40px); box-sizing: border-box; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); }
+.pdf-print-dialog::backdrop { background: #0f172a80; }
+.pdf-print-dialog h2 { margin: 0 0 12px; font-size: 18px; }
+.pdf-print-dialog p { margin: 0 0 16px; font-size: 14px; }
+.pdf-print-dialog progress { display: block; width: 100%; margin-bottom: 20px; accent-color: var(--primary); }
+.pdf-print-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
+#pdfPrintOriginal { font-weight: 500; }
+.pdf-print-frame { position: fixed; left: -10000px; top: 0; width: 1px; height: 1px; border: 0; pointer-events: none; }
 #pdfDownload { order: 1; }
 #pdfFullscreen, #pdfToolsToggle { order: 2; }
 .pdf-toolbar.is-page-compact #pdfDownload { order: 0; }
@@ -235,8 +244,8 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
   .pdf-toolbar { gap: 2px; padding: 7px 18px 7px 12px; grid-template-columns: auto minmax(0, 1fr) auto; }
   .pdf-zoom-tools { justify-self: center; }
   .pdf-toolbar .pdf-icon-button { width: 28px; height: 34px; }
-  .pdf-toolbar :is(#pdfSidebarToggle, #pdfPageToggle, #pdfDownload, #pdfToolsToggle, #pdfSpreadToggle, #pdfSearchToggle, #pdfFullscreen) { width: 36px; height: 38px; }
-  .pdf-toolbar :is(#pdfSidebarToggle, #pdfPageToggle, #pdfDownload, #pdfToolsToggle, #pdfSpreadToggle, #pdfSearchToggle, #pdfFullscreen) svg { width: 22px; height: 22px; }
+  .pdf-toolbar :is(#pdfSidebarToggle, #pdfPageToggle, #pdfDownload, #pdfToolsToggle, #pdfSpreadToggle, #pdfSearchToggle, #pdfPrint, #pdfFullscreen) { width: 36px; height: 38px; }
+  .pdf-toolbar :is(#pdfSidebarToggle, #pdfPageToggle, #pdfDownload, #pdfToolsToggle, #pdfSpreadToggle, #pdfSearchToggle, #pdfPrint, #pdfFullscreen) svg { width: 22px; height: 22px; }
   .pdf-tools-group { gap: 1px; }
   .pdf-page-controls { gap: 1px; }
   .pdf-divider { margin: 0 2px; }

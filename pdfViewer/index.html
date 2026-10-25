@@ -9,8 +9,9 @@
   <link rel="stylesheet" href="../stylesheets/styles.main.css">
   <link rel="stylesheet" href="pdfjs/web/pdf_viewer.css">
   <link rel="stylesheet" href="stylesheets/pdf-viewer.css">
+  <link rel="stylesheet" href="stylesheets/pdf-download-pages.css?v=12">
   <script src="../javascripts/theme.js"></script>
-  <script type="module" src="javascripts/pdf-viewer.js?v=5.4.624-compat"></script>
+  <script type="module" src="javascripts/pdf-viewer.js?v=5.4.624-partial-download-10"></script>
 </head>
 <body class="pdf-reader">
 
@@ -72,6 +73,7 @@
       <div id="pdfMoreControls" class="pdf-more-controls">
         <button id="pdfSpreadToggle" class="pdf-icon-button" type="button" title="Two-page view" aria-label="Two-page view" aria-controls="pdfPages" aria-pressed="false" disabled><svg><use href="icon/viewer-icons.svg#icon-spread"/></svg></button>
         <button id="pdfSearchToggle" class="pdf-icon-button" type="button" title="Search document (Ctrl+F)" aria-label="Search document" aria-controls="pdfSearchPanel" aria-expanded="false" disabled><svg><use href="icon/viewer-icons.svg#icon-search"/></svg></button>
+        <button id="pdfPrint" class="pdf-icon-button" type="button" title="Print PDF" aria-label="Print PDF" disabled><svg><use href="icon/viewer-icons.svg#icon-print"/></svg></button>
         <button id="pdfFullscreen" class="pdf-icon-button" type="button" title="Fullscreen" aria-label="Fullscreen" aria-pressed="false"><svg><use href="icon/viewer-icons.svg#icon-expand"/></svg></button>
       </div>
       <a id="pdfDownload" class="pdf-download pdf-icon-button" aria-label="Download PDF" title="Download PDF" hidden download><svg><use href="icon/viewer-icons.svg#icon-save-image"/></svg></a>
@@ -180,6 +182,15 @@
       <button id="pdfImagePrevious" class="pdf-icon-button" type="button" title="Previous image" aria-label="Previous image" disabled><svg><use href="icon/viewer-icons.svg#icon-back"/></svg></button>
       <span class="pdf-image-counter notranslate" role="status" aria-live="polite" aria-atomic="true"><span id="pdfImageCurrent">1</span><span>/</span><span id="pdfImageTotal">1</span></span>
       <button id="pdfImageNext" class="pdf-icon-button" type="button" title="Next image" aria-label="Next image" disabled><svg><use href="icon/viewer-icons.svg#icon-next"/></svg></button>
+    </div>
+  </dialog>
+  <dialog id="pdfPrintDialog" class="pdf-print-dialog" aria-labelledby="pdfPrintHeading">
+    <h2 id="pdfPrintHeading">Print PDF</h2>
+    <p id="pdfPrintStatus" role="status" aria-live="polite">Preparing original PDF…</p>
+    <progress id="pdfPrintProgress" aria-label="Print preparation progress"></progress>
+    <div class="pdf-print-actions">
+      <a id="pdfPrintOriginal" class="pdf-action pdf-action-secondary" target="_blank" rel="noopener">Open original PDF to print</a>
+      <button id="pdfPrintCancel" class="pdf-action" type="button">Cancel</button>
     </div>
   </dialog>
   <div id="pdfReadingStatus" class="pdf-sr-only" role="status" aria-live="polite">Loading</div>

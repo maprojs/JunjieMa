@@ -1,3 +1,4 @@
+import { createPartialDownload } from './pdf-download-pages.js?v=10';
 /* Independent PDF reader. PDF.js, its worker, fonts and CMaps are hosted locally. */
 import { bindPDFZoomGestures, MIN_PDF_SCALE, MAX_PDF_SCALE } from './pdf-zoom.js';
 const $ = id => document.getElementById(id);
@@ -258,9 +259,17 @@ if (pdfURL) {
   const downloadTitle = $('pdfTitleText').textContent.trim().replace(/\.pdf$/i, '');
   const downloadFilename = (downloadTitle.replace(/[<>:"/\\|?*\u0000-\u001f]/g, '_').replace(/[. ]+$/, '') || 'document') + '.pdf';
   $('pdfDownload').download = downloadFilename;
+  const partialDownload = createPartialDownload({
+    getDocument: async () => await readerPromise,
+    getBytes: async () => cachedDownloadURL
+      ? new Uint8Array(await (await fetch(cachedDownloadURL)).arrayBuffer())
+      : (await readerPromise).getData(),
+    getFilename: () => downloadFilename
+  });
   $('pdfDownload').addEventListener('click', async event => {
     event.preventDefault();
     if (downloadBusy) return;
+    partialDownload.show();
     downloadBusy = true;
     $('pdfDownload').setAttribute('aria-busy', 'true');
     $('pdfDownload').title = 'Preparing download…';
@@ -307,6 +316,7 @@ async function initializeReader() {
   const compatibilityMode = needsPDFCompatibility();
   const pdfjs = await import('../pdfjs/build/pdf.mjs?v=5.4.624-legacy');
   const { createImagePanel } = await import('./pdf-images.js');
+  const { createPrintController } = await import('./pdf-print.js?v=original-pdf-1');
   const { PDFViewer, PDFLinkService, PDFFindController, EventBus, LinkTarget, FindState, DownloadManager, GenericL10n, SpreadMode, RenderingStates } =
     await import('../pdfjs/web/pdf_viewer.mjs?v=5.4.624-legacy');
   pdfjs.GlobalWorkerOptions.workerSrc = new URL('../pdfjs/build/pdf.worker.mjs?v=5.4.624-legacy', import.meta.url).href;
@@ -327,6 +337,10 @@ async function initializeReader() {
   });
   linkService.setViewer(viewer);
   let documentPDF;
+  const printController = createPrintController({
+    getDocument: () => documentPDF, url: pdfURL.href,
+    returnFocus: () => (mobile.matches ? toolsToggle : $('pdfPrint')).focus({ preventScroll: true })
+  });
   const imagePanel = createImagePanel({
     pdfjs, getDocument: () => documentPDF,
     getFilename: () => $('pdfTitleText').textContent,
@@ -358,7 +372,7 @@ async function initializeReader() {
   let clickedOutlineEntry;
   let outlineNavigationVersion = 0;
   const progressKey = 'pdf-page:' + pdfURL.pathname + pdfURL.search;
-  const buttons = ['pdfPrev', 'pdfNext', 'pdfPage', 'pdfPageToggle', 'pdfScale', 'pdfZoomOut', 'pdfZoomIn', 'pdfSearchToggle', 'pdfSidebarToggle', 'pdfSpreadToggle'];
+  const buttons = ['pdfPrev', 'pdfNext', 'pdfPage', 'pdfPageToggle', 'pdfScale', 'pdfZoomOut', 'pdfZoomIn', 'pdfSearchToggle', 'pdfSidebarToggle', 'pdfSpreadToggle', 'pdfPrint'];
   let remembered = 1;
   try { remembered = Number(localStorage.getItem(progressKey)) || 1; } catch { /* Start at page one. */ }
   const requested = Number(new URLSearchParams(location.hash.slice(1)).get('page'));
@@ -960,7 +974,7 @@ async function initializeReader() {
   window.addEventListener('pagehide', event => {
     if (!event.persisted) {
       gestureController.abort();
-      stopped = true; imagePanel.dispose(); thumbnailObserver.disconnect();
+      stopped = true; printController.dispose(); imagePanel.dispose(); thumbnailObserver.disconnect();
       downloadController.abort(); void task?.destroy();
     }
   });
