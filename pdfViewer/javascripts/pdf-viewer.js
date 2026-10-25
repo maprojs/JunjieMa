@@ -1,4 +1,4 @@
-import { createPartialDownload } from './pdf-download-pages.js?v=10';
+import { createPartialDownload } from './pdf-download-pages.js?v=13';
 /* Independent PDF reader. PDF.js, its worker, fonts and CMaps are hosted locally. */
 import { bindPDFZoomGestures, MIN_PDF_SCALE, MAX_PDF_SCALE } from './pdf-zoom.js';
 const $ = id => document.getElementById(id);

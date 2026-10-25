@@ -28,30 +28,18 @@ export function pageSelectionLabel(pages) {
 }
 
 export function createPartialDownload({ getDocument, getBytes, getFilename }) {
-  const en = document.documentElement.lang.startsWith('en');
-  const text = en ? {
+  const text = {
     prompt: 'Save selected pages?', toggle: 'Enter pages to download', pages: 'Pages',
     placeholder: 'e.g. 1-3、5、8-10', download: 'Download selected pages',
-    hint: 'Use page numbers or ranges; separators: 、 ， ,', loading: 'Loading document…',
+    hint: 'Ranges: 1-3; separators: 、，,', loading: 'Loading document…',
     close: 'Close', clear: 'Clear pages', first: 'Save first page', odd: 'Odd pages', even: 'Even pages',
     generating: 'Creating PDF…', complete: 'Selected pages downloaded.',
     empty: 'Enter the pages to save.', format: 'Use a format such as 1-3、5、8-10.',
     reversed: 'The start page must not exceed the end page.',
     bounds: total => `Pages must be between 1 and ${total}.`,
-    count: n => `${n} page${n === 1 ? '' : 's'} selected; separators: 、 ， ,`,
+    count: n => `${n} page${n === 1 ? '' : 's'} selected; separators: 、，,`,
     failed: 'Could not extract these pages. Please try another PDF.',
     encrypted: 'This encrypted PDF cannot be split. Download the original file instead.'
-  } : {
-    prompt: '保存部分页面?', toggle: '输入页码并下载', pages: '页码',
-    placeholder: '例如：1-3、5、8-10', download: '下载所选页面',
-    hint: '支持范围，多个页码可用 、 ， , 分隔', loading: '正在加载文档…',
-    close: '关闭', clear: '清除页码', first: '保存首页', odd: '奇数页', even: '偶数页',
-    generating: '正在生成 PDF…', complete: '所选页面已下载。',
-    empty: '请输入需要保存的页码。', format: '请输入类似 1-3、5、8-10 的页码。',
-    reversed: '起始页码不能大于结束页码。',
-    bounds: total => `页码必须在 1 至 ${total} 之间。`, count: n => `已选择 ${n} 页；支持 、 ， , 分隔`,
-    failed: '无法提取所选页面，请重试或选择其他 PDF。',
-    encrypted: '此加密 PDF 暂不支持提取页面，请下载原文件。'
   };
   const anchor = document.getElementById('pdfDownload');
   const panel = document.createElement('div');
