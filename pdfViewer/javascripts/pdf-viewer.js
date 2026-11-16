@@ -170,16 +170,117 @@ try {
 } catch { /* Keep the default link. */ }
 
 let pdfURL;
+let localFile;
+const localKey = params.get('local');
+
+// Transfer a File across a fresh reader navigation, then remove the temporary copy.
+async function transferLocalFile(key, file) {
+  const database = await new Promise((resolve, reject) => {
+    const request = indexedDB.open('pdf-reader-transfer', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('files');
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  try {
+    return await new Promise((resolve, reject) => {
+      const transaction = database.transaction('files', 'readwrite');
+      const store = transaction.objectStore('files');
+      let result;
+      if (file) store.put(file, key);
+      else {
+        const request = store.get(key);
+        request.onsuccess = () => { result = request.result; store.delete(key); };
+      }
+      transaction.oncomplete = () => resolve(result);
+      transaction.onabort = () => reject(transaction.error);
+      transaction.onerror = () => reject(transaction.error);
+    });
+  } finally { database.close(); }
+}
+
+const fileInput = $('pdfLocalInput');
+for (const id of ['pdfOpenLocal', 'pdfChooseLocal']) {
+  $(id).addEventListener('click', () => fileInput.click());
+}
+let openingLocal = false;
+async function openLocalFiles(files) {
+  if (openingLocal || !files.length) return;
+  if (files.length !== 1) { window.alert('Please select one PDF at a time.'); return; }
+  const file = files[0];
+  if (!/\.pdf$/i.test(file.name) && file.type !== 'application/pdf') {
+    window.alert('Please choose a PDF file.'); return;
+  }
+  openingLocal = true;
+  try {
+    const key = crypto.randomUUID();
+    await transferLocalFile(key, file);
+    const next = new URL(location.href);
+    next.search = '';
+    next.searchParams.set('local', key);
+    next.hash = '';
+    location.assign(next.href);
+  } catch (error) {
+    console.error('Local PDF:', error);
+    window.alert('Unable to open the local file. Allow browser storage for this website and try again.');
+    openingLocal = false;
+  }
+}
+fileInput.addEventListener('change', () => {
+  void openLocalFiles(fileInput.files);
+  fileInput.value = '';
+});
+let dragDepth = 0;
+function isFileDrag(event) { return Array.from(event.dataTransfer?.types || []).includes('Files'); }
+window.addEventListener('dragenter', event => {
+  if (!isFileDrag(event)) return;
+  event.preventDefault(); dragDepth++;
+  $('pdfDropOverlay').hidden = false;
+});
+window.addEventListener('dragover', event => {
+  if (!isFileDrag(event)) return;
+  event.preventDefault(); event.dataTransfer.dropEffect = 'copy';
+});
+window.addEventListener('dragleave', event => {
+  if (!isFileDrag(event)) return;
+  dragDepth = Math.max(0, dragDepth - 1);
+  if (!dragDepth) $('pdfDropOverlay').hidden = true;
+});
+window.addEventListener('drop', event => {
+  if (!isFileDrag(event)) return;
+  event.preventDefault(); dragDepth = 0; $('pdfDropOverlay').hidden = true;
+  void openLocalFiles(event.dataTransfer.files);
+});
+window.addEventListener('blur', () => { dragDepth = 0; $('pdfDropOverlay').hidden = true; });
+
 try {
+  if (localKey) {
+    localFile = await transferLocalFile(localKey);
+    history.replaceState(null, '', location.pathname);
+    if (!localFile) throw new Error('Please select your local PDF file again.');
+    pdfURL = new URL(URL.createObjectURL(localFile));
+    window.addEventListener('pagehide', event => {
+      if (!event.persisted) URL.revokeObjectURL(pdfURL.href);
+    });
+  }
+
   const file = params.get('file');
-  if (!file) throw new Error('Open a PDF link on the Research page, or provide a PDF file URL.');
-  pdfURL = new URL(file, siteRoot);
-  if (pdfURL.origin !== location.origin || !/^https?:$/.test(pdfURL.protocol)
+  if (!file && !localFile) {
+    $('pdfSpinner').hidden = true;
+    $('pdfProgress').hidden = true;
+    $('pdfStatusTitle').textContent = 'Open PDF';
+    $('pdfStatusMessage').textContent = 'Choose a local file or drag a PDF here.';
+    $('pdfViewerContainer').setAttribute('aria-busy', 'false');
+    $('pdfReadingStatus').textContent = 'Waiting for a file';
+  }
+  if (file && !localFile) {
+    pdfURL = new URL(file, siteRoot);
+    if (pdfURL.origin !== location.origin || !/^https?:$/.test(pdfURL.protocol)
     || !pdfURL.pathname.toLowerCase().endsWith('.pdf')) {
     throw new Error('This file URL is not supported. Please choose a PDF hosted on this website.');
   }
-  pdfURL.hash = '';
-} catch (error) { showError(error.message, false); }
+    pdfURL.hash = '';
+  }
+} catch (error) { pdfURL = undefined; showError(error.message, false); }
 
 function showError(message, retry = true) {
   $('pdfStatus').hidden = false;
@@ -193,7 +294,10 @@ function showError(message, retry = true) {
   $('pdfViewerContainer').setAttribute('aria-busy', 'false');
   $('pdfReadingStatus').textContent = 'Loading failed';
 }
-$('pdfRetry').addEventListener('click', () => location.reload());
+$('pdfRetry').addEventListener('click', () => {
+  if (localFile) void openLocalFiles([localFile]);
+  else location.reload();
+});
 const fullscreenButton = $('pdfFullscreen');
 let useNativeFullscreen = typeof document.documentElement.requestFullscreen === 'function'
   && typeof document.exitFullscreen === 'function' && document.fullscreenEnabled !== false;
@@ -251,9 +355,9 @@ let downloadBusy = false;
 if (pdfURL) {
   $('pdfDownload').href = pdfURL.href;
   $('pdfDownload').hidden = false;
-  let filename = pdfURL.pathname.split('/').pop();
+  let filename = localFile?.name || pdfURL.pathname.split('/').pop();
   try { filename = decodeURIComponent(filename); } catch { /* Use the encoded filename. */ }
-  if (!title) {
+  if (!title || localFile) {
     setTitle(filename);
   }
   const downloadTitle = $('pdfTitleText').textContent.trim().replace(/\.pdf$/i, '');
@@ -371,7 +475,9 @@ async function initializeReader() {
   let currentOutlineEntry;
   let clickedOutlineEntry;
   let outlineNavigationVersion = 0;
-  const progressKey = 'pdf-page:' + pdfURL.pathname + pdfURL.search;
+  const progressKey = localFile
+    ? 'pdf-local-page:' + JSON.stringify([localFile.name, localFile.size, localFile.lastModified])
+    : 'pdf-page:' + pdfURL.pathname + pdfURL.search;
   const buttons = ['pdfPrev', 'pdfNext', 'pdfPage', 'pdfPageToggle', 'pdfScale', 'pdfZoomOut', 'pdfZoomIn', 'pdfSearchToggle', 'pdfSidebarToggle', 'pdfSpreadToggle', 'pdfPrint'];
   let remembered = 1;
   try { remembered = Number(localStorage.getItem(progressKey)) || 1; } catch { /* Start at page one. */ }
@@ -997,7 +1103,9 @@ async function initializeReader() {
     $('pdfStatusMessage').textContent = hasTotal && percent === 100 ? 'Download complete. Preparing pages…' : 'Downloading PDF…';
   };
   try {
-    const source = compatibilityMode
+    const source = localFile
+      ? { data: new Uint8Array(await localFile.arrayBuffer()) }
+      : compatibilityMode
       ? { data: await loadPDFBytes(pdfURL.href, reportProgress, downloadController.signal) }
       : { url: pdfURL.href };
     task = pdfjs.getDocument({

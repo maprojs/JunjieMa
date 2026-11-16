@@ -285,3 +285,5 @@ html:has(.pdf-reader) { scrollbar-gutter: auto; scroll-behavior: auto; }
   .pdf-image-dialog-zoom .pdf-icon-button { width: 22px; }
   #pdfImageScale { font-size: 12px !important; padding-inline: 4px; }
 }
+
+.pdf-drop-overlay { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; background: #10264bd9; color: #fff; pointer-events: none; border: 4px dashed #a9c8ff; font-size: clamp(20px, 4vw, 32px); }

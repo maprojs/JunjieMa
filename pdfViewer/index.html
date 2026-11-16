@@ -11,9 +11,11 @@
   <link rel="stylesheet" href="stylesheets/pdf-viewer.css">
   <link rel="stylesheet" href="stylesheets/pdf-download-pages.css?v=12">
   <script src="../javascripts/theme.js"></script>
-  <script type="module" src="javascripts/pdf-viewer.js?v=5.4.624-partial-download-13"></script>
+  <script type="module" src="javascripts/pdf-viewer.js?v=5.4.624-local-files-14"></script>
 </head>
 <body class="pdf-reader">
+  <input id="pdfLocalInput" type="file" accept=".pdf,application/pdf" hidden>
+  <div id="pdfDropOverlay" class="pdf-drop-overlay" hidden><span>Drop to open PDF</span></div>
 
   <a class="skip-link" href="#pdfViewerContainer">Skip to document</a>
   <header class="pdf-header">
@@ -38,6 +40,7 @@
   <div id="pdfToolbar" class="pdf-toolbar" role="toolbar" aria-label="PDF reading tools">
     <div id="pdfPageTools" class="pdf-tools-group pdf-page-tools">
       <button id="pdfSidebarToggle" class="pdf-icon-button" type="button" title="Document navigation" aria-label="Document navigation" aria-controls="pdfSidebar" aria-expanded="false" disabled><svg><use href="icon/viewer-icons.svg#icon-sidebar"/></svg></button>
+      <button id="pdfOpenLocal" class="pdf-icon-button" type="button" title="Open local PDF" aria-label="Open local PDF"><svg aria-hidden="true"><use href="icon/viewer-icons.svg?v=2#icon-upload"/></svg></button>
       <span class="pdf-divider"></span>
       <button id="pdfPageToggle" class="pdf-icon-button pdf-page-toggle" type="button" title="Page number" aria-label="Page number" aria-controls="pdfPageControls" aria-expanded="false" hidden disabled><svg><use href="icon/viewer-icons.svg#icon-book-open"/></svg></button>
       <div id="pdfPageControls" class="pdf-page-controls">
@@ -141,6 +144,7 @@
         <small id="pdfProgressText">Preparing download…</small>
       </div>
       <div class="pdf-status-actions">
+        <button id="pdfChooseLocal" class="pdf-action" type="button">Open local PDF</button>
         <button id="pdfRetry" class="pdf-action" type="button" hidden>Retry</button>
       </div>
     </section>
